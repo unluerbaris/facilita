@@ -5,4 +5,10 @@ class Event < ApplicationRecord
   has_many :users, through: :audiences
   belongs_to :user
   validates :title, presence: true
+  before_validation :add_token
+  
+  def add_token
+    self.token = SecureRandom.alphanumeric(5).upcase if token.nil?
+  end
 end
+
