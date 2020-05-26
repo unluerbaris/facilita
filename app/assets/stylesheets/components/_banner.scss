@@ -26,6 +26,9 @@
     object-fit: cover;
     object-position: center;
   }
+  .top-banner-2 {
+  width: 400px;
+  }
 }
 
 @media (max-width: 720px) {
@@ -34,6 +37,9 @@
     width: 400px;
     object-fit: cover;
     object-position: center;
+  }
+  .top-banner-2 {
+  width: 400px;
   }
 }
 
@@ -48,6 +54,9 @@
     object-fit: cover;
     object-position: center;
   }
+  .top-banner-2 {
+  width: 80vw;
+  }
 
 }
 
@@ -61,5 +70,8 @@
     height: 300px;
     object-fit: cover;
     object-position: center;
+  }
+  .top-banner-2 {
+  width: 80vw;
   }
 }
