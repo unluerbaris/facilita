@@ -3,6 +3,7 @@ class AudiencesController < ApplicationController
   def create
     @event = Event.find_by(token: params[:event_token])
     @audience = Audience.new
+    authorize @audience
     @audience.event = @event
     @audience.user = current_user
     if @audience.save

@@ -8,6 +8,10 @@ class EventPolicy < ApplicationPolicy
     # create? action in ApplicationPolicy
   end
 
+  def show?
+    true
+  end
+
   def create?
     true
   end
