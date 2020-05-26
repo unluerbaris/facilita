@@ -1,20 +1,23 @@
- <div class="container">
-      <h1><%= @user.first_name %></h1>
-      <h3><%= @user.last_name %></h3>
+<div class="user-page">
+
+ <div class="container d-flex justify-content-around username">
+  <h1><%= @user.first_name %> <%= @user.last_name %></h1>
   </div>
 
 
-<div class="container">
-    <h1>
-      <%= @user.first_name %>'s projects
-    </h1>
-</div>
+  <div class="container d-flex justify-content-around project-names">
+  <h1>
+    <%= @user.first_name %> <%= @user.last_name %>'s projects
+  </h1>
+  </div>
 
-<div class="container">
+  <div class="container user-events">
   <% @events.each do |event| %>
-  <h2><%= link_to event.title, event_path(event) %></h2>
-  <%= event.description %>
+  <div class="event-name">
+    <h2><%= link_to event.title, event_path(event) %></h2>
+  </div>
   <% end %>
   </div>
+</div>
 
 
