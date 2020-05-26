@@ -1,14 +1,19 @@
 class EventsController < ApplicationController
   def show
-    @event = Event.find(event_params)
+    @event = Event.find(params[:id])
+    authorize @event
   end
 
   def new
     @event = Event.new()
+    authorize @event
   end
 
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
+    authorize @event
+
     if @event.save
       render :show
     else
