@@ -1,4 +1,4 @@
-<div class=" container">
+<div class="container d-flex justify-content-around event-page">
   <div class="event-info d-flex justify-content-between">
 
     <div class="description">
@@ -9,7 +9,7 @@
         <h2><%= @event.token %></h2>
       <% end %>
       <!-- Link to the creator -->
-      <%= link_to "#{@event.user.first_name}, `organizer`", user_path(@event.user), class: "organizer-link" %>
+      <%= link_to "#{@event.user.first_name} #{@event.user.last_name}, Organizer", user_path(@event.user), class: "organizer-link" %>
     </div>
 
     <div class="users">
@@ -19,7 +19,7 @@
 
   </div>
 </div>
-s
+
 <!-- Photo for later -->
 
 <div class="d-flex justify-content-around">
