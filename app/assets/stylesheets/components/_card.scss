@@ -1,9 +1,18 @@
 .card {
-  margin: 10px;
-  #message- {
-    display: none;
-  }
-  #question- {
-    display: none;
-  }
+  box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
+  border: none;
+}
+
+#message- {
+  display: none;
+}
+
+#question- {
+  display: none;
+}
+
+.content-card {
+  margin: 16px auto;
+  padding: 16px;
+  width: 70%;
 }

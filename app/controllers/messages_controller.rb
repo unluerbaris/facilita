@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
     if @message.save
       EventChannel.broadcast_to(
         @event,
-        render_to_string(partial: "messages/message", locals: { message: @message })
+        message: render_to_string(partial: "messages/message", locals: { message: @message })
       )
       redirect_to event_path(@event, anchor: "message-#{@message.id}")
     else
