@@ -2,14 +2,29 @@ class AudiencesController < ApplicationController
 
   def create
     @event = Event.find_by(token: params[:event_token])
-    @audience = Audience.new
-    @audience.event = @event
-    @audience.user = current_user
-    if @audience.save
-      redirect_to event_path(@event)
+
+    # If our token is valid, check if user and event are in same audience model
+    if !@event.nil?
+      if @event.users.include? current_user
+        @audience = Audience.find_by(event_id: @event.id)
+        authorize @audience
+      end
+    end
+
+    if @audience.nil?
+      @audience = Audience.new
+      authorize @audience
+      @audience.event = @event
+      @audience.user = current_user
+      if @audience.save
+        redirect_to event_path(@event)
+      else
+        flash[:alert] = "Could not join the event"
+        render 'pages/home'
+      end
     else
-      flash[:alert] = "Could not join the event"
-      render 'pages/home'
+      # If audience is not nil go to the event page
+      redirect_to event_path(@event)
     end
   end
 end

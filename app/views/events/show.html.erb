@@ -1,11 +1,30 @@
-<h1><%= @event.title %></h1>
+<div class=" container">
+  <div class="event-info d-flex justify-content-between">
 
-<p><%= @event.description %></p>
+    <div class="description">
+      <h1><%= @event.title %></h1>
+      <p><%= @event.description %></p>
+      <% if @event.user == current_user %>
+        <h1>Event token</h1>
+        <h2><%= @event.token %></h2>
+      <% end %>
+      <!-- Link to the creator -->
+      <%= link_to "#{@event.user.first_name}, `organizer`", user_path(@event.user), class: "organizer-link" %>
+    </div>
 
+    <div class="users">
+      <h4>Users</h4>
+      <p><%= @event.users.count %> attendees</p>
+    </div>
+
+  </div>
+</div>
+s
 <!-- Photo for later -->
 
-<!-- Link to the creator -->
-
-
+<div class="d-flex justify-content-around">
+    <%= render 'messages/index', event: @event, message: @message %>
+    <%= render 'questions/index', event: @event, question: @question %>
+</div>
 
 

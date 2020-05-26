@@ -1,0 +1,16 @@
+<div class="container content-container">
+  <h1>Questions</h1>
+  <div id="questions">
+    <% event.questions.each do |question| %>
+      <%= render "questions/question", question: question %>
+    <% end %>
+  </div>
+  <%= simple_form_for([event, question], remote: true) do |f| %>
+    <div class="input-field">
+      <%= f.input :content %>
+    </div>
+    <div class="center">
+      <%= f.submit 'ask', class: 'btn-input' %>
+    </div>
+  <% end %>
+</div>

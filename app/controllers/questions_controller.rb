@@ -7,9 +7,13 @@ class QuestionsController < ApplicationController
     @question.event = @event
     @question.user = current_user
     if @question.save
-      render 'events/show'
+      EventChannel.broadcast_to(
+        @event,
+        question: render_to_string(partial: "questions/question", locals: { question: @question })
+      )
+      redirect_to event_path(@event, anchor: "question-#{@question.id}")
     else
-      flash[:alert] = "cannot not send this comment"
+      render 'events/show'
     end
   end
 
@@ -19,7 +23,7 @@ class QuestionsController < ApplicationController
     @event = Event.find(params[:event_id])
   end
 
-  def message_params
+  def question_params
     params.require(:question).permit(:content)
   end
 end
