@@ -1,2 +1,15 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="top-banner">
+  <div class="top-banner-1">
+    <%= image_tag "top-banner.png" %>
+  </div>
+  <div class="top-banner-2">
+    <h2>Join the event with a code</h2>
+    <div class="form-small">
+      <%= simple_form_for(@audience) do |f| %>
+        <%#= f.input :event, label: "", input_html: { value: params[:audience][:event] } %>
+        <%= text_field_tag :event_token, params[:event_token], class: 'form-control' %>
+        <%= f.button :submit, class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+</div>
