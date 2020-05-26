@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2020_05_26_054634) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+
     t.string "token", limit: 5
     t.bigint "user_id", null: false
     t.index ["token"], name: "index_events_on_token", unique: true
