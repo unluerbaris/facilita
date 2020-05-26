@@ -7,5 +7,8 @@
 <!-- Link to the creator -->
 
 
-
+<div class="d-flex justify-content-around">
+    <%= render 'messages', event: @event, message: @message %>
+    <%= render 'questions', event: @event, question: @question %>
+</div>
 

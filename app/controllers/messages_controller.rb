@@ -7,9 +7,9 @@ class MessagesController < ApplicationController
     @message.event = @event
     @message.user = current_user
     if @message.save
-      render 'events/show'
+      redirect_to event_path(@event, anchor: "message-#{@message.id}")
     else
-      flash[:alert] = "cannot not send this comment"
+      render 'events/show'
     end
   end
 
