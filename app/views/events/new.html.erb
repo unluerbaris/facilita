@@ -1,0 +1,10 @@
+
+<h1>Create a New Event</h1>
+<%= simple_form_for(@event) do |f| %>
+    <%= f.input :title, label: "Event Name" %>
+    <%= f.label :title, "Example: JavaScript for Beginners" %>
+    <%= f.input :description, required: true, label: "Event Details", :input_html => {:rows => 10} %>
+    <%= f.label :description, "A detailed description of your event's content." %>
+    <%= f.input :photo, as: :file, required: true %>
+    <%= f.submit "Create your event" %>
+  <% end %>
