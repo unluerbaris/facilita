@@ -1,2 +1,6 @@
+<% if policy(Event).create? %>
+<%= link_to "Click me", new_event_path  %>
+<% end %>
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+

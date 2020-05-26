@@ -1,4 +1,3 @@
-
 <h1>Create a New Event</h1>
 <%= simple_form_for(@event) do |f| %>
     <%= f.input :title, label: "Event Name" %>
@@ -8,3 +7,4 @@
     <%= f.input :photo, as: :file, required: true %>
     <%= f.submit "Create your event" %>
   <% end %>
+
