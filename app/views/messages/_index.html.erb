@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Messages</h1>
+  <div id="messages" data-event-id="<%= event.id %>">
+    <% event.messages.each do |message| %>
+      <%= render "messages/message", message: message  %>
+    <% end %>
+  </div>
+  <%= simple_form_for([event, message], remote: true) do |f| %>
+    <%= f.input :content %>
+    <%= f.submit 'comment' %>
+  <% end %>
+</div>
+

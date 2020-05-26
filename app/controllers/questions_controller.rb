@@ -7,6 +7,10 @@ class QuestionsController < ApplicationController
     @question.event = @event
     @question.user = current_user
     if @question.save
+      EventChannel.broadcast_to(
+        @event,
+        render_to_string(partial: "questions/question", locals: { question: @question })
+      )
       redirect_to event_path(@event, anchor: "question-#{@question.id}")
     else
       render 'events/show'
