@@ -21,12 +21,20 @@
 <!--       EVENT DATE & TIME -->
     </div>
     <div class="organizer user">
+      <p><%= @event.start_time.strftime("%m/%d/%Y") %></p>
+      <p><%= @event.start_time.strftime("%I:%M%p")  %><%= @event.end_time.strftime(" - %I:%M%p")  %></p>
       <p><%= @event.users.count %> attendees</p>
     </div>
   </div>
 </div>
 
 <!-- Photo for later -->
+
+<% if DateTime.now.change(:offset => "+9000") >= @event.start_time && DateTime.now.change(:offset => "+9000") <= @event.end_time %>
+  <div class="facilitation">
+    <div class="tabs">
+      <%= render 'shared/tabs', event: @event, message: @message, question: @question  %>
+    </div>
 
 
 <div class="facilitation">
@@ -37,4 +45,4 @@
   <div class="footer">
     <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question  %>
   </div>
-</div>
+<% end %>
