@@ -36,8 +36,13 @@
       <%= render 'shared/tabs', event: @event, message: @message, question: @question  %>
     </div>
 
-    <div class="footer">
-      <%= render 'shared/footer', event: @event, message: @message, question: @question  %>
-    </div>
+
+<div class="facilitation">
+  <div class="tabs">
+    <%= render 'shared/tabs', event: @event, message: @new_message, question: @new_question  %>
+  </div>
+
+  <div class="footer">
+    <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question  %>
   </div>
 <% end %>

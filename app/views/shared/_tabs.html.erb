@@ -12,8 +12,8 @@
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-comment" role="tabpanel" aria-labelledby="pills-comment-tab">
     <div class="d-flex justify-content-around">
-      <%= render 'messages/index', event: @event, message: @message %>
-      <%= render 'questions/index', event: @event, question: @question %>
+      <%= render 'messages/index', event: event %>
+      <%= render 'questions/index', event: event %>
     </div>
   </div>
   <div class="tab-pane fade" id="pills-poll" role="tabpanel" aria-labelledby="pills-poll-tab">
