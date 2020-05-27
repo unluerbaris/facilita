@@ -24,7 +24,8 @@ class EventsController < ApplicationController
   end
 
   def summary
-
+    @event = Event.find(params[:event_id])
+    authorize @event
   end
 
   private
