@@ -5,7 +5,8 @@
 .event-container {
   position: absolute;
   top: 50%;
-  left: 18%;
+  left: 0;
+  right: 0;
   background-color: $light-gray;
   box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
   height: 300px;
@@ -33,14 +34,22 @@
 
 .facilitation {
   margin-top: 80px;
-} 
-  
+}
+
 .tabs {
   margin-top: 40px;
 }
 
 .footer {
   display: none;
+}
+
+@media (max-width: 1024px) {
+  /* For a screen < 720px, this CSS will be read */
+  .event-container {
+    top: 15%;
+    height: 340px;
+  }
 }
 
 
@@ -57,6 +66,10 @@
       margin: 0 auto;
     }
   }
+  .event-container {
+    top: 15%;
+    height: 400px;
+  }
 }
 
 @media (max-width: 540px) {
@@ -72,6 +85,13 @@
       margin: 0 auto;
     }
   }
+  .event-container {
+    top: 15%;
+    height: 400px;
+    .event-info {
+      display: inline;
+    }
+  }
 }
 
 @media (max-width: 375px) {
@@ -85,6 +105,14 @@
     .tab-content {
       width: 340px;
       margin: 0 auto;
-   }
- }
+    }
+  }
+  .event-container {
+    top: 15%;
+    height: 400px;
+    .event-info {
+      display: inline;
+    }
+  }
+}
 
