@@ -24,6 +24,7 @@ class EventsController < ApplicationController
   end
 
   def summary
+
   end
 
   private
