@@ -19,13 +19,13 @@ class EventsController < ApplicationController
     if @event.save
       render :show
     else
-      redirect_to new_event_path
+      render :new
     end
   end
 
   private
 
   def event_params
-    params.require(:event).permit(:title, :description)
+    params.require(:event).permit(:title, :description, :start_time, :end_time)
   end
 end
