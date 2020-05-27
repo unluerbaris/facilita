@@ -5,78 +5,61 @@
 
 .top-banner {
   display: flex;
-  margin-top: 100px;
   justify-content: space-between;
+  h1 {
+    font-size: 56px;
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    width: 46%;
+    top: 120px;
+    left: 120px;
+    text-shadow: 0px 0px 16px rgba(0,0,0,0.8);
 
+  }
 }
 
 .top-banner-1 img {
-  width: fit-content;
-  height: 600px;
+  width: 1200px;
+  height: 100vh;
   object-fit: cover;
   object-position: center;
+  position: relative;
 }
 
 .top-banner-2 {
-  width: 600px;
-  height: 600px;
+  box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
+  background-color: white;
+  width: 680px;
+  height: 640px;
+  opacity: 0.9;
+  right: 120px;
   margin-top: 100px;
-  margin-left: 40px;
+  position: absolute;
+  padding: 120px 60px;
+  text-align: center;
 }
 
 @media (max-width: 1024px) {
   /* For a screen < 960px, this CSS will be read */
-  .top-banner-1 img {
-    width: 400px;
-    object-fit: cover;
-    object-position: center;
+  .top-banner h1 {
+    font-size: 42px;
+    width: 100%;
+    top: 100px;
+    left: 20px;
   }
-  .top-banner-2 {
-  width: 400px;
-  }
-}
 
-@media (max-width: 720px) {
-  /* For a screen < 720px, this CSS will be read */
-  .top-banner-1 img {
-    width: 400px;
-    object-fit: cover;
-    object-position: center;
-  }
-  .top-banner-2 {
-  width: 400px;
-  }
-}
-
-@media (max-width: 540px) {
-  /* For a screen < 540px, this CSS will be read */
-  .top-banner {
-    display: inline;
-  }
   .top-banner-1 img {
     width: 100vw;
-    height: 300px;
     object-fit: cover;
     object-position: center;
   }
   .top-banner-2 {
-  width: 80vw;
-  }
-
-}
-
-@media (max-width: 375px) {
-  /* For a screen < 540px, this CSS will be read */
-  .top-banner {
-    display: inline;
-  }
-  .top-banner-1 img {
-    width: 100vw;
-    height: 300px;
-    object-fit: cover;
-    object-position: center;
-  }
-  .top-banner-2 {
-  width: 80vw;
+    margin-top: 240px;
+    width: 100%;
+    left: 0;
+    right: 0;
   }
 }
+
+
