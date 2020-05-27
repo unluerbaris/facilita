@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_26_054634) do
+ActiveRecord::Schema.define(version: 2020_05_27_024629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2020_05_26_054634) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "token", limit: 5
     t.bigint "user_id", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.index ["token"], name: "index_events_on_token", unique: true
     t.index ["user_id"], name: "index_events_on_user_id"
   end
