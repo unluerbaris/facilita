@@ -11,6 +11,7 @@
 <p><%= total_age / @event.users.count %><p>
 
 <!-- Count Females and Show Persentage -->
+<%= pie_chart @event.users.group(:gender).count %>
 <% females = @event.users.select do |user| %>
   <% user.gender == "Female"  %>
 <% end %>
