@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
     resources :questions, only: [:create]
     resources :polls, only: [:new, :create]
+    get 'summary', to: 'events#summary'
   end
   resources :audiences, only: [:create]
 end
