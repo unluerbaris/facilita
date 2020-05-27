@@ -1,1 +1,10 @@
 // Specific CSS for your home-page
+.introduction {
+  text-align: center;
+  padding: 40px;
+  h2 {
+    margin: 30px;
+    color: $red;
+    font-weight: bold;
+  }
+}
