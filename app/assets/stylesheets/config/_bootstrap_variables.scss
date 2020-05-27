@@ -33,6 +33,9 @@ $border-radius-sm: 2px;
   background-color: $red !important;
 }
 
-
+.nav {
+  flex-wrap: nowrap !important;
+  padding-top: 40px;
+}
 
 

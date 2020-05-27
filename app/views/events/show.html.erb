@@ -35,14 +35,8 @@
 
 <!-- Photo for later -->
 
-<% if DateTime.now.change(:offset => "+9000") >= @event.start_time && DateTime.now.change(:offset => "+9000") <= @event.end_time %>
-  <div class="facilitation">
-    <div class="tabs">
-      <%= render 'shared/tabs', event: @event, message: @new_message, question: @new_question  %>
-    </div>
-
-    <div class="footer">
-      <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question  %>
-    </div>
+<%# if DateTime.now.change(:offset => "+9000") >= @event.start_time && DateTime.now.change(:offset => "+9000") <= @event.end_time %>
+  <div class="footer">
+    <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question  %>
   </div>
-<% end %>
+<%# end %>
