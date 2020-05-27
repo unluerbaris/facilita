@@ -48,36 +48,48 @@ Event.create!(
   title: "Web Development for Beginners",
   description: "Let's create a landing page from scratch.",
   user: User.find_by(email: "baris@baris.com"),
+  start_time: DateTime.now,
+  end_time: DateTime.now + 1
   )
 
 Event.create!(
   title: "Game Development with Unity",
   description: "Let's make a platformer game.",
   user: User.find_by(email: "baris@baris.com"),
+  start_time: DateTime.now,
+  end_time: DateTime.now + 1
   )
 
 Event.create!(
   title: "Ruby Basics",
   description: "Learn how to code with Ruby.",
   user: User.find_by(email: "chi@chi.com"),
+  start_time: DateTime.now,
+  end_time: DateTime.now + 1
   )
 
 Event.create!(
   title: "Your first game with Ruby",
   description: "Make a snake clone using Gosu Game Engine and coding with Ruby.",
   user: User.find_by(email: "chi@chi.com"),
+  start_time: DateTime.now,
+  end_time: DateTime.now + 1
   )
 
 Event.create!(
   title: "JavaScript Animations",
   description: "Do some cool animations and transitions on your web page.",
   user: User.find_by(email: "grant@grant.com"),
+  start_time: DateTime.now,
+  end_time: DateTime.now + 1
   )
 
 Event.create!(
   title: "Advanced CSS tips",
   description: "Learn how to use CSS like a pro.",
   user: User.find_by(email: "grant@grant.com"),
+  start_time: DateTime.now,
+  end_time: DateTime.now + 1
   )
 
 puts "#{Event.count} events created!"
