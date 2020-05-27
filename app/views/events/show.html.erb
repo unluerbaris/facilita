@@ -1,5 +1,16 @@
 <div class="banner-red event-banner">
+
+  <% if @event.photo.attached? %>
+
+  <%= cl_image_tag @event.photo.key, class: "banner-image" %>
+
+
+  <% end %>
+
+
 </div>
+
+
 <div class="container event-container">
   <div class="event-info">
     <div class="description">
