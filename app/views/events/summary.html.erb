@@ -1,1 +1,27 @@
 <h1>Summary Page</h1>
+
+<!-- Find Total Age -->
+<% total_age = 0 %>
+<% @event.users.each do |user| %>
+  <% total_age += user.age %>
+<% end %>
+
+<!-- Show Avarage Age -->
+<h3>Avarage Age</h3>
+<p><%= total_age / @event.users.count %><p>
+
+<!-- Count Females and Show Persentage -->
+<% females = @event.users.select do |user| %>
+  <% user.gender == "Female"  %>
+<% end %>
+<h3>Female</h3>
+<p><%= (females.count.to_f / @event.users.count) * 100 %>%</p>
+
+<!-- Count Males and Show Persentage -->
+<% males = @event.users.select do |user| %>
+  <% user.gender == "Male"  %>
+<% end %>
+<h3>Male</h3>
+<p><%= (males.count.to_f / @event.users.count) * 100 %>%</p>
+
+
