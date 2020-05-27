@@ -43,12 +43,10 @@
   margin-top: 80px;
 }
 
-.tabs {
-  margin-top: 40px;
-}
-
 .footer {
   display: none;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 @media (max-width: 1024px) {
@@ -62,17 +60,15 @@
 
 @media (max-width: 720px) {
   /* For a screen < 720px, this CSS will be read */
-  .tabs {
-    display: none;
-  }
   .footer {
-    display: inline;
-    padding-bottom: 40px;
-    .tab-content {
-      width: 680px;
-      margin: 0 auto;
-    }
+    flex-direction: column;
   }
+
+   .tab-content {
+     width: 680px;
+     margin: 0 auto;
+   }
+
   .event-container {
     top: 15%;
     height: 400px;
@@ -81,45 +77,19 @@
 
 @media (max-width: 540px) {
   /* For a screen < 540px, this CSS will be read */
-  .tabs {
-    display: none;
+  .tab-content {
+    width: 500px;
+    margin: 0 auto;
   }
-  .footer {
+  .event-info {
     display: inline;
-    padding-bottom: 40px;
-    .tab-content {
-      width: 500px;
-      margin: 0 auto;
-    }
-  }
-  .event-container {
-    top: 15%;
-    height: 400px;
-    .event-info {
-      display: inline;
-    }
   }
 }
 
 @media (max-width: 375px) {
   /* For a screen < 540px, this CSS will be read */
-  .tabs {
-    display: none;
-  }
-  .footer {
-    display: inline;
-    padding-bottom: 40px;
-    .tab-content {
-      width: 340px;
-      margin: 0 auto;
-    }
-  }
-  .event-container {
-    top: 15%;
-    height: 400px;
-    .event-info {
-      display: inline;
-    }
+  .tab-content {
+    width: 340px;
+    margin: 0 auto;
   }
 }
-
