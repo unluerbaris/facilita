@@ -24,6 +24,7 @@ require("channels")
 
 // External imports
 import "bootstrap";
+import flatpickr from "flatpickr";
 
 // Internal imports, e.g:
 import { initEventCable } from '../channels/event_channel';
@@ -32,4 +33,5 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initEventCable();
+  flatpickr(".datepicker", { enableTime: true, defaultDate: new Date() });
 });
