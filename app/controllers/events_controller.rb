@@ -2,8 +2,8 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     authorize @event
-    @message = Message.new
-    @question = Question.new
+    @new_message = Message.new
+    @new_question = Question.new
   end
 
   def new
@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     authorize @event
 
     if @event.save
-      render :show
+      redirect_to event_path(@event)
     else
       render :new
     end

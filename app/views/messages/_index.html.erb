@@ -5,7 +5,7 @@
       <%= render "messages/message", message: message  %>
     <% end %>
   </div>
-  <%= simple_form_for([event, message], remote: true) do |f| %>
+  <%= simple_form_for([event, Message.new], remote: true) do |f| %>
     <div class="input-field">
       <%= f.input :content %>
     </div>
