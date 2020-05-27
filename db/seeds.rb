@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+occupations = ["Software Developer", "Engineer", "Doctor", "Translator", "Language Teacher", "Manager"]
+
 puts "Destyoying all seeds "
 
 Event.destroy_all
@@ -21,21 +23,120 @@ User.create!(
   first_name: "Baris",
   last_name: "Unluer",
   email: "baris@baris.com",
-  password: "localife"
+  password: "localife",
+  age: rand(18..60),
+  gender: "Male",
+  occupation: occupations.sample
   )
 
 User.create!(
   first_name: "Chihiro",
   last_name: "Tsuda",
   email: "chi@chi.com",
-  password: "localife"
+  password: "localife",
+  age: rand(18..60),
+  gender: "Female",
+  occupation: occupations.sample
   )
 
 User.create!(
   first_name: "Grant",
   last_name: "Holley",
   email: "grant@grant.com",
-  password: "localife"
+  password: "localife",
+  age: rand(18..60),
+  gender: "Male",
+  occupation: occupations.sample
+  )
+
+User.create!(
+  first_name: "Yun",
+  last_name: "Chung",
+  email: "yun@yun.com",
+  password: "localife",
+  age: rand(18..60),
+  gender: "Male",
+  occupation: occupations.sample
+  )
+
+User.create!(
+  first_name: "Julien",
+  last_name: "Ergan",
+  email: "julien@julien.com",
+  password: "localife",
+  age: rand(18..60),
+  gender: "Male",
+  occupation: occupations.sample
+  )
+
+User.create!(
+  first_name: "Munekatsu",
+  last_name: "Furugen",
+  email: "katsu@katsu.com",
+  password: "localife",
+  age: rand(18..60),
+  gender: "Male",
+  occupation: occupations.sample
+  )
+
+User.create!(
+  first_name: "Shogo",
+  last_name: "Hida",
+  email: "shogo@shogo.com",
+  password: "localife",
+  age: rand(18..60),
+  gender: "Male",
+  occupation: occupations.sample
+  )
+
+User.create!(
+  first_name: "Yusuke",
+  last_name: "Ishida",
+  email: "yusuke@yusuke.com",
+  password: "localife",
+  age: rand(18..60),
+  gender: "Male",
+  occupation: occupations.sample
+  )
+
+User.create!(
+  first_name: "Lukasz",
+  last_name: "Koziel",
+  email: "lukasz@lukasz.com",
+  password: "localife",
+  age: rand(18..60),
+  gender: "Male",
+  occupation: occupations.sample
+  )
+
+User.create!(
+  first_name: "Momotaro",
+  last_name: "Nakamura",
+  email: "momo@momo.com",
+  password: "localife",
+  age: rand(18..60),
+  gender: "Male",
+  occupation: occupations.sample
+  )
+
+User.create!(
+  first_name: "Pins",
+  last_name: "Thoo",
+  email: "pins@pins.com",
+  password: "localife",
+  age: rand(18..60),
+  gender: "Female",
+  occupation: occupations.sample
+  )
+
+User.create!(
+  first_name: "Nicole",
+  last_name: "Wong",
+  email: "nicole@nicole.com",
+  password: "localife",
+  age: rand(18..60),
+  gender: "Female",
+  occupation: occupations.sample
   )
 
 puts "#{User.count} user created!"
