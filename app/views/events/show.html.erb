@@ -7,9 +7,10 @@
       <p><%= @event.description %></p>
     </div>
     <div class="organizer">
-      <h2>
-        <%= link_to "Organizer🎤#{@event.user.first_name} #{@event.user.last_name}", user_path(@event.user) %>
-      </h2>
+      <h2>Organizer</h2>
+      <h3>
+        <%= link_to "🎤 #{@event.user.first_name} #{@event.user.last_name}", user_path(@event.user) %>
+      </h3>
       <% if @event.user == current_user %>
         <h5>Event code ♯ <%= @event.token %></h5>
       <% end %>
@@ -19,7 +20,7 @@
     <div class="description">
 <!--       EVENT DATE & TIME -->
     </div>
-    <div>
+    <div class="organizer user">
       <p><%= @event.users.count %> attendees</p>
     </div>
   </div>
