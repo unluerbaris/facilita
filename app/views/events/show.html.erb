@@ -21,10 +21,10 @@
 </div>
 
 <!-- Photo for later -->
-
-<div class="d-flex justify-content-around">
-    <%= render 'messages/index', event: @event, message: @message %>
-    <%= render 'questions/index', event: @event, question: @question %>
+<div class="tabs">
+  <%= render 'shared/tabs', event: @event, message: @message, question: @question  %>
 </div>
 
-
+<div class="footer">
+  <%= render 'shared/footer', event: @event, message: @message, question: @question  %>
+</div>
