@@ -34,6 +34,9 @@
 </div>
 
 <!-- Photo for later -->
+<% if @event.user == current_user %>
+<%= link_to "Edit event", edit_event_path %>
+<% end %>
 
 <%# if DateTime.now.change(:offset => "+9000") >= @event.start_time && DateTime.now.change(:offset => "+9000") <= @event.end_time %>
   <div class="footer">
