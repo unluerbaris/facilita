@@ -1,10 +1,5 @@
 class PollsController < ApplicationController
-  before_action :set_event, only: [:show, :create]
-
-  def show
-    @poll = Poll.find(poll_params)
-    authorize @poll
-  end
+  before_action :set_event, only: [:create]
 
   def new
     @poll = Poll.new
@@ -16,9 +11,13 @@ class PollsController < ApplicationController
     authorize @poll
 
     if @poll.save
-      redirect_to event_poll_path(@poll)
+      EventChannel.broadcast_to(
+        @event,
+        poll: render_to_string(partial: "polls/poll", locals: { poll: @poll })
+      )
+      redirect_to event_path(@event, anchor: "poll-#{@poll.id}")
     else
-      render :new
+      render 'events/show'
     end
   end
 
