@@ -2,6 +2,7 @@
 <div class="container d-flex justify-content-around">
   <div class="card new-project-card p-3 mb-4 mt-4">
 <h1>Create a New Event</h1>
+
 <%= simple_form_for(@event) do |f| %>
     <span class="form-name"><%= f.input :title, label: "Event Name" %></span>
     <span class="form-description"><%= f.label :title, "Example: JavaScript for Beginners" %></span>
@@ -15,7 +16,7 @@
     </span>
     <span class="form-name"><%= f.input :photo, as: :file, required: true %></span>
 <div class="container d-flex justify-content-around">
-<%= f.submit "Create your event" %>
+<%= f.submit "Create your event", class: "btn btn-new" %>
 </div>
   <% end %>
 </div>

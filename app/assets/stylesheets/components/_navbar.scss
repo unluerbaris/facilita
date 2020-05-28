@@ -18,3 +18,17 @@
   height: 40px;
   width: 40px;
 }
+
+.btn-flat {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: $red;
+  transition: background 0.3s ease;
+  margin-right: 10px;
+}
+
+.btn-flat:hover {
+  background: $red;
+  color: white;
+}
