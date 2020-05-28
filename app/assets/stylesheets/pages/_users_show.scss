@@ -33,7 +33,7 @@
 .user-events {
   overflow: hidden;
   height: 120px;
-  width: 50vw;
+  width: 60vw;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   position: relative;
@@ -46,10 +46,6 @@
   &:hover {
     text-decoration: none;
   }
-}
-
-.events-corner {
-  margin-left: 200px;
 }
 
 .event-names {
