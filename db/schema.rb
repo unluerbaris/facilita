@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_28_043054) do
+
+ActiveRecord::Schema.define(version: 2020_05_28_050037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +46,13 @@ ActiveRecord::Schema.define(version: 2020_05_28_043054) do
     t.index ["user_id"], name: "index_audiences_on_user_id"
   end
 
+  create_table "choices", force: :cascade do |t|
+    t.bigint "poll_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["poll_id"], name: "index_choices_on_poll_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -69,6 +77,13 @@ ActiveRecord::Schema.define(version: 2020_05_28_043054) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "polls", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_polls_on_event_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.bigint "user_id", null: false
@@ -77,6 +92,15 @@ ActiveRecord::Schema.define(version: 2020_05_28_043054) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_questions_on_event_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "choice_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["choice_id"], name: "index_responses_on_choice_id"
+    t.index ["user_id"], name: "index_responses_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -100,9 +124,13 @@ ActiveRecord::Schema.define(version: 2020_05_28_043054) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "audiences", "events"
   add_foreign_key "audiences", "users"
+  add_foreign_key "choices", "polls"
   add_foreign_key "events", "users"
   add_foreign_key "messages", "events"
   add_foreign_key "messages", "users"
+  add_foreign_key "polls", "events"
   add_foreign_key "questions", "events"
   add_foreign_key "questions", "users"
+  add_foreign_key "responses", "choices"
+  add_foreign_key "responses", "users"
 end

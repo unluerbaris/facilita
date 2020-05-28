@@ -29,13 +29,16 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = policy_scope(Event).find(params[:id])
+    @event = Event.find(params[:id])
+    authorize @event
   end
 
   def update
     @event = Event.find(params[:id])
     @event.update(event_params)
+    authorize @event
     @event.save
+    redirect_to @event
   end
 
   private

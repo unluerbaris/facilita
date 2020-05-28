@@ -1,11 +1,11 @@
-class QuestionPolicy < ApplicationPolicy
+class PollPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
   end
 
-  def new?
+  def show?
     true
   end
 
