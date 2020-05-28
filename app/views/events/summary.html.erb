@@ -8,23 +8,22 @@
   <% end %>
 
   <!-- Show Avarage Age -->
-  <h3>Avarage Age</h3>
-  <p><%= total_age / @event.users.count %><p>
+   <%= bar_chart @event.users.group(:age).count %>
 
   <!-- Count Females and Show Persentage -->
-  <%= pie_chart @event.users.group(:gender).count %>
+  <%= pie_chart @event.users.group(:gender).count, colors: ["#800000", "#211485"] %>
   <% females = @event.users.select do |user| %>
     <% user.gender == "Female"  %>
   <% end %>
   <h3>Female</h3>
-  <p><%= (females.count.to_f / @event.users.count) * 100 %>%</p>
+  <p><%= ((females.count.to_f / @event.users.count) * 100).round %>%</p>
 
   <!-- Count Males and Show Persentage -->
   <% males = @event.users.select do |user| %>
     <% user.gender == "Male"  %>
   <% end %>
   <h3>Male</h3>
-  <p><%= (males.count.to_f / @event.users.count) * 100 %>%</p>
+  <p><%= ((males.count.to_f / @event.users.count) * 100).round %>%</p>
 
 
 </div>
