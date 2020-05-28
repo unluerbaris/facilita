@@ -28,9 +28,19 @@ class EventsController < ApplicationController
     authorize @event
   end
 
+  def edit
+    @event = policy_scope(Event).find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    @event.update(event_params)
+    @event.save
+  end
+
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :start_time, :end_time, :photo)
+    params.require(:event).permit(:title, :description, :start_time, :end_time, :photo, :location)
   end
 end
