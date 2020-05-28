@@ -6,19 +6,31 @@
   </div>
 
 
-  <div class="container d-flex justify-content-around project-names">
+  <div class="container project-names">
   <h1>
     <%= @user.first_name %> <%= @user.last_name %>'s projects
   </h1>
   </div>
 
-  <div class="container user-events">
+
+
   <% @events.each do |event| %>
-  <div class="event-name">
-    <h2><%= link_to event.title, event_path(event) %></h2>
+  <div class="user-events">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg">
+
+
+    <%= link_to event.title, event_path(event), class: "text-red" %>
+<div class="event-location">
+    <%= event.start_time %>
+  </div>
   </div>
   <% end %>
-  </div>
+
 </div>
+
+ <%# if @event.photo.attached? %>
+          <%#= cl_image_tag @event.photo.key %>
+         <%# end %>
+
 
 

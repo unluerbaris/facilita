@@ -1,4 +1,9 @@
 <div class="card content-card" id="question-<%= question.id %>">
+  <% if current_user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+          <%= image_tag "https://via.placeholder.com/150", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% end %>
   <h5><%= question.user.first_name %> <%= question.user.last_name %></h5>
   <p><%= question.content %></p>
 </div>

@@ -45,3 +45,9 @@
 
 <%#= cl_image_tag @event.photo.key, class: "banner-image" %>
 
+ <%# if current_user.photo.attached? %>
+          <%#= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%# else %>
+          <%#= image_tag "https://via.placeholder.com/150", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%# end %>
+
