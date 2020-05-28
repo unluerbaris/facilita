@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :audiences
   has_many :messages
   has_many :questions
-  has_many :events, through: :audiences
+  has_many :attended_events, through: :audiences, source: :event
+  has_many :events
   has_one_attached :photo
 end
