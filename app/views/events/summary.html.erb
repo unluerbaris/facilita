@@ -5,7 +5,7 @@
       <div class="audience-card">
         <div>
           <% if audience.photo.attached? %>
-            <%= cl_image_taga audience.photo.key %>
+            <%= cl_image_taga audience.photo.key, class: "avatar" %>
           <% else %>
              <%= image_tag "avatar.svg", class: "avatar" %>
           <% end %>
@@ -18,43 +18,124 @@
   </div>
   <div class="summary-container-2">
     <h1 class="center"><%= @event.title %> Overview</h1>
-    <div class="d-flex jusitify-content-center">
+    <div class="d-flex justify-content-around">
       <div class="card-square">
         <%= image_tag "attendees.svg", class: "avatar-square-super-large" %>
-        <h5><%= @event.audiences.count %> audiences attended</h5>
+        <h5><%= @event.audiences.count %> audiences attended!</h5>
       </div>
       <div class="card-square">
-
+        <%= image_tag "chat.svg", class: "avatar-square-super-large" %>
+        <h5><%= @event.messages.count %> comments received!</h5>
       </div>
       <div class="card-square">
-
+        <%= image_tag "question.svg", class: "avatar-square-super-large" %>
+        <h5><%= @event.questions.count %> questions recceived!</h5>
       </div>
     </div>
+    <div class="d-flex justify-content-center">
+      <div class="card-box">
+         <h4 class="center">Age of Audiences</h4>
+         <%= bar_chart @event.users.group("FLOOR(age / 10) * 10").count, class: "avatar-square-super-large", colors: ['#800000']%>
+      </div>
+      <div class="card-box">
+          <h4 class="center">Gender of Audiences</h4>
+          <%= pie_chart @event.users.group(:gender).count, class: "avatar-square-super-large", colors: ['#800000', '#001980'] %>
+          <div class="d-flex justify-content-around m-3">
+            <% females = @event.users.select do |user| %>
+              <% user.gender == "Female"  %>
+            <% end %>
+            <p>Female <%= ((females.count.to_f / @event.users.count) * 100).round %>%</p>
+            <% males = @event.users.select do |user| %>
+              <% user.gender == "Male"  %>
+            <% end %>
+            <p>Male <%= ((males.count.to_f / @event.users.count) * 100).round %>%</p>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <div class="card-box-wide">
+          <h4 class="center">Occupation of Audiences</h4>
+          <div class="d-flex justify-content-around">
+            <%= pie_chart @event.users.group(:occupation).count, donut: true, id: "users-chart", width: "400px", colors: ['#001980', '#800000', '#D78C00', '#357544', '#75355D', '#FF8C9E'] %>
+            <div class="text-box-small">
+              <% occupations = @event.users.group(:occupation).count %>
+              <% occupations.each do |occupation| %>
+                <div class="d-flex justify-content-between">
+                  <li><%= occupation[0] %></li>
+                  <li><%= occupation[1] %></li>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="card-box">
+          <%= image_tag "poll.svg", class: "avatar-square-extra-large" %>
+          <h5>Created 0 polls</h5>
+          <p class="text-red">Check your poll result</p>
+        </div>
+      </div>
+    <h1 id="compare">Comapare with your previous events</h1>
 
-    <!-- Show Age -->
-     <%= bar_chart @event.users.group("FLOOR(age / 10) * 10").count %>
-
-    <!-- Count Females and Show Persentage -->
-    <%= pie_chart @event.users.group(:gender).count %>
-    <% females = @event.users.select do |user| %>
-      <% user.gender == "Female"  %>
-    <% end %>
-    <h3>Female</h3>
-    <p><%= ((females.count.to_f / @event.users.count) * 100).round %>%</p>
-
-    <!-- Count Males and Show Persentage -->
-    <% males = @event.users.select do |user| %>
-      <% user.gender == "Male"  %>
-    <% end %>
-    <h3>Male</h3>
-    <p><%= ((males.count.to_f / @event.users.count) * 100).round %>%</p>
-
-    <%= pie_chart @event.users.group(:occupation).count, donut: true %>
-        <h1>Comapare with your previous events</h1>
-        <%= column_chart @audiences.group(:event_id).count %>
-        <%= line_chart @messages.group(:event_id).count %>
-        <%= line_chart @questions.group(:event_id).count %>
-
+    <div class="d-flex align-items-center">
+      <div class="card-box-wide">
+        <h4 class="center">Number of Audiences</h4>
+        <div class="d-flex justify-content-around">
+          <%= column_chart @audiences.group(:event_id).count, width: "400px", colors: ['#800000'] %>
+          <div class="text-box-small">
+            <% events = @audiences.group(:event_id).count %>
+            <% events.each do |event| %>
+              <div class="d-flex justify-content-between align-items-center">
+                <li><%= Event.find(event[0]).title %></li>
+                <small><%= event[1] %></small>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex align-items-center">
+      <div class="card-box-wide">
+        <h4 class="center">Number of Messages</h4>
+        <div class="d-flex justify-content-around">
+          <%= line_chart @messages.group(:event_id).count, width: "400px", colors: ['#800000'] %>
+          <div class="text-box-small">
+            <% events = @messages.group(:event_id).count %>
+            <% events.each do |event| %>
+              <div class="d-flex justify-content-between align-items-center">
+                <li><%= Event.find(event[0]).title %></li>
+                <small><%= event[1] %></small>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="card-box">
+        <%= image_tag "messages.svg", class: "avatar-square-super-large" %>
+        <p class="text-red">Check highly rated comments</p>
+      </div>
+    </div>
+    <div class="d-flex align-items-center">
+      <div class="card-box-wide">
+        <h4 class="center">Number of Questions</h4>
+        <div class="d-flex justify-content-around">
+          <%= line_chart @questions.group(:event_id).count, width: "400px", colors: ['#800000'] %>
+          <div class="text-box-small">
+            <% events = @questions.group(:event_id).count %>
+            <% events.each do |event| %>
+              <div class="d-flex justify-content-between align-items-center">
+                <li><%= Event.find(event[0]).title %></li>
+                <small><%= event[1] %></small>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="card-box">
+        <%= image_tag "questions.svg", class: "avatar-square-super-large" %>
+        <p class="text-red">Check highly rated questions</p>
+      </div>
+    </div>
+    </div>
   </div>
 </div>
 
