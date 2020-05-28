@@ -23,14 +23,15 @@ font-style: italic;
 }
 
 .btn-new {
-  color: $red;
+  color: white;
   padding: 8px 24px;
   border-radius: 4px;
-  background: white;
+  background: $red;
   transition: background 0.3s ease;
 }
 
 .btn-new:hover {
   background: white;
   color: $red;
+  border: 1px solid $red;
 }
