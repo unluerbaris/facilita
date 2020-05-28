@@ -1,16 +1,16 @@
 <div class="container content-container">
   <h1>Poll</h1>
   <div id="polls" data-event-id="<%= event.id %>">
-    <% event.polls.each do |poll| %>
-      <%= render "polls/poll", poll: poll  %>
-    <% end %>
+    <%# event.polls.each do |poll| %>
+      <%= render "polls/poll", poll: Poll.new  %>
+    <%# end %>
   </div>
-  <%= simple_form_for([event, Poll.new], remote: true) do |f| %>
-    <div class="input-field">
+  <%#= simple_form_for([event, Poll.new], remote: true) do |f| %>
+    <!-- <div class="input-field">
       <%#= f.input :content %>
     </div>
     <div class="center">
       <%#= f.submit 'comment', class: "btn-input" %>
-    </div>
-  <% end %>
+    </div> -->
+  <%# end %>
 </div>

@@ -9,6 +9,7 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.new(poll_params)
     authorize @poll
+    @poll.event = @event
 
     if @poll.save
       EventChannel.broadcast_to(
