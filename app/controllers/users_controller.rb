@@ -12,12 +12,19 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    @user.save
+    authorise @user
+    @user.age = Date.today.year - user.birthday.year
+    @user.age -= 1 if Date.today < user.birthday + user.age.years
+    @user.update
+    if @user.save
+      redirect_to user_path(current_user)
+    else
+      render :edit
+    end
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :photo, :age, :gender, :occupation)
+    params.require(:user).permit(:first_name, :last_name, :photo, :birthday, :gender, :occupation)
   end
 
 end
