@@ -9,16 +9,9 @@
 
 .project-names {
   margin-top: 10px;
-}
-
-
-.user-events {
   text-align: center;
-  margin-top: 10px;
-  a {
-    text-decoration: none;
-  }
 }
+
 
 .username {
   border-bottom: 1px solid  #D3D3D3;
@@ -27,7 +20,56 @@
   background-color: $red;
 }
 
-.event-name {
-  margin-top: 50px;
+
+
+.user-events {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  font-size: 32px;
+  font-weight: bold;
+  margin-right: 10px;
+  &:hover {
+    text-decoration: none;
+  }
 }
 
+.event-location {
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+
+
+.user-events img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+  margin-right: 30px;
+}
+
+
+
+.user-events p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.event-card {
+  padding: 16px;
+}
+
+//.user-events {
+  //text-align: center;
+  //margin-top: 10px;
+  //a {
+    //text-decoration: none;
+  //}
+//}
