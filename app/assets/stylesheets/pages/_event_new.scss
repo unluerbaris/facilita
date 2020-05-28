@@ -13,5 +13,20 @@ font-style: italic;
 }
 
 .new-project-card {
-  background-color: white;
+  text-align: center;
+  color: white;
+  background-color: $red;
+}
+
+.btn-new {
+  color: $red;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: white;
+  transition: background 0.3s ease;
+}
+
+.btn-new:hover {
+  background: white;
+  color: $red;
 }
