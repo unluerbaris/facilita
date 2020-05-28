@@ -1,34 +1,60 @@
-<div class="container">
-  <h1><%= @event.title %> Overview</h1>
+<div class="summary-container">
+  <div class="summary-container-1">
+    <h3 class="center">Audience List</h3>
+    <% @event.users.each do |audience| %>
+      <div class="audience-card">
+        <div>
+          <% if audience.photo.attached? %>
+            <%= cl_image_taga audience.photo.key %>
+          <% else %>
+             <%= image_tag "avatar.svg", class: "avatar" %>
+          <% end %>
+        </div>
+         <div>
+           <h6><%= audience.first_name %> <%= audience.last_name %></h6>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="summary-container-2">
+    <h1 class="center"><%= @event.title %> Overview</h1>
+    <div class="d-flex jusitify-content-center">
+      <div class="card-square">
+        <%= image_tag "attendees.svg", class: "avatar-square-super-large" %>
+        <h5><%= @event.audiences.count %> audiences attended</h5>
+      </div>
+      <div class="card-square">
 
-  <h2><%= @event.audiences.count %> audiences attended</h2>
+      </div>
+      <div class="card-square">
 
+      </div>
+    </div>
 
-  <!-- Show Age -->
-   <%= bar_chart @event.users.group("FLOOR(age / 10) * 10").count %>
+    <!-- Show Age -->
+     <%= bar_chart @event.users.group("FLOOR(age / 10) * 10").count %>
 
-  <!-- Count Females and Show Persentage -->
-  <%= pie_chart @event.users.group(:gender).count %>
-  <% females = @event.users.select do |user| %>
-    <% user.gender == "Female"  %>
-  <% end %>
-  <h3>Female</h3>
-  <p><%= ((females.count.to_f / @event.users.count) * 100).round %>%</p>
+    <!-- Count Females and Show Persentage -->
+    <%= pie_chart @event.users.group(:gender).count %>
+    <% females = @event.users.select do |user| %>
+      <% user.gender == "Female"  %>
+    <% end %>
+    <h3>Female</h3>
+    <p><%= ((females.count.to_f / @event.users.count) * 100).round %>%</p>
 
-  <!-- Count Males and Show Persentage -->
-  <% males = @event.users.select do |user| %>
-    <% user.gender == "Male"  %>
-  <% end %>
-  <h3>Male</h3>
-  <p><%= ((males.count.to_f / @event.users.count) * 100).round %>%</p>
+    <!-- Count Males and Show Persentage -->
+    <% males = @event.users.select do |user| %>
+      <% user.gender == "Male"  %>
+    <% end %>
+    <h3>Male</h3>
+    <p><%= ((males.count.to_f / @event.users.count) * 100).round %>%</p>
 
-  <%= pie_chart @event.users.group(:occupation).count, donut: true %>
+    <%= pie_chart @event.users.group(:occupation).count, donut: true %>
+        <h1>Comapare with your previous events</h1>
+        <%= column_chart @audiences.group(:event_id).count %>
+        <%= line_chart @messages.group(:event_id).count %>
+        <%= line_chart @questions.group(:event_id).count %>
 
-</div>
-<div class="container">
-  <h1>Comapare with your previous events</h1>
-  <%= column_chart @audiences.group(:event_id).count %>
-  <%= line_chart @messages.group(:event_id).count %>
-  <%= line_chart @questions.group(:event_id).count %>
+  </div>
 </div>
 
