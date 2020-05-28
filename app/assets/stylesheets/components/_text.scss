@@ -1,0 +1,8 @@
+.text-red {
+  color: $red;
+  text-decoration: none !important;
+  transition: 0.3s;
+  &:hover {
+    color: $gray;
+  }
+}
