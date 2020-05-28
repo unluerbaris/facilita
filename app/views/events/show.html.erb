@@ -1,23 +1,21 @@
-<div class="banner-red event-banner">
-  <% if @event.photo.attached? %>
-    <%= cl_image_tag @event.photo.key, class: "banner-image" %>
-  <% end %>
+<div class="banner-event">
+    <h1><%= @event.title %></h1>
+      <h2>Event code ♯ <%= @event.token %></h2>
 </div>
 
 
 <div class="container event-container">
   <div class="event-info">
     <div class="description">
-      <h1><%= @event.title %></h1>
       <p><%= @event.description %></p>
+
     </div>
     <div class="organizer">
       <h2>Organizer</h2>
       <h3>
-        <%= link_to "🎤 #{@event.user.first_name} #{@event.user.last_name}", user_path(@event.user) %>
+        <i class="fas fa-user-circle"></i> <%= link_to "#{@event.user.first_name} #{@event.user.last_name}", user_path(@event.user) %>
       </h3>
       <% if @event.user == current_user %>
-        <h5>Event code ♯ <%= @event.token %></h5>
       <% end %>
     </div>
   </div>
@@ -45,4 +43,9 @@
   <div class="footer">
     <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question  %>
   </div>
+
 <% end %>
+<%# end %>
+
+<%#= cl_image_tag @event.photo.key, class: "banner-image" %>
+
