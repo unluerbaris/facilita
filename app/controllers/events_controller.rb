@@ -4,6 +4,7 @@ class EventsController < ApplicationController
     authorize @event
     @new_message = Message.new
     @new_question = Question.new
+    @new_poll = Poll.new
   end
 
   def new
