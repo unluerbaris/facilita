@@ -1,49 +1,67 @@
 .user-page {
-  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.user-corner {
+  background-color: #f9f6f7;
   border: 1px solid  #D3D3D3;
-  width: 600px;
-  margin: 0 auto;
   margin-bottom: 8px;
-  margin-top: 8px;
+  width: 350px;
+  height: 100vh;
 }
 
-.project-names {
-  margin-top: 10px;
-  text-align: center;
-}
-
-
-.username {
+.user-card {
   border-bottom: 1px solid  #D3D3D3;
-  text-align: center;
+  text-align: left;
   color: white;
   background-color: $red;
+  display: flex;
+  justify-content: flex-start;
 }
 
+.user-name{
+  margin: auto 0;
+  margin-left: 20px;
+}
 
+.user-info {
+  margin-top: 20px;
+  margin-left: 20px;
+}
 
 .user-events {
   overflow: hidden;
   height: 120px;
+  width: 50vw;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  position: relative;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   margin: 10px;
-  font-size: 32px;
-  font-weight: bold;
+  font-size: 22px;
   margin-right: 10px;
   &:hover {
     text-decoration: none;
   }
 }
 
-.event-location {
+.events-corner {
+  margin-left: 200px;
+}
+
+.event-names {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.event-time {
   font-size: 14px;
   font-weight: lighter;
 }
-
-
 
 .user-events img {
   height: 100%;
@@ -52,14 +70,21 @@
   margin-right: 30px;
 }
 
-
-
 .user-events p {
   font-size: 12px;
   line-height: 1.4;
   opacity: .7;
   margin-bottom: 0;
   margin-top: 8px;
+}
+
+.summary {
+  position: absolute;
+  right: 50px;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .event-card {

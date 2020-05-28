@@ -1,37 +1,47 @@
 <div class="user-page">
-
- <div class="container username">
-  <h1><%= @user.first_name %> <%= @user.last_name %></h1>
-  <h3><%= @user.occupation %></h3>
+  <div class="user-corner">
+    <div class="user-card">
+      <%# if @event.photo.attached? %>
+        <%#= cl_image_tag @event.photo.key %>
+      <%# else %>
+        <%= image_tag "avatar.svg", class: "avatar-large" %>
+      <%# end %>
+      <div class="user-name">
+        <h3><%= @user.first_name %> <%= @user.last_name %></h3>
+      </div>
+    </div>
+    <div class="user-info">
+      <p><strong>Birth-day:</strong> <%= @user.birthday.strftime("%B %d, %Y") %></p>
+      <p><strong>Occupation:</strong> <%= @user.occupation %></p>
+      <p><strong>Events created:</strong> <%= @user.events.count %></p>
+      <p><strong>Events attended:</strong> <%= @user.attended_events.count %></p>
+    </div>
   </div>
 
+  <div class="events-corner">
 
-  <div class="container project-names">
-  <h1>
-    <%= @user.first_name %> <%= @user.last_name %>'s projects
-  </h1>
+    <div class="container event-names">
+      <h3>
+        <%= @user.first_name %> <%= @user.last_name %>'s projects
+      </h3>
+    </div>
+    <% photos = ["fun.svg", "festival.svg", "conference.svg", "map", "party", "community", "chat"] %>
+    <% @events.each do |event| %>
+      <div class="user-events">
+        <%= image_tag photos.sample %>
+        <div>
+          <%= link_to event.title, event_path(event), class: "text-red" %>
+          <p class="event-time"><%= event.start_time.strftime("%B %d, %Y")%></p>
+          <p class="event-time"><%= event.start_time.strftime("%I:%M%p")%><%= event.end_time.strftime(" - %I:%M%p")%></p>
+        </div>
+        <%= link_to "Summary", event_summary_path(event), class: "summary text-red" %>
+      </div>
+    <% end %>
   </div>
-
-
-
-  <% @events.each do |event| %>
-  <div class="user-events">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg">
-
-
-    <%= link_to event.title, event_path(event), class: "text-red" %>
-<div class="event-location">
-    <%= event.start_time %>
-  </div>
-  <%= link_to "Summary", event_summary_path(event) %>
-  </div>
-  <% end %>
-
 </div>
 
- <%# if @event.photo.attached? %>
-          <%#= cl_image_tag @event.photo.key %>
-         <%# end %>
+
+
 
 
 
