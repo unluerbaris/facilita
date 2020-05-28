@@ -37,10 +37,15 @@
 <%= link_to "Edit event", edit_event_path %>
 <% end %>
 
-<%# if DateTime.now.change(:offset => "+9000") >= @event.start_time && DateTime.now.change(:offset => "+9000") <= @event.end_time %>
+<!-- RENDER THIS DURING THE EVENT -->
+<!-- NOTE: FlatPicker only picks time in UTC +0000. Thats why the local time has been offsetted to UTC +0000 -->
+<% if DateTime.now.change(:offset => "+0000") >= @event.start_time && DateTime.now.change(:offset => "+0000") <= @event.end_time %>
   <div class="footer">
     <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question  %>
   </div>
+
+<% end %>
 <%# end %>
 
 <%#= cl_image_tag @event.photo.key, class: "banner-image" %>
+
