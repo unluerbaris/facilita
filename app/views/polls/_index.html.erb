@@ -1,14 +1,12 @@
 <div class="container content-container">
   <h1>Poll</h1>
   <div id="polls" data-event-id="<%= event.id %>">
-    <%# event.polls.each do |poll| %>
       <%= render "polls/poll", poll: Poll.new  %>
-    <%# end %>
   </div>
 
   <div class="radio-toolbar center">
     <%= simple_form_for([event, Poll.new], remote: true) do |f| %>
-      <%= f.input :choices, as: :radio_buttons, collection: [['A', 'Answer 1'], ['B', 'Answer 2'], ['C', 'Answer 3'], ['D', 'Answer 4'] ], label_method: :second, value_method: :first %>
+      <%= f.input :choices, as: :radio_buttons, collection: [['A', "#{Choice.new}"], ['B', "#{Choice.new}"], ['C', "#{Choice.new}"], ['D', "#{Choice.new}"] ], label_method: :second, value_method: :first %>
       <div class="center">
         <%= f.submit 'Send', class: "btn-input" %>
       </div>

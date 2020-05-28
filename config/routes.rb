@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :events, only: [:show, :new, :create, :edit, :update] do
     resources :messages, only: [:create]
     resources :questions, only: [:create]
-    resources :polls, only: [:new, :create]
+    resources :polls, only: [:new, :create] do
+      resources :choices, only: [:create]
+    end
     get 'summary', to: 'events#summary'
   end
   resources :audiences, only: [:create]
