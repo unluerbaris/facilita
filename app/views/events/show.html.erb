@@ -1,38 +1,43 @@
-<div class="event-parent">
-  <div class="event-name-data">
+<div class="container">
 
-      <h1><%= @event.title %></h1>
-      <h2>Code: <%= @event.token %></h2>
+  <div class="event-parent">
+    <div>
+    <div class="event-name-data">
+
+        <h1 class="center"><%= @event.title %></h1>
+        <h2>Code: <%= @event.token %></h2>
 
 
-      <p><%= @event.description %></p>
+        <p><%= @event.description %></p>
 
-  </div>
-  <div class="event-user-data">
-    <h3>Organizer</h3>
-    <h3><i class="fas fa-user-circle"></i> <%= link_to "#{@event.user.first_name} #{@event.user.last_name}", user_path(@event.user), class: "whitetext" %></h3>
-    </h3>
-    <% if @event.user == current_user %>
-    <% end %>
-    <p><%= @event.location %></p>
-    <p><%= @event.start_time.strftime("%m/%d/%Y") %></p>
-    <p><%= @event.start_time.strftime("%I:%M%p")  %><%= @event.end_time.strftime(" - %I:%M%p")  %></p>
-    <p><%= @event.users.count %> attendees</p>
-    <% if @event.photo.attached? %>
-      <%= cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fill, class: "event-uploaded-image" %>
+    </div>
+    <div class="event-user-data">
+      <h3>Organizer</h3>
+      <h3><i class="fas fa-user-circle"></i> <%= link_to "#{@event.user.first_name} #{@event.user.last_name}", user_path(@event.user), class: "whitetext" %></h3>
+      </h3>
+      <% if @event.user == current_user %>
+      <% end %>
+      <p><%= @event.location %></p>
+      <p><%= @event.start_time.strftime("%B %d, %Y") %></p>
+      <p><%= @event.start_time.strftime("%I:%M%p")  %><%= @event.end_time.strftime(" - %I:%M%p")  %></p>
+      <p><%= @event.users.count %> attendees</p>
+      <% if @event.photo.attached? %>
+        <%= cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fill, class: "event-uploaded-image" %>
+      <% else %>
+        <%= image_tag "eventph.svg", class: "event-show-image" %>
+      <% end %>
+    </div>
+
+    </div>
+    <% if DateTime.now.change(:offset => "+0000") >= @event.start_time && DateTime.now.change(:offset => "+0000") <= @event.end_time %>
+      <div class="footer">
+        <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question  %>
+      </div>
     <% else %>
-      <%= image_tag "eventph.svg", class: "event-show-image" %>
+      <h1>"The event has not started yet.</h1>
     <% end %>
   </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -43,12 +48,6 @@
 
 <!-- RENDER THIS DURING THE EVENT -->
 <!-- NOTE: FlatPicker only picks time in UTC +0000. Thats why the local time has been offsetted to UTC +0000 -->
-<% if DateTime.now.change(:offset => "+0000") >= @event.start_time && DateTime.now.change(:offset => "+0000") <= @event.end_time %>
-<div class="footer">
-  <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question  %>
-</div>
-
-<% end %>
 <%# end %>
 
 <%#= cl_image_tag @event.photo.key, class: "banner-image" %>
