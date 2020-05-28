@@ -1,17 +1,26 @@
-.banner-event {
-  background-color: $red;
-
-}
 
 .banner-event {
-background-image: asset-url("dtbg.png");
+background-color: $red;
 background-size: cover;
-height: 200px;
+height: 300px;
+position: relative;
+
 h1 {
   color: $white;
   text-align: center;
   padding-top: 1em;
 }
+}
+
+.organizer {
+margin: 0 auto;
+width: 25%;
+padding: 4px;
+position: absolute;
+top: 0;
+right: 0;
+margin-top: 8px;
+margin-right: 10px;
 }
 
 .banner-event h2 {
@@ -52,9 +61,6 @@ h1 {
   text-align: center;
 }
 
-.organizer {
-  text-align: right;
-}
 
 .facilitation {
   margin-top: 80px;
