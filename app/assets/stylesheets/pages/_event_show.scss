@@ -1,5 +1,23 @@
-.event-banner {
-  position: relative;
+.banner-event {
+  background-color: $red;
+
+}
+
+.banner-event {
+background-image: asset-url("dtbg.png");
+background-size: cover;
+height: 200px;
+h1 {
+  color: $white;
+  text-align: center;
+  padding-top: 1em;
+}
+}
+
+.banner-event h2 {
+  color: $white;
+  text-align: center;
+  padding-top: 1em;
 }
 
 .banner-image {
@@ -10,19 +28,18 @@
 }
 
 .event-container {
-  position: absolute;
+
   top: 25%;
   left: 0;
   right: 0;
   background-color: $light-gray;
   box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
-  height: 300px;
   padding: 40px;
 
 }
 
 .event-info {
-  display: flex;
+
   justify-content: space-between;
   align-items: center;
   a {
