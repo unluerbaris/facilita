@@ -7,10 +7,11 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <%= link_to "Create an event", "/events/new", class: "btn btn-flat ml-auto" %>
+
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <%= link_to "Create an event", new_event_path, class: "text-red mr-3" %>
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item dropdown">

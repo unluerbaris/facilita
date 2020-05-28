@@ -1,10 +1,14 @@
 // Specific CSS for your home-page
 .introduction {
   text-align: center;
-  padding: 40px;
+  padding: 20px;
   h2 {
-    margin: 30px;
+    width: 95%;
+    margin: 30px auto;
     color: $red;
     font-weight: bold;
+  }
+  h4 {
+    margin: 10px auto;
   }
 }
