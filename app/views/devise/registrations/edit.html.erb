@@ -19,6 +19,8 @@
                 required: false,
                 input_html: { autocomplete: "last-name" } %>
 <%= f.input :birthday,
+                start_year: Date.today.year - 100,
+                end_year: Date.today.year,
                 hint: "Birthday",
                 required: false,
                 input_html: { autocomplete: "birthday" } %>
@@ -41,7 +43,7 @@
                 hint: "we need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
-    <%= f.input :photo, as: :file, required: true %>
+    <%= f.input :photo, as: :file, required: false %>
   </div>
 
   <div class="form-actions">
@@ -54,3 +56,8 @@
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+<ul>
+  <% @user.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
