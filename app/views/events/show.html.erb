@@ -34,11 +34,11 @@
   </div>
 </div>
 <div class="event-container">
-  <% if DateTime.now.change(:offset => "+0000") >= @event.start_time && DateTime.now.change(:offset => "+0000") <= @event.end_time %>
+  <%# if DateTime.now.change(:offset => "+0000") >= @event.start_time && DateTime.now.change(:offset => "+0000") <= @event.end_time %>
     <div class="footer">
       <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question  %>
     </div>
-  <% end %>
+  <%# end %>
 </div>
 
 
