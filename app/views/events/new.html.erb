@@ -14,7 +14,7 @@
       <%= f.input :start_time, as: :string, required: false, input_html: {class: "datepicker"} %>
       <%= f.input :end_time, as: :string, required: false, input_html: {class: "datepicker"} %>
     </span>
-    <span class="form-name"><%= f.input :photo, as: :file, required: true %></span>
+    <span class="form-name"><%= f.input :photo, as: :file %></span>
 <div class="container d-flex justify-content-around">
 <%= f.submit "Create your event", class: "btn btn-new" %>
 </div>

@@ -5,7 +5,7 @@
       <div class="audience-card">
         <div>
           <% if audience.photo.attached? %>
-            <%= cl_image_taga audience.photo.key, class: "avatar" %>
+            <%= cl_image_tag audience.photo.key, class: "avatar" %>
           <% else %>
              <%= image_tag "avatar.svg", class: "avatar" %>
           <% end %>
@@ -44,11 +44,15 @@
             <% females = @event.users.select do |user| %>
               <% user.gender == "Female"  %>
             <% end %>
-            <p>Female <%= ((females.count.to_f / @event.users.count) * 100).round %>%</p>
-            <% males = @event.users.select do |user| %>
-              <% user.gender == "Male"  %>
+            <% unless females == nil %>
+              <p>Female <%= ((females.count.to_f / @event.users.count) * 100).round %>%</p>
+              <% males = @event.users.select do |user| %>
+                <% user.gender == "Male"  %>
+              <% end %>
             <% end %>
-            <p>Male <%= ((males.count.to_f / @event.users.count) * 100).round %>%</p>
+            <% unless  males == nil %>
+              <p>Male <%= ((males.count.to_f / @event.users.count) * 100).round %>%</p>
+            <% end %>
           </div>
         </div>
       </div>
@@ -138,4 +142,5 @@
     </div>
   </div>
 </div>
+
 
