@@ -1,11 +1,11 @@
 <div class="user-page">
   <div class="user-corner">
     <div class="user-card">
-      <%# if @event.photo.attached? %>
-        <%#= cl_image_tag @event.photo.key %>
-      <%# else %>
+      <% if @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key, class: "avatar-large" %>
+      <% else %>
         <%= image_tag "avatar.svg", class: "avatar-large" %>
-      <%# end %>
+      <% end %>
       <div class="user-name">
         <h3><%= @user.first_name %> <%= @user.last_name %></h3>
       </div>
