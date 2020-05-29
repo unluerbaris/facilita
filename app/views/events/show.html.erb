@@ -12,6 +12,8 @@
         <p><%= @event.description %></p>
 
     </div>
+
+    </div>
     <div class="event-user-data">
       <h3>Organizer</h3>
       <h3><i class="fas fa-user-circle"></i> <%= link_to "#{@event.user.first_name} #{@event.user.last_name}", user_path(@event.user), class: "whitetext" %></h3>
@@ -27,8 +29,6 @@
       <% else %>
         <%= image_tag "eventph.svg", class: "event-show-image" %>
       <% end %>
-    </div>
-
     </div>
 
   </div>
