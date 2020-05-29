@@ -7,7 +7,7 @@
       <h1><%= @event.title %></h1>
       <h2 class="text-red">Code: <%= @event.token %></h2>
 </div>
-    
+
     <div class="d-flex justify-content-between align-items-center">
       <div id="organizer">
         <div class="d-flex justify-content-between align-items-center">
@@ -31,11 +31,11 @@
   <%= render 'event_content', event: @event %>
 <% end %>
 <div class="event-container">
-  <% if DateTime.now.change(:offset => "+0000") >= @event.start_time && DateTime.now.change(:offset => "+0000") <= @event.end_time %>
+  <%# if DateTime.now.change(:offset => "+0000") >= @event.start_time && DateTime.now.change(:offset => "+0000") <= @event.end_time %>
     <div class="footer">
       <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question  %>
     </div>
-  <% end %>
+  <%# end %>
 </div>
 <% if @event.user == current_user %>
   <%= render 'event_content', event: @event %>
