@@ -6,7 +6,7 @@
 <%= simple_form_for(@event) do |f| %>
     <span class="form-name"><%= f.input :title, label: "Event Name" %></span>
     <span class="form-description"><%= f.label :title, "Example: JavaScript for Beginners" %></span>
-    <span class="form-name"><%= f.input :description, required: true, label: "Event Details", :input_html => {:rows => 10} %></span>
+    <span class="form-name"><%= f.input :description, required: true, label: "Event Details", :input_html => {:rows => 10, } %></span>
     <span class="form-description"><%= f.label :description, "A detailed description of your event's content." %></span>
     <span class="form-name"><%= f.input :location, label: "Location" %></span>
     <span class="form-description"><%= f.label :location, "Example: 2 Chome-11-3 Meguro, Meguro City, Tokyo 153-0063" %></span>

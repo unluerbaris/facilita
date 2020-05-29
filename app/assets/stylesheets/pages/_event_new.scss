@@ -1,11 +1,13 @@
 .form-name {
   font-weight: bold;
+  font-size: 18px;
 }
 
 .form-description {
 opacity: 0.7;
 font-weight: lighter;
 font-style: italic;
+overflow-wrap: break-word;
 }
 
 .button-container {
