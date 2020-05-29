@@ -1,6 +1,9 @@
 .card {
   box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
   border: none;
+  &:hover {
+    box-shadow: none;
+  }
 }
 
 #message- {
@@ -20,13 +23,15 @@
 .audience-card {
   height: 40px;
   width: 240px;
-  margin: 40px 4px;
-  padding: 4px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .fas {
-    color: $red;
+  margin: 40px auto;
+  .audience-name-card {
+    width: 180px;
+    text-align: start;
+    font-size: 18px;
+    margin-left: 40px;
   }
 }
 
@@ -35,13 +40,15 @@
   height: 320px;
   background-color: white;
   box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
-  margin: 40px;
-  margin-bottom: 0;
+  margin: 20px;
   border-radius: 4px;
   text-align: center;
   padding: 40px;
   img {
     margin-bottom: 40px;
+  }
+  &:hover {
+    box-shadow: none;
   }
 }
 
@@ -61,11 +68,16 @@
     margin: 40px;
     margin-bottom: 40px;
   }
+  &:hover {
+    box-shadow: none;
+  }
 }
+
+
 
 .card-box-wide {
   width: 800px;
-  height: 430px;
+  height: 480px;
   background-color: white;
   box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
   margin: 0 auto;
@@ -76,5 +88,24 @@
     list-style-type: none;
     line-height: 3;
     width: 200px;
+  }
+  &:hover {
+    box-shadow: none;
+  }
+}
+
+.card-box-no-color {
+  width: 500px;
+  height: 430px;
+  margin: 20px;
+  border-radius: 4px;
+  text-align: center;
+  padding: 40px;
+  h5 {
+    margin-bottom: 20px;
+  }
+  img {
+    margin: 40px;
+    margin-bottom: 40px;
   }
 }
