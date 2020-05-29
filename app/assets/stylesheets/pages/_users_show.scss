@@ -18,6 +18,8 @@
   background-color: $red;
   display: flex;
   justify-content: flex-start;
+  padding: 10px 0;
+  padding-left: 10px;
 }
 
 .user-name{
@@ -50,13 +52,17 @@
 
 .event-names {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   text-align: center;
 }
 
 .event-time {
   font-size: 14px;
   font-weight: lighter;
+}
+
+.event-text {
+  text-align: left;
 }
 
 .user-events img {

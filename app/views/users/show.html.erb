@@ -22,14 +22,14 @@
 
     <div class="container event-names">
       <h3>
-        <%= @user.first_name %> <%= @user.last_name %>'s projects
+        <%= @user.first_name %> <%= @user.last_name %>'s events
       </h3>
     </div>
     <% photos = ["fun.svg", "festival.svg", "conference.svg", "map.svg", "party.svg", "community.svg", "chat.svg"] %>
     <% @events.each do |event| %>
       <div class="user-events">
         <%= image_tag photos.sample %>
-        <div>
+        <div class="event-text">
           <%= link_to event.title, event_path(event), class: "text-red" %>
           <p class="event-time"><%= event.start_time.strftime("%B %d, %Y")%></p>
           <p class="event-time"><%= event.start_time.strftime("%I:%M%p")%><%= event.end_time.strftime(" - %I:%M%p")%></p>
