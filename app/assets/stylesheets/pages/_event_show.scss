@@ -33,11 +33,12 @@
 }
 
 .event-uploaded-image {
-  padding: 80px;
+  margin: 80px;
   height: 400px;
   width: 600px;
+  object-fit: cover;
+  object-position: center;
   box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
-  background-color: white;
 }
 
 

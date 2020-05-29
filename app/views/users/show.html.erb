@@ -28,7 +28,11 @@
     <% photos = ["fun.svg", "festival.svg", "conference.svg", "map.svg", "party.svg", "community.svg", "chat.svg"] %>
     <% @events.each do |event| %>
       <div class="user-events">
-        <%= image_tag photos.sample %>
+        <% if event.photo.attached? %>
+          <%= cl_image_tag event.photo.key %>
+        <% else %>
+          <%= image_tag photos.sample %>
+        <% end %>
         <div class="event-text">
           <%= link_to event.title, event_path(event), class: "text-red" %>
           <p class="event-time"><%= event.start_time.strftime("%B %d, %Y")%></p>
