@@ -1,7 +1,7 @@
 <div class="card content-card" id="message-<%= message.id %>">
   <div class="d-flex justify-content-between">
     <% if message.user.photo.attached? %>
-      <%= cl_image_taga message.user.photo.key, class: "avatar-large"  %>
+      <%= cl_image_tag message.user.photo.key, class: "avatar-large"  %>
     <% else %>
        <%= image_tag "avatar.svg", class: "avatar-large" %>
     <% end %>
