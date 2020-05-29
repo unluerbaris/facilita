@@ -1,3 +1,4 @@
+
 <div class="container">
 
   <div class="event-parent">
@@ -29,16 +30,16 @@
     </div>
 
     </div>
-    <% if DateTime.now.change(:offset => "+0000") >= @event.start_time && DateTime.now.change(:offset => "+0000") <= @event.end_time %>
-      <div class="footer">
-        <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question  %>
-      </div>
-    <% else %>
-      <h1>"The event has not started yet.</h1>
-    <% end %>
+
   </div>
 </div>
-
+<div class="event-container">
+  <% if DateTime.now.change(:offset => "+0000") >= @event.start_time && DateTime.now.change(:offset => "+0000") <= @event.end_time %>
+    <div class="footer">
+      <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question  %>
+    </div>
+  <% end %>
+</div>
 
 
 <!-- Photo for later -->
