@@ -246,26 +246,31 @@ puts "#{Event.count} events created!"
 
 puts "Creating audiences!"
 
+chi = User.find_by(email: "chi@chi.com")
+baris = User.find_by(email: "baris@baris.com")
+grant = User.find_by(email: "grant@grant.com")
+
+chi_events = Event.where(user: chi)
+baris_events = Event.where(user: baris)
+grant_events = Event.where(user: grant)
 increment = 0
-chi_events = Event.where(user_id: 2)
-baris_events = Event.where(user_id: 1)
-grant_events = Event.where(user_id: 3)
 
 40.times do
   increment += 1
+  id = User.first.id + increment
   Audience.create!(
     event: chi_events.sample,
-    user: User.find(1 + increment)
+    user: User.find(id)
   )
 
   Audience.create!(
     event: baris_events.sample,
-    user: User.find(41 + increment)
+    user: User.find(id)
   )
 
   Audience.create!(
     event: grant_events.sample,
-    user: User.find(81 + increment)
+    user: User.find(id)
   )
 end
 
@@ -276,19 +281,19 @@ puts "Create Messages and Questions"
 150.times do
   Message.create!(
     event: chi_events.sample,
-    user: User.find(rand(1..120)),
+    user: User.find(rand(User.first.id..User.last.id)),
     content: Faker::Quote.most_interesting_man_in_the_world
   )
 
   Message.create!(
     event: baris_events.sample,
-    user: User.find(rand(1..120)),
+    user: User.find(rand(User.first.id..User.last.id)),
     content: Faker::Quote.most_interesting_man_in_the_world
   )
 
   Message.create!(
     event: grant_events.sample,
-    user: User.find(rand(1..120)),
+    user: User.find(rand(User.first.id..User.last.id)),
     content: Faker::Quote.most_interesting_man_in_the_world
   )
 
@@ -297,19 +302,19 @@ end
 150.times do
   Question.create!(
     event: chi_events.sample,
-    user: User.find(rand(1..120)),
+    user: User.find(rand(User.first.id..User.last.id)),
     content: Faker::Quote.matz
   )
 
   Question.create!(
     event: baris_events.sample,
-    user: User.find(rand(1..120)),
+    user: User.find(rand(User.first.id..User.last.id)),
     content: Faker::Quote.matz
   )
 
   Question.create!(
     event: grant_events.sample,
-    user: User.find(rand(1..120)),
+    user: User.find(rand(User.first.id..User.last.id)),
     content: Faker::Quote.matz
   )
 
