@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :events, only: [:show, :new, :create, :edit, :update] do
     resources :messages, only: [:create]
-    resources :questions, only: [:create]
+    resources :questions, only: [:create] do
+      member do
+        put "like" =>"questions#upvote"
+        put "unlike" =>"questions#downvote"
+      end
+    end
     resources :polls, only: [:new, :create]
     get 'summary', to: 'events#summary'
   end
