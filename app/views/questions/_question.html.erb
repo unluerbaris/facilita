@@ -1,9 +1,13 @@
 <div class="card content-card" id="question-<%= question.id %>">
-  <% if question.user.photo.attached? %>
-          <%= cl_image_tag question.user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <% else %>
-          <%= image_tag "https://via.placeholder.com/150", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <% end %>
-  <h5><%= question.user.first_name %> <%= question.user.last_name %></h5>
-  <p><%= question.content %></p>
+  <div class="d-flex justify-content-between align-items-center">
+    <% if question.user.photo.attached? %>
+      <%= cl_image_tag question.user.photo.key, class: "avatar-large"  %>
+    <% else %>
+       <%= image_tag "avatar.svg", class: "avatar-large" %>
+    <% end %>
+    <div class="flex-grow-1 center">
+      <h5><%= question.user.first_name %> <%= question.user.last_name %></h5>
+      <p><%= question.content %></p>
+    </div>
+  </div>
 </div>

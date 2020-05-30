@@ -1,6 +1,6 @@
 <div class="event-parent">
   <% if event.photo.attached? %>
-    <%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fill, class: "event-uploaded-image" %>
+    <%= cl_image_tag event.photo.key, class: "event-uploaded-image" %>
   <% else %>
     <%= image_tag "eventph.svg", class: "event-uploaded-image" %>
   <% end %>
