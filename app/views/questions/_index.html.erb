@@ -1,6 +1,6 @@
 <div class="container content-container">
   <h1>Questions</h1>
-  <div id="questions">
+  <div class="question-scroll" id="questions">
     <% event.questions.each do |question| %>
       <%= render "questions/question", event: event, question: question %>
     <% end %>
