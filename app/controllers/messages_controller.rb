@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_event
+  before_action :set_message, except: [:create]
 
   def create
     @message = Message.new(message_params)
@@ -17,10 +18,21 @@ class MessagesController < ApplicationController
     end
   end
 
+  def upvote
+    authorize @message
+    @message.liked_by current_user
+    @message.save
+    redirect_to event_path(@event), notice: "You liked this!"
+  end
+
   private
 
   def set_event
     @event = Event.find(params[:event_id])
+  end
+
+  def set_message
+    @message = Message.find(params[:id])
   end
 
   def message_params

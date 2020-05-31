@@ -17,7 +17,4 @@ class QuestionPolicy < ApplicationPolicy
     true
   end
 
-  def downvote?
-    true
-  end
 end

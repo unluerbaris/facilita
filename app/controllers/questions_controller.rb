@@ -25,12 +25,6 @@ class QuestionsController < ApplicationController
     redirect_to event_path(@event), notice: "You liked this!"
   end
 
-  def downvote
-    authorize @question
-    @question.disliked_by current_user
-    flash[:notice] = "You liked this question"
-  end
-
   private
 
   def set_event
