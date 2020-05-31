@@ -1,15 +1,24 @@
 <div class="container content-container">
-  <h1>Poll</h1>
-  <div id="polls" data-event-id="<%= event.id %>">
-      <%= render "polls/poll", poll: Poll.new  %>
-  </div>
-
   <div class="radio-toolbar center">
-    <%= simple_form_for([event, Poll.new], remote: true) do |f| %>
-      <%= f.input :choices, as: :radio_buttons, collection: [['A', "#{Choice.new}"], ['B', "#{Choice.new}"], ['C', "#{Choice.new}"], ['D', "#{Choice.new}"] ], label_method: :second, value_method: :first %>
-      <div class="center">
-        <%= f.submit 'Send', class: "btn-input" %>
-      </div>
-    <% end %>
+    <%# unless @event.polls == nil %>
+      <%# @event.polls.each do |poll| %>
+        <%# poll.choices.each do |choice| %>
+          <%#= simple_form_for @response do |f| %>
+            <%#= f.input :choice, as: :radio_buttons, collection: [['A', "#{choice.answer}"], ['B', "#{choice.answer}"], ['C', "#{choice.answer}"], ['D', "#{choice.answer}"] ], label_method: :second, value_method: :first %>
+            <div class="center">
+              <%#= f.submit 'Send', class: "btn-input" %>
+            </div>
+          <%# end %>
+        <%# end %>
+      <%# end %>
+    <%# end %>
   </div>
+    <%#= simple_form_for([event, Poll.new], remote: true) do |f| %>
+      <%#= f.input :choice, Choice.new %>
+      <%#= f.input :choices, as: :radio_buttons, collection: [['A', "#{Choice.new.answer}"], ['B', "#{Choice.new.answer}"], ['C', "#{Choice.new.answer}"], ['D', "#{Choice.new.answer}"] ], label_method: :second, value_method: :first %>
+     <!--  <div class="center"> -->
+        <%#= f.submit 'Send', class: "btn-input" %>
+      <!-- </div> -->
+    <%# end %>
+
 </div>

@@ -1,0 +1,20 @@
+<h1>Create a poll</h1>
+
+<div>
+    <h1>Choices for <%= @poll.title %></h1>
+    <%= simple_form_for([@event, @poll, @choice], remote: true) do |f| %>
+      <%= f.input :poll_id, as: :hidden, input_html: { value: @poll.id } %>
+      <%= f.input :answer %>
+    <% end %>
+     <%= simple_form_for([@event, @poll, @choice], remote: true) do |f| %>
+      <%= f.input :poll_id, as: :hidden, input_html: { value: @poll.id } %>
+      <%= f.input :answer %>
+    <% end %>
+  </div>
+
+  <%= link_to "Back to event page", event_path(@event) %>
+
+<%#= f.input :choices, as: :radio_buttons, collection: [['A', "#{Choice.new.answer}"], ['B', "#{Choice.new.answer}"], ['C', "#{Choice.new.answer}"], ['D', "#{Choice.new.answer}"] ], label_method: :second, value_method: :first %>
+<% @poll.choices.each do |choice| %>
+  <%= choice.answer  %>
+<% end %>

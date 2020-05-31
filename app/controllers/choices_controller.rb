@@ -1,21 +1,23 @@
-class ChoicesController < ApplicationController
-  before_action :set_poll, only: [:create]
+# class ChoicesController < ApplicationController
 
-  def create
-    @choice = Choice.new(choice_params)
-    authorize @choice
-    @choice.poll = @poll
-    if @choice.save
-    end
-  end
+#   def new
+#     @choice = Choice.new
+#     authorize @choice
+#     @event = @poll.event
+#   end
 
-  private
+#   def create
+#     raise
+#     @choice = Choice.new(choice_params)
+#     authorize @choice
+#     unless @choice.save
+#       flash[:alert] = "Something went wrong!!!"
+#     end
+#   end
 
-  def choice_params
-    params.require(:choice)
-  end
+#   private
 
-  def set_poll
-    @poll = Poll.find(params[:poll_id])
-  end
-end
+#   def choice_params
+#     params.require(:choice).permit(:answer)
+#   end
+# end

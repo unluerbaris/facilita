@@ -15,10 +15,6 @@
   <h2>Event code ♯ <%= @event.token %></h2>
 </div>
 
-
-
-
-
 <div class="container event-container">
   <div class="event-info">
     <div class="description">
@@ -27,17 +23,35 @@
   </div>
 </div>
 
-
 <!-- Photo for later -->
 <% if @event.user == current_user %>
-<%= link_to "Edit event", edit_event_path %>
+<%#= link_to "Edit event", edit_event_path %>
 <% end %>
+
+  <%= simple_form_for([@event, @new_poll]) do |f| %>
+    <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
+    <%= f.text_field :title, placeholder: "Poll Title" %>
+    <%= f.simple_fields_for :choices do |choice_form| %>
+      <%= choice_form.input :answer %>
+    <% end %>
+    <%= f.simple_fields_for :choices do |choice_form| %>
+      <%= choice_form.input :answer %>
+    <% end %>
+    <%= f.simple_fields_for :choices do |choice_form| %>
+      <%= choice_form.input :answer %>
+    <% end %>
+    <%= f.simple_fields_for :choices do |choice_form| %>
+      <%= choice_form.input :answer %>
+    <% end %>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+
 
 <!-- RENDER THIS DURING THE EVENT -->
 <!-- NOTE: FlatPicker only picks time in UTC +0000. Thats why the local time has been offsetted to UTC +0000 -->
 <% if DateTime.now.change(:offset => "+0000") >= @event.start_time && DateTime.now.change(:offset => "+0000") <= @event.end_time %>
 <div class="footer">
-  <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question  %>
+  <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question %>
 </div>
 
 <% end %>
