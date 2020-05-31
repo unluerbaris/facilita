@@ -7,3 +7,39 @@
   margin: 0 auto;
   text-align: center;
 }
+
+.summary-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.summary-container-1 {
+  height: 80%;
+  width: 20%;
+  padding: 40px;
+  border-radius: 4px;
+  margin-right: 0;
+  padding-right: 0;
+  position: fixed;
+  text-align: center;
+}
+
+.summary-container-2 {
+  height: 100%;
+  width: 80%;
+  margin: 20px;
+  padding: 40px;
+  margin-left: 400px;
+  h1, h4 {
+    color: $red;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+}
+
+#compare {
+  margin: 40px;
+  text-align: center;
+}

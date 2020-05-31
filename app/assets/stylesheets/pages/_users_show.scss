@@ -1,33 +1,104 @@
 .user-page {
-  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.user-corner {
+  background-color: #f9f6f7;
   border: 1px solid  #D3D3D3;
-  width: 600px;
-  margin: 0 auto;
   margin-bottom: 8px;
+  width: 350px;
+  height: 100vh;
+}
+
+.user-card {
+  border-bottom: 1px solid  #D3D3D3;
+  text-align: left;
+  color: white;
+  background-color: $red;
+  display: flex;
+  justify-content: flex-start;
+  opacity: 0.9;
+  padding: 10px 0;
+  padding-left: 10px;
+}
+
+.user-name{
+  margin: auto 0;
+  margin-left: 20px;
+}
+
+.user-info {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.user-events {
+  overflow: hidden;
+  height: 120px;
+  width: 60vw;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px;
+  font-size: 22px;
+  margin-right: 10px;
+  &:hover {
+    text-decoration: none;
+    box-shadow: none;
+  }
+}
+
+.event-names {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.event-time {
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+.event-text {
+  text-align: left;
+}
+
+.user-events img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+  margin-right: 30px;
+}
+
+.user-events p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
   margin-top: 8px;
 }
 
-.project-names {
-  margin-top: 10px;
-}
+.summary {
+  position: absolute;
+  right: 50px;
 
-
-.user-events {
-  text-align: center;
-  margin-top: 10px;
-  a {
+  &:hover {
     text-decoration: none;
   }
 }
 
-.username {
-  border-bottom: 1px solid  #D3D3D3;
-  text-align: center;
-  color: white;
-  background-color: $red;
+.event-card {
+  padding: 16px;
 }
 
-.event-name {
-  margin-top: 50px;
-}
-
+//.user-events {
+  //text-align: center;
+  //margin-top: 10px;
+  //a {
+    //text-decoration: none;
+  //}
+//}

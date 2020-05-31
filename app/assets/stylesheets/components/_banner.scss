@@ -1,4 +1,9 @@
-
+.banner-white {
+  width: 100vw;
+  height: 220px;
+  background-color: white;
+  padding: 20px;
+}
 
 .top-banner {
   display: flex;
@@ -31,7 +36,7 @@
   height: 640px;
   opacity: 0.9;
   right: 120px;
-  margin-top: 60px;
+  margin-top: 100px;
   position: absolute;
   padding: 86px 60px;
   text-align: center;
@@ -42,7 +47,7 @@
   .top-banner h1 {
     font-size: 56px;
     width: 80%;
-    top: 150px;
+    top: 130px;
     left: 80px;
   }
 

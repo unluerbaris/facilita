@@ -1,24 +1,53 @@
 <div class="user-page">
-
- <div class="container username">
-  <h1><%= @user.first_name %> <%= @user.last_name %></h1>
-  <h3><%= @user.occupation %></h3>
+  <div class="user-corner">
+    <div class="user-card">
+      <% if @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key, class: "avatar-large" %>
+      <% else %>
+        <%= image_tag "avatar.svg", class: "avatar-large" %>
+      <% end %>
+      <div class="user-name">
+        <h3><%= @user.first_name %> <%= @user.last_name %></h3>
+      </div>
+    </div>
+    <div class="user-info">
+      <p><strong>Birthday:</strong> <%= @user.birthday.strftime("%B %d, %Y") %></p>
+      <p><strong>Occupation:</strong> <%= @user.occupation %></p>
+      <p><strong>Events created:</strong> <%= @user.events.count %></p>
+      <p><strong>Events attended:</strong> <%= @user.attended_events.count %></p>
+    </div>
   </div>
 
+  <div class="events-corner center">
 
-  <div class="container d-flex justify-content-around project-names">
-  <h1>
-    <%= @user.first_name %> <%= @user.last_name %>'s projects
-  </h1>
-  </div>
-
-  <div class="container user-events">
-  <% @events.each do |event| %>
-  <div class="event-name">
-    <h2><%= link_to event.title, event_path(event) %></h2>
-  </div>
-  <% end %>
+    <div class="container event-names">
+      <h3>
+        <%= @user.first_name %> <%= @user.last_name %>'s events
+      </h3>
+    </div>
+    <% photos = ["fun.svg", "festival.svg", "conference.svg", "map.svg", "party.svg", "community.svg", "chat.svg"] %>
+    <% @events.each do |event| %>
+      <div class="user-events">
+        <% if event.photo.attached? %>
+          <%= cl_image_tag event.photo.key %>
+        <% else %>
+          <%= image_tag photos.sample %>
+        <% end %>
+        <div class="event-text">
+          <%= link_to event.title, event_path(event), class: "text-red" %>
+          <p class="event-time"><%= event.start_time.strftime("%B %d, %Y")%></p>
+          <p class="event-time"><%= event.start_time.strftime("%I:%M%p")%><%= event.end_time.strftime(" - %I:%M%p")%></p>
+        </div>
+        <% if event.users.any? %>
+          <%= link_to "Summary", event_summary_path(event), class: "summary text-red" %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
+
+
+
+
 
 

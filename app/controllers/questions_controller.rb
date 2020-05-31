@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_event
+  before_action :set_question, except: [:create]
 
   def create
     @question = Question.new(question_params)
@@ -17,10 +18,21 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def upvote
+    authorize @question
+    @question.liked_by current_user
+    @question.save
+    redirect_to event_path(@event), notice: "You liked this!"
+  end
+
   private
 
   def set_event
     @event = Event.find(params[:event_id])
+  end
+
+  def set_question
+    @question = Question.find(params[:id])
   end
 
   def question_params

@@ -26,7 +26,7 @@ User.create!(
   last_name: "Unluer",
   email: "baris@baris.com",
   password: "localife",
-  birthday: Date.today-rand(50000),
+  birthday: Date.today-rand(35000),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -36,7 +36,7 @@ User.create!(
   last_name: "Tsuda",
   email: "chi@chi.com",
   password: "localife",
-  birthday: Date.today-rand(50000),
+  birthday: Date.today-rand(35000),
   gender: "Female",
   occupation: occupations.sample
   )
@@ -46,7 +46,7 @@ User.create!(
   last_name: "Holley",
   email: "grant@grant.com",
   password: "localife",
-  birthday: Date.today-rand(50000),
+  birthday: Date.today-rand(35000),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -56,7 +56,7 @@ User.create!(
   last_name: "Chung",
   email: "yun@yun.com",
   password: "localife",
-  birthday: Date.today-rand(50000),
+  birthday: Date.today-rand(35000),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -66,7 +66,7 @@ User.create!(
   last_name: "Ergan",
   email: "julien@julien.com",
   password: "localife",
-  birthday: Date.today-rand(50000),
+  birthday: Date.today-rand(35000),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -76,7 +76,7 @@ User.create!(
   last_name: "Furugen",
   email: "katsu@katsu.com",
   password: "localife",
-  birthday: Date.today-rand(50000),
+  birthday: Date.today-rand(35000),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -86,7 +86,7 @@ User.create!(
   last_name: "Hida",
   email: "shogo@shogo.com",
   password: "localife",
-  birthday: Date.today-rand(50000),
+  birthday: Date.today-rand(35000),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -96,7 +96,7 @@ User.create!(
   last_name: "Ishida",
   email: "yusuke@yusuke.com",
   password: "localife",
-  birthday: Date.today-rand(50000),
+  birthday: Date.today-rand(35000),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -106,7 +106,7 @@ User.create!(
   last_name: "Koziel",
   email: "lukasz@lukasz.com",
   password: "localife",
-  birthday: Date.today-rand(50000),
+  birthday: Date.today-rand(35000),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -116,7 +116,7 @@ User.create!(
   last_name: "Nakamura",
   email: "momo@momo.com",
   password: "localife",
-  birthday: Date.today-rand(50000),
+  birthday: Date.today-rand(35000),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -126,7 +126,7 @@ User.create!(
   last_name: "Thoo",
   email: "pins@pins.com",
   password: "localife",
-  birthday: Date.today-rand(50000),
+  birthday: Date.today-rand(35000),
   gender: "Female",
   occupation: occupations.sample
   )
@@ -136,18 +136,18 @@ User.create!(
   last_name: "Wong",
   email: "nicole@nicole.com",
   password: "localife",
-  birthday: Date.today-rand(50000),
+  birthday: Date.today-rand(35000),
   gender: "Female",
   occupation: occupations.sample
   )
 
-100.times do
+120.times do
   User.create!(
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
   email: Faker::Internet.email,
   password: "localife",
-  birthday: Date.today-rand(50000),
+  birthday: Date.today-rand(35000),
   gender: gender.sample,
   occupation: occupations.sample
   )
@@ -213,32 +213,112 @@ Event.create!(
   end_time: DateTime.now + 1
   )
 
+3.times do
+  Event.create!(
+  title: Faker::Books::CultureSeries.book,
+  description: "N/A",
+  user: User.find_by(email: "baris@baris.com"),
+  start_time: DateTime.now,
+  end_time: DateTime.now + 1
+  )
+
+Event.create!(
+  title: Faker::Books::CultureSeries.book,
+  description: "N/A",
+  user: User.find_by(email: "chi@chi.com"),
+  start_time: DateTime.now,
+  end_time: DateTime.now + 1
+  )
+
+Event.create!(
+  title: Faker::Books::CultureSeries.book,
+  description: "N/A",
+  user: User.find_by(email: "grant@grant.com"),
+  start_time: DateTime.now,
+  end_time: DateTime.now + 1
+  )
+
+end
+
 puts "#{Event.count} events created!"
 
 # Audiences
 
 puts "Creating audiences!"
 
+chi = User.find_by(email: "chi@chi.com")
+baris = User.find_by(email: "baris@baris.com")
+grant = User.find_by(email: "grant@grant.com")
+
+chi_events = Event.where(user: chi)
+baris_events = Event.where(user: baris)
+grant_events = Event.where(user: grant)
 increment = 0
 
-30.times do
+40.times do
   increment += 1
+  id = User.first.id + increment
   Audience.create!(
-    event: Event.find(4),
-    user: User.find(1 + increment)
+    event: chi_events.sample,
+    user: User.find(id)
   )
 
   Audience.create!(
-    event: Event.find(1),
-    user: User.find(31 + increment)
+    event: baris_events.sample,
+    user: User.find(id)
   )
 
   Audience.create!(
-    event: Event.find(5),
-    user: User.find(61 + increment)
+    event: grant_events.sample,
+    user: User.find(id)
   )
 end
 
 puts "#{Audience.count} audience created!"
+
+puts "Create Messages and Questions"
+
+150.times do
+  Message.create!(
+    event: chi_events.sample,
+    user: User.find(rand(User.first.id..User.last.id)),
+    content: Faker::Quote.most_interesting_man_in_the_world
+  )
+
+  Message.create!(
+    event: baris_events.sample,
+    user: User.find(rand(User.first.id..User.last.id)),
+    content: Faker::Quote.most_interesting_man_in_the_world
+  )
+
+  Message.create!(
+    event: grant_events.sample,
+    user: User.find(rand(User.first.id..User.last.id)),
+    content: Faker::Quote.most_interesting_man_in_the_world
+  )
+
+end
+
+150.times do
+  Question.create!(
+    event: chi_events.sample,
+    user: User.find(rand(User.first.id..User.last.id)),
+    content: Faker::Quote.matz
+  )
+
+  Question.create!(
+    event: baris_events.sample,
+    user: User.find(rand(User.first.id..User.last.id)),
+    content: Faker::Quote.matz
+  )
+
+  Question.create!(
+    event: grant_events.sample,
+    user: User.find(rand(User.first.id..User.last.id)),
+    content: Faker::Quote.matz
+  )
+
+end
+
 
 puts "Done!"
