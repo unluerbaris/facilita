@@ -13,12 +13,36 @@
       <%# end %>
     <%# end %>
   </div>
-    <%#= simple_form_for([event, Poll.new], remote: true) do |f| %>
-      <%#= f.input :choice, Choice.new %>
-      <%#= f.input :choices, as: :radio_buttons, collection: [['A', "#{Choice.new.answer}"], ['B', "#{Choice.new.answer}"], ['C', "#{Choice.new.answer}"], ['D', "#{Choice.new.answer}"] ], label_method: :second, value_method: :first %>
-     <!--  <div class="center"> -->
-        <%#= f.submit 'Send', class: "btn-input" %>
-      <!-- </div> -->
-    <%# end %>
+
+  <%= simple_form_for([@event, @new_poll]) do |f| %>
+    <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
+    <%= f.text_field :title, placeholder: "Poll Title" %>
+    <%= f.simple_fields_for :choices do |choice_form| %>
+      <%= choice_form.input :answer %>
+    <% end %>
+    <%= f.simple_fields_for :choices do |choice_form| %>
+      <%= choice_form.input :answer %>
+    <% end %>
+    <%= f.simple_fields_for :choices do |choice_form| %>
+      <%= choice_form.input :answer %>
+    <% end %>
+    <%= f.simple_fields_for :choices do |choice_form| %>
+      <%= choice_form.input :answer %>
+    <% end %>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+
+<h1>LAST POLL</h1>
+
+<% unless @event.polls.empty? %>
+  <div class="radio-toolbar center">
+    <%= simple_form_for([event, Poll.new], remote: true) do |f| %>
+      <%= f.input :choices, as: :radio_buttons, collection: [['A', "#{Poll.last.choices[0].answer}"], ['B', "#{Poll.last.choices[1].answer}"], ['C', "#{Poll.last.choices[2].answer}"], ['D', "#{Poll.last.choices[3].answer}"] ], label_method: :second, value_method: :first %>
+      <div class="center">
+        <%= f.submit 'Send', class: "btn-input" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
 </div>

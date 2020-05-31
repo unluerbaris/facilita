@@ -13,16 +13,6 @@ class PollsController < ApplicationController
     else
       render "events/show"
     end
-
-    # if @poll.save
-    #   EventChannel.broadcast_to(
-    #     @event,
-    #     poll: render_to_string(partial: "polls/poll", locals: { poll: @poll })
-    #   )
-    #   redirect_to event_path(@event, anchor: "poll-#{@poll.id}")
-    # else
-    #   render 'events/show'
-    # end
   end
 
   private
