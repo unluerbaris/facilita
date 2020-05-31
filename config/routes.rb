@@ -18,4 +18,6 @@ Rails.application.routes.draw do
     get 'summary', to: 'events#summary'
   end
   resources :audiences, only: [:create]
+  resources :choices, only: [:create, :new]
+  resources :responses, only: [:create]
 end

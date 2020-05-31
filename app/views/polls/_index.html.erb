@@ -1,17 +1,48 @@
 <div class="container content-container">
-  <h1>Poll</h1>
-  <div id="polls" data-event-id="<%= event.id %>">
-    <%# event.polls.each do |poll| %>
-      <%= render "polls/poll", poll: Poll.new  %>
+  <div class="radio-toolbar center">
+    <%# unless @event.polls == nil %>
+      <%# @event.polls.each do |poll| %>
+        <%# poll.choices.each do |choice| %>
+          <%#= simple_form_for @response do |f| %>
+            <%#= f.input :choice, as: :radio_buttons, collection: [['A', "#{choice.answer}"], ['B', "#{choice.answer}"], ['C', "#{choice.answer}"], ['D', "#{choice.answer}"] ], label_method: :second, value_method: :first %>
+            <div class="center">
+              <%#= f.submit 'Send', class: "btn-input" %>
+            </div>
+          <%# end %>
+        <%# end %>
+      <%# end %>
     <%# end %>
   </div>
 
+  <%= simple_form_for([@event, @new_poll]) do |f| %>
+    <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
+    <%= f.text_field :title, placeholder: "Poll Title" %>
+    <%= f.simple_fields_for :choices do |choice_form| %>
+      <%= choice_form.input :answer %>
+    <% end %>
+    <%= f.simple_fields_for :choices do |choice_form| %>
+      <%= choice_form.input :answer %>
+    <% end %>
+    <%= f.simple_fields_for :choices do |choice_form| %>
+      <%= choice_form.input :answer %>
+    <% end %>
+    <%= f.simple_fields_for :choices do |choice_form| %>
+      <%= choice_form.input :answer %>
+    <% end %>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+
+<h1>LAST POLL</h1>
+
+<% unless @event.polls.empty? %>
   <div class="radio-toolbar center">
     <%= simple_form_for([event, Poll.new], remote: true) do |f| %>
-      <%= f.input :choices, as: :radio_buttons, collection: [['A', 'Answer 1'], ['B', 'Answer 2'], ['C', 'Answer 3'], ['D', 'Answer 4'] ], label_method: :second, value_method: :first %>
+      <%= f.input :choices, as: :radio_buttons, collection: [['A', "#{Poll.last.choices[0].answer}"], ['B', "#{Poll.last.choices[1].answer}"], ['C', "#{Poll.last.choices[2].answer}"], ['D', "#{Poll.last.choices[3].answer}"] ], label_method: :second, value_method: :first %>
       <div class="center">
         <%= f.submit 'Send', class: "btn-input" %>
       </div>
     <% end %>
   </div>
+<% end %>
+
 </div>

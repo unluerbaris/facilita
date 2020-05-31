@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_30_103647) do
+ActiveRecord::Schema.define(version: 2020_05_30_132928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,9 +46,10 @@ ActiveRecord::Schema.define(version: 2020_05_30_103647) do
   end
 
   create_table "choices", force: :cascade do |t|
-    t.bigint "poll_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "answer"
+    t.bigint "poll_id", null: false
     t.index ["poll_id"], name: "index_choices_on_poll_id"
   end
 
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_05_30_103647) do
     t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
     t.index ["event_id"], name: "index_polls_on_event_id"
   end
 
