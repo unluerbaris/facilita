@@ -26,7 +26,7 @@ User.create!(
   last_name: "Unluer",
   email: "baris@baris.com",
   password: "localife",
-  birthday: Date.today-rand(35000),
+  birthday: Date.today-rand(7300..18250),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -36,7 +36,7 @@ User.create!(
   last_name: "Tsuda",
   email: "chi@chi.com",
   password: "localife",
-  birthday: Date.today-rand(35000),
+  birthday: Date.today-rand(7300..18250),
   gender: "Female",
   occupation: occupations.sample
   )
@@ -46,7 +46,7 @@ User.create!(
   last_name: "Holley",
   email: "grant@grant.com",
   password: "localife",
-  birthday: Date.today-rand(35000),
+  birthday: Date.today-rand(7300..18250),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -56,7 +56,7 @@ User.create!(
   last_name: "Chung",
   email: "yun@yun.com",
   password: "localife",
-  birthday: Date.today-rand(35000),
+  birthday: Date.today-rand(7300..18250),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -66,7 +66,7 @@ User.create!(
   last_name: "Ergan",
   email: "julien@julien.com",
   password: "localife",
-  birthday: Date.today-rand(35000),
+  birthday: Date.today-rand(7300..18250),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -76,7 +76,7 @@ User.create!(
   last_name: "Furugen",
   email: "katsu@katsu.com",
   password: "localife",
-  birthday: Date.today-rand(35000),
+  birthday: Date.today-rand(7300..18250),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -86,7 +86,7 @@ User.create!(
   last_name: "Hida",
   email: "shogo@shogo.com",
   password: "localife",
-  birthday: Date.today-rand(35000),
+  birthday: Date.today-rand(7300..18250),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -96,7 +96,7 @@ User.create!(
   last_name: "Ishida",
   email: "yusuke@yusuke.com",
   password: "localife",
-  birthday: Date.today-rand(35000),
+  birthday: Date.today-rand(7300..18250),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -106,7 +106,7 @@ User.create!(
   last_name: "Koziel",
   email: "lukasz@lukasz.com",
   password: "localife",
-  birthday: Date.today-rand(35000),
+  birthday: Date.today-rand(7300..18250),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -116,7 +116,7 @@ User.create!(
   last_name: "Nakamura",
   email: "momo@momo.com",
   password: "localife",
-  birthday: Date.today-rand(35000),
+  birthday: Date.today-rand(7300..18250),
   gender: "Male",
   occupation: occupations.sample
   )
@@ -126,7 +126,7 @@ User.create!(
   last_name: "Thoo",
   email: "pins@pins.com",
   password: "localife",
-  birthday: Date.today-rand(35000),
+  birthday: Date.today-rand(7300..18250),
   gender: "Female",
   occupation: occupations.sample
   )
@@ -136,7 +136,7 @@ User.create!(
   last_name: "Wong",
   email: "nicole@nicole.com",
   password: "localife",
-  birthday: Date.today-rand(35000),
+  birthday: Date.today-rand(7300..18250),
   gender: "Female",
   occupation: occupations.sample
   )
@@ -147,7 +147,7 @@ User.create!(
   last_name: Faker::Name.last_name,
   email: Faker::Internet.email,
   password: "localife",
-  birthday: Date.today-rand(35000),
+  birthday: Date.today-rand(7300..18250),
   gender: gender.sample,
   occupation: occupations.sample
   )
