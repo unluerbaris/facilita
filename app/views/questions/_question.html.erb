@@ -8,6 +8,7 @@
     <div class="flex-grow-1 center">
       <h5><%= question.user.first_name %> <%= question.user.last_name %></h5>
       <p><%= question.content %></p>
+
       <%= link_to 'Like', like_event_question_path(event, question), method: :put  %>
       <%= question.get_likes.size %>
     </div>
