@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :questions, only: [:create] do
       member do
         put "like" =>"questions#upvote"
-        put "unlike" =>"questions#downvote"
+        put "dislike" =>"questions#downvote"
       end
     end
     resources :polls, only: [:new, :create]

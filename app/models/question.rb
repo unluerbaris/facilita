@@ -7,8 +7,3 @@ class Question < ApplicationRecord
   acts_as_votable
 end
 
-@question = Question.new(content: 'Question!')
-@question.save
-
-
-@question.votes_for.size # => 1
