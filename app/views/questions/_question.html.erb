@@ -18,6 +18,13 @@
 
       <%#= question.get_downvotes.size %>
 
+      <%= link_to like_event_question_path(question), class: "like", method: :put do %>
+
+        <i class="fas fa-thumbs-up"></i>
+      <%= question.get_upvotes.size %>
+
+      <% end %>
+
     </div>
   </div>
 </div>

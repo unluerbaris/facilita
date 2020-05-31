@@ -18,15 +18,14 @@ class QuestionsController < ApplicationController
   end
 
   def upvote
+    @event = Event.find(params[:id])
     @question = Question.find(params[:id])
-    @question.event = @event
     @question.upvote_from current_user
     authorize @question
   end
 
   def downvote
     @question = Question.find(params[:id])
-    @question.event = @event
     @question.downvote_from current_user
     authorize @question
   end
