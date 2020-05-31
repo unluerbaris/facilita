@@ -5,6 +5,8 @@ class EventsController < ApplicationController
     @new_message = Message.new
     @new_question = Question.new
     @new_poll = Poll.new
+    @new_poll.choices.build
+    @response = Response.new
   end
 
   def new

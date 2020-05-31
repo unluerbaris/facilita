@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   has_many :audiences
   has_many :messages
   has_many :questions
+  has_many :polls
   has_many :users, through: :audiences
   has_one_attached :photo
   belongs_to :user

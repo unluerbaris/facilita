@@ -3,4 +3,5 @@ class Poll < ApplicationRecord
 
   has_many :choices
   has_many :responses, through: :choices
+  accepts_nested_attributes_for :choices
 end

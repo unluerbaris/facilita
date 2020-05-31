@@ -8,23 +8,9 @@
     <div class="flex-grow-1 center">
       <h5><%= question.user.first_name %> <%= question.user.last_name %></h5>
       <p><%= question.content %></p>
-      <%#= link_to like_event_question_path(question), method: :put do %>
-     <%# @user = current_user %>
-      <%#= question.vote_by @user, vote: "Like!" %>
 
-      <%#= question.get_upvotes.size %>
-
-      <%# link_to unlike_event_question_path(question), question: :put do %>
-
-      <%#= question.get_downvotes.size %>
-
-      <%= link_to like_event_question_path(question), class: "like", method: :put do %>
-
-        <i class="fas fa-thumbs-up"></i>
-      <%= question.get_upvotes.size %>
-
-      <% end %>
-
+      <%= link_to 'Like', like_event_question_path(event, question), method: :put  %>
+      <%= question.get_likes.size %>
     </div>
   </div>
 </div>
