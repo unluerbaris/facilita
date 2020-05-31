@@ -4,11 +4,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users, only: [:show]
   resources :events, only: [:show, :new, :create, :edit, :update] do
-    resources :messages, only: [:create]
+    resources :messages, only: [:create] do
+      member do
+        put "like" =>"messages#upvote"
+      end
+    end
     resources :questions, only: [:create] do
       member do
         put "like" =>"questions#upvote"
-        put "dislike" =>"questions#downvote"
       end
     end
     resources :polls, only: [:new, :create]
