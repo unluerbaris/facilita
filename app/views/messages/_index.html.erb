@@ -1,6 +1,6 @@
 <div class="container content-container">
   <h1>Comments</h1>
-  <div id="messages" data-event-id="<%= event.id %>">
+  <div class="question-scroll" id="messages" data-event-id="<%= event.id %>">
     <% event.messages.each do |message| %>
       <%= render "messages/message", event: event, message: message  %>
     <% end %>
