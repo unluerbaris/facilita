@@ -21,12 +21,11 @@
 }
 
 .audience-card {
-  height: 40px;
   width: 240px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 40px auto;
+  margin: 20px auto;
   .audience-name-card {
     width: 180px;
     text-align: start;
@@ -36,59 +35,54 @@
 }
 
 .card-square {
-  width: 320px;
-  height: 320px;
-  background-color: white;
-  box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
-  margin: 20px;
-  border-radius: 4px;
+  width: 200px;
+  height: 200px;
+  margin: 40px auto;
   text-align: center;
-  padding: 40px;
-  img {
-    margin-bottom: 40px;
-  }
-  &:hover {
-    box-shadow: none;
+  line-height: 3;
+  h2 {
+    font-weight: bold;
   }
 }
 
 .card-box {
-  width: 500px;
-  height: 430px;
   background-color: white;
   box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
-  margin: 20px;
   border-radius: 4px;
   text-align: center;
-  padding: 40px;
-  h5 {
-    margin-bottom: 20px;
-  }
-  img {
-    margin: 40px;
-    margin-bottom: 40px;
+  padding: 20px;
+  h4 {
+    margin: 40px auto;
   }
   &:hover {
     box-shadow: none;
   }
 }
 
+.card-box h5 {
+  margin-top: 40px;
+}
 
 
 .card-box-wide {
-  width: 800px;
-  height: 480px;
   background-color: white;
   box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
   margin: 0 auto;
   border-radius: 4px;
-  padding: 40px;
-  .text-box-small {
-    margin-top: 40px;
-    list-style-type: none;
-    line-height: 3;
-    width: 200px;
+  width: 100%;
+  text-align: center;
+  h4 {
+    margin: 40px auto;
   }
+  &:hover {
+    box-shadow: none;
+  }
+}
+
+.text-box-small {
+  list-style-type: none;
+  line-height: 3;
+  width: 200px;
   &:hover {
     box-shadow: none;
   }
