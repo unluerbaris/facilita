@@ -1,6 +1,6 @@
 class FeedbackController < ApplicationController
 
-def new
+  def new
     @feedback = Feedback.new
     authorize @feedback
   end
@@ -17,7 +17,8 @@ def new
     end
   end
 
-def feedback_params
+  def feedback_params
     params.require(:question).permit(:question)
   end
+
 end
