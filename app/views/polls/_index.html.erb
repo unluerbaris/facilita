@@ -1,18 +1,4 @@
 <div class="container content-container">
-  <div class="radio-toolbar center">
-    <%# unless @event.polls == nil %>
-      <%# @event.polls.each do |poll| %>
-        <%# poll.choices.each do |choice| %>
-          <%#= simple_form_for @response do |f| %>
-            <%#= f.input :choice, as: :radio_buttons, collection: [['A', "#{choice.answer}"], ['B', "#{choice.answer}"], ['C', "#{choice.answer}"], ['D', "#{choice.answer}"] ], label_method: :second, value_method: :first %>
-            <div class="center">
-              <%#= f.submit 'Send', class: "btn-input" %>
-            </div>
-          <%# end %>
-        <%# end %>
-      <%# end %>
-    <%# end %>
-  </div>
 
   <%= simple_form_for([@event, @new_poll]) do |f| %>
     <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
@@ -31,18 +17,5 @@
     <% end %>
     <%= f.submit class: "btn btn-primary" %>
   <% end %>
-
-<h1>LAST POLL</h1>
-
-<% unless @event.polls.empty? %>
-  <div class="radio-toolbar center">
-    <%= simple_form_for([Response.new], remote: true) do |f| %>
-      <%= f.input :answer, as: :radio_buttons, collection: [["#{Poll.last.choices[0].answer}", "#{Poll.last.choices[0].answer}"], ["#{Poll.last.choices[1].answer}", "#{Poll.last.choices[1].answer}"], ["#{Poll.last.choices[2].answer}", "#{Poll.last.choices[2].answer}"], ["#{Poll.last.choices[3].answer}", "#{Poll.last.choices[3].answer}"] ], label_method: :second, value_method: :first %>
-      <div class="center">
-        <%= f.submit 'Send', class: "btn-input" %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
 
 </div>

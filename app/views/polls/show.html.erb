@@ -1,0 +1,28 @@
+<h1>LAST POLL</h1>
+
+  <div class="center">
+    <%= simple_form_for @response, remote: true do |f| %>
+      <%= f.input :choice_id, as: :hidden, input_html: { value: @choices[0].id } %>
+      <div>
+        <%= f.submit "#{@choices[0].answer}", class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+    <%= simple_form_for @response, remote: true do |f| %>
+      <%= f.input :choice_id, as: :hidden, input_html: { value: @choices[1].id } %>
+      <div>
+        <%= f.submit "#{@choices[1].answer}", class: "btn btn-secondary"  %>
+      </div>
+    <% end %>
+    <%= simple_form_for @response, remote: true do |f| %>
+      <%= f.input :choice_id, as: :hidden, input_html: { value: @choices[2].id } %>
+      <div>
+        <%= f.submit "#{@choices[2].answer}", class: "btn btn-secondary"  %>
+      </div>
+    <% end %>
+    <%= simple_form_for @response, remote: true do |f| %>
+      <%= f.input :choice_id, as: :hidden, input_html: { value: @choices[3].id } %>
+      <div>
+        <%= f.submit "#{@choices[3].answer}", class: "btn btn-secondary"  %>
+      </div>
+    <% end %>
+  </div>
