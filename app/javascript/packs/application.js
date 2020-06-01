@@ -37,11 +37,5 @@ document.addEventListener('turbolinks:load', () => {
                              defaultDate: new Date(),
                              minDate: "today",
                              time_24hr: true });
-  const gray = document.querySelector('#graycolor');
-
-gray.addEventListener('click', (e) => {
-  e.target.classList.add('.bluecolor');
-
-});
 
 });
