@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
         @event,
         message: render_to_string(partial: "messages/message", locals: { message: @message })
       )
-      redirect_to event_path(@event, anchor: "message-#{@message.id}")
+      redirect_to event_path(@event, anchor: "message-#{@message.id}", tab: "comment")
     else
       render 'events/show'
     end
@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
     authorize @message
     @message.liked_by current_user
     @message.save
-    redirect_to event_path(@event), notice: "You liked this!"
+    redirect_to event_path(@event, anchor: "message-#{@message.id}", tab: "comment"), notice: "You liked this!"
   end
 
   private

@@ -4,12 +4,12 @@
     <h4 class="center">Audiences</h4>
     <div class="flexed-contents">
         <div class="flexed-contents-center">
-          <p class="center">Number of audiences</p>
+          <p class="center">Number of attendees</p>
           <%= line_chart audiences.group(:event_id).count, width: "300px", height: "200px", colors: ['#800000'] %>
           <% events = audiences.group(:event_id).count.first(3) %>
         </div>
         <div class="text-box-small flexed-contents-center">
-          <small>Popular events TOP 3</small>
+          <small>Most Popular Events</small>
           <% events.each do |event| %>
             <div class="d-flex justify-content-between align-items-center">
               <li><%= Event.find(event[0]).title %></li>
@@ -20,14 +20,14 @@
     </div>
     <div class="center">
       <p>Average age of your audience</p>
-      <p>Most popular occupation?</p>
+      <p>Most popular occupation</p>
       <p>Gender ratio</p>
     </div>
   </div>
   <div class="card-box-wide">
-    <h4 class="center">Feedbacks</h4>
+    <h4 class="center">Feedback</h4>
     <div class="d-flex justify-content-around">
-      <p>Average rate of your events</p>
+      <p>Event rating</p>
       <p>⭐️⭐️⭐️</p>
     </div>
     <div class="d-flex justify-content-around">

@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_event
   before_action :set_question, except: [:create]
 
+
   def create
     @question = Question.new(question_params)
     authorize @question
@@ -22,7 +23,7 @@ class QuestionsController < ApplicationController
     authorize @question
     @question.liked_by current_user
     @question.save
-    redirect_to event_path(@event), notice: "You liked this!"
+    redirect_to event_path(@event, anchor: "question-#{@question.id}", tab: "question"), notice: "You liked this!"
   end
 
   private

@@ -1,11 +1,12 @@
 class ResponsesController < ApplicationController
+
   def create
     # @choices = Choice.where
     @response = Response.new(response_params)
     @response.user = current_user
     authorize @response
     if @response.save
-      redirect_to root_path
+      redirect_to event_path(@response.choice.poll.event)
     else
       render "events/show"
     end
