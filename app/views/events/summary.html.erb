@@ -102,13 +102,13 @@
       <% females = @event.users.select do |user| %>
         <% user.gender == "Female"  %>
       <% end %>
-      <% unless females.empty? %>
+      <% unless females == nil && females.empty? %>
         <p>Female <%= ((females.count.to_f / @event.users.count) * 100).round %>%</p>
         <% males = @event.users.select do |user| %>
           <% user.gender == "Male"  %>
         <% end %>
       <% end %>
-      <% unless  males.empty? %>
+      <% unless  males == nil && males.empty? %>
         <p>Male <%= ((males.count.to_f / @event.users.count) * 100).round %>%</p>
       <% end %>
     </div>
