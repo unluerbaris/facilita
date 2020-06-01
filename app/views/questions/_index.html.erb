@@ -1,7 +1,7 @@
 <div class="container content-container">
   <h1>Questions</h1>
   <div class="question-scroll" id="questions">
-    <% event.questions.each do |question| %>
+    <% event.questions.order(cached_votes_score: :desc).each do |question| %>
       <%= render "questions/question", event: event, question: question %>
     <% end %>
   </div>
