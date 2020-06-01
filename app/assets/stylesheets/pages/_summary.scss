@@ -41,6 +41,11 @@
   justify-content: space-around;
 }
 
+.feedback {
+  margin: 20px;
+  text-align: start;
+}
+
 @media (max-width: 1024px) {
   /* For a screen < 720px, this CSS will be read */
   .summary-cards {

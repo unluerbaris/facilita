@@ -14,7 +14,8 @@ class FeedbacksController < ApplicationController
     if @feedback.save
       redirect_to event_path(@event)
     else
-      redirect_to event_path(@event)
+      render :new
+      flash[:alert] = "Something went wrong."
     end
   end
 
