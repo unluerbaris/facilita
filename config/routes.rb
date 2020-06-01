@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       end
     end
     resources :polls, only: [:show, :new, :create]
+    resources :feedbacks, only: [:new, :create]
     get 'summary', to: 'events#summary'
   end
   resources :audiences, only: [:create]
