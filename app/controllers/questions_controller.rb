@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_event
   before_action :set_question, except: [:create]
 
+
   def create
     @question = Question.new(question_params)
     authorize @question
