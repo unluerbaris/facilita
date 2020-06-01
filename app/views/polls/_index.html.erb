@@ -1,21 +1,21 @@
-<div class="container content-container">
-
-  <%= simple_form_for([@event, @new_poll]) do |f| %>
-    <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
-    <%= f.text_field :title, placeholder: "Poll Title" %>
-    <%= f.simple_fields_for :choices do |choice_form| %>
-      <%= choice_form.input :answer %>
+<% if current_user == @event.user %>
+  <div class="container content-container">
+    <%= simple_form_for([@event, @new_poll]) do |f| %>
+      <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
+      <%= f.text_field :title, placeholder: "Poll Title" %>
+      <%= f.simple_fields_for :choices do |choice_form| %>
+        <%= choice_form.input :answer %>
+      <% end %>
+      <%= f.simple_fields_for :choices do |choice_form| %>
+        <%= choice_form.input :answer %>
+      <% end %>
+      <%= f.simple_fields_for :choices do |choice_form| %>
+        <%= choice_form.input :answer %>
+      <% end %>
+      <%= f.simple_fields_for :choices do |choice_form| %>
+        <%= choice_form.input :answer %>
+      <% end %>
+      <%= f.submit class: "btn btn-primary" %>
     <% end %>
-    <%= f.simple_fields_for :choices do |choice_form| %>
-      <%= choice_form.input :answer %>
-    <% end %>
-    <%= f.simple_fields_for :choices do |choice_form| %>
-      <%= choice_form.input :answer %>
-    <% end %>
-    <%= f.simple_fields_for :choices do |choice_form| %>
-      <%= choice_form.input :answer %>
-    <% end %>
-    <%= f.submit class: "btn btn-primary" %>
-  <% end %>
-
-</div>
+  </div>
+<% end %>
