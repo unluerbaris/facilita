@@ -22,7 +22,7 @@
   align-items: start;
   position: absolute;
   height: 60vh;
-  margin: 200px 160px;
+  margin: 200px 120px;
   h1 {
     font-size: 52px;
     color: white;
@@ -40,12 +40,22 @@
   padding: 40px;
 }
 
-@media (max-width: 1024px) {
-  /* For a screen < 960px, this CSS will be read */
+@media (max-width: 1300px) {
   .banner-background {
     width: 100%;
   }
 
+  .top-banner {
+  margin: 140px 40px;
+  }
+
+ .top-banner-content {
+  width: 100%;
+ }
+}
+
+@media (max-width: 1024px) {
+  /* For a screen < 960px, this CSS will be read */
   .top-banner {
     display: inline;
     margin: 0;
