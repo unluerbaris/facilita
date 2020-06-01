@@ -9,3 +9,8 @@ overflow: scroll;
 .bluecolor{
     color:#0026ff;
  }
+
+ .bluecolor:hover:after {
+  text-decoration: none;
+  display: inline;
+ }

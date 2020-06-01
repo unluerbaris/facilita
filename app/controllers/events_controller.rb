@@ -6,6 +6,7 @@ class EventsController < ApplicationController
     @new_question = Question.new
     @new_poll = Poll.new
     @new_poll.choices.build
+    @tab = params[:tab] || "comment"
   end
 
   def new
