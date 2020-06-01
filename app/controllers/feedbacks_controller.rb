@@ -14,7 +14,7 @@ class FeedbacksController < ApplicationController
     if @feedback.save
       redirect_to event_path(@event)
     else
-      render "events/show"
+      redirect_to event_path(@event)
     end
   end
 
