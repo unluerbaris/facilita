@@ -14,7 +14,7 @@ Rails.application.routes.draw do
         put "like" =>"questions#upvote"
       end
     end
-    resources :polls, only: [:new, :create]
+    resources :polls, only: [:show, :new, :create]
     get 'summary', to: 'events#summary'
   end
   resources :audiences, only: [:create]

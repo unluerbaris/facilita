@@ -1,5 +1,6 @@
 class ResponsesController < ApplicationController
   def create
+    @choices = Choice.where
     @response = Response.new(response_params)
     @response.user = current_user
     authorize @response
@@ -13,6 +14,6 @@ class ResponsesController < ApplicationController
   private
 
   def response_params
-    params.require(:response).permit(:user_id, :answer)
+    params.require(:response).permit(:choice_id, :answer)
   end
 end
