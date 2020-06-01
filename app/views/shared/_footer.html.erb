@@ -9,10 +9,14 @@
   </div>
   <div class="tab-pane fade <%= 'show active' if @tab == "poll" %>" id="pills-mobile-poll" role="tabpanel" aria-labelledby="pills-mobile-poll-tab">
     <%= render 'polls/index', event: event %>
-    <%= link_to "Go to the last poll", "#{params[:id]}/polls/#{Poll.last.id}"%>
+    <% unless @event.polls.empty? %>
+      <div class="center m-5">
+        <%= link_to "Go to the last poll", "#{params[:id]}/polls/#{Poll.last.id}", class: "btn btn-secondary"%>
+      </div>
+    <% end %>
   </div>
   <div class="tab-pane fade <%= 'show active' if @tab == "feedback" %>" id="pills-mobile-feedback" role="tabpanel" aria-labelledby="pills-mobile-feedback-tab">
-    <p>FEEDBACK</p>
+    <%= render 'feedback/new', event: event %>
   </div>
 </div>
 <ul class="nav nav-pills mt-3 justify-content-center" id="pills-tab" role="tablist">

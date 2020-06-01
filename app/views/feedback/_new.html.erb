@@ -1,0 +1,11 @@
+<h1 class="center m-5">Give us a feedback</h1>
+<%= simple_form_for([event, Feedback.new], remote: true) do |f| %>
+  <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
+  <div class="input-field">
+    <%= f.input :comment %>
+    <%= f.input :rating %>
+  </div>
+  <div class="center">
+    <%= f.submit 'Send', class: "btn btn-secondary" %>
+  </div>
+<% end %>

@@ -1,6 +1,6 @@
 class ResponsesController < ApplicationController
   def create
-    @choices = Choice.where
+    # @choices = Choice.where
     @response = Response.new(response_params)
     @response.user = current_user
     authorize @response
