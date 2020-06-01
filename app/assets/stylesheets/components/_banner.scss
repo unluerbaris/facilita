@@ -3,13 +3,12 @@
   height: 100%;
   background-color: white;
   padding: 20px;
-  top: 15%;
-  margin-top: 76px;
 }
 
 .banner-background {
   z-index: -1;
   position: fixed;
+  top: 0;
   width: 80vw;
   height: 100vh;
   object-fit: cover;
@@ -22,7 +21,7 @@
   align-items: start;
   position: absolute;
   height: 60vh;
-  margin: 200px 120px;
+  margin: 160px 120px;
   h1 {
     font-size: 52px;
     color: white;
