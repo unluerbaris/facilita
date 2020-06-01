@@ -3,7 +3,7 @@
   <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
   <div class="input-field">
     <%= f.input :comment %>
-    <%= f.input :rating %>
+    <%= f.input :rating, as: :select, collection: [ "1", "2", "3", "4", "5"] %>
   </div>
   <div class="center">
     <%= f.submit 'Send', class: "btn btn-secondary" %>
