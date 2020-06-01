@@ -13,40 +13,66 @@
       <p>questions received!</p>
     </div>
     <div class="card-square">
-      <h2><%= @event.questions.count %></h2>
+      <h2><%= @event.polls.count %></h2>
       <p>polls created!</p>
     </div>
     <div class="card-square">
-      <h2><%= @event.questions.count %></h2>
+      <h2><%= @event.feedbacks.count %></h2>
       <p>pieces of feedback received!</p>
     </div>
   </div>
 <h3 class="text-red text-space-around">Facilitation details</h3>
 <div class="summary-cards-first">
   <div class="card-box">
-    <h3>Popular comments</h3>
-    <div class="audience-card">
-      <%= image_tag "avatar.svg", class: "avatar" %>
-      <p>Most liked message</p>
-    </div>
+    <h4>Popular comments</h4>
+      <p><% popular_messages = @messages.order(cached_votes_total: :desc).first(2) %></p>
+      <% popular_messages.each do |message|%>
+        <div class="d-flex justify-content-around align-items-center">
+          <% if message.user.photo.attached? %>
+            <%= image_tag message.user.photo.key, class: "avatar" %>
+          <% else %>
+            <%= image_tag "avatar.svg", class: "avatar" %>
+          <% end %>
+          <div class="left popular_content">
+            <p><small><%= message.user.first_name %> <%= message.user.last_name %></small></p>
+            <p><small><em><%= message.content %></em></small></p>
+          </div>
+          <small><%= message.get_likes.count %> Likes</small>
+        </div>
+      <% end %>
     <p class="right">See all messages</p>
-    <h3>Popular questions</h3>
-    <div class="audience-card">
-      <%= image_tag "avatar.svg", class: "avatar" %>
-      <p>Most liked question</p>
-    </div>
+    <h4>Popular Questions</h4>
+      <p><% popular_questions = @questions.order(cached_votes_total: :desc).first(2) %></p>
+      <% popular_questions.each do |question|%>
+        <div class="d-flex justify-content-around align-items-center">
+          <% if question.user.photo.attached? %>
+            <%= image_tag question.user.photo.key, class: "avatar" %>
+          <% else %>
+            <%= image_tag "avatar.svg", class: "avatar" %>
+          <% end %>
+          <div class="left popular_content">
+            <p><small><%= question.user.first_name %> <%= question.user.last_name %></small></p>
+            <p><small><em><%= question.content %></em></small></p>
+          </div>
+          <small><%= question.get_likes.count %> Likes</small>
+        </div>
+      <% end %>
     <p class="right">See all questions</p>
   </div>
   <div class="card-box-wide">
     <h4 class="center">Poll results</h4>
     <% unless @event.polls == nil || @event.polls.empty? %>
       <% @event.polls.each do |poll|  %>
-        <div class="poll-result">
-          <p><%= poll.title %></p>
-          <%= bar_chart poll.choices.group(:answer).count %>
+        <div class="poll-results">
+          <div>
+            <p><%= poll.title %></p>
+            <% poll.choices.each do |choice| %>
+              <%= choice.answer %>
+              <%= choice.responses.count %>
+            <% end %>
+          </div>
         </div>
       <% end %>
-      <p class="right">See all results</p>
     <% else %>
       <h5>No Polls for this event</h5>
     <% end %>
@@ -54,14 +80,20 @@
   <div class="card-box">
     <h4 class="center">Feedback</h4>
     <% unless @event.feedbacks == nil || @event.feedbacks.empty? %>
-      <%= bar_chart @event.feedbacks.group(:rating).count, width: "240px", height: "200px", colors: ['#800000'] %>
+        <% rate = @event.feedbacks.average(:rating) %>
+        <p class="text-space-around"><%= '⭐️' * rate%></p>
+        <div class="d-flex justify-content-around">
+          <p>Average rating</p>
+          <%= rate %>
+        </div>
         <p class="text-red m-3">Feedbacks from your audience</p>
         <% @event.feedbacks.each do |feedback| %>
-        <div class="feedback">
-          <p><%= feedback.comment %></p>
+        <div class="feedback d-flex justify-content-between">
+          <p><em><%= feedback.comment %></em></p>
+          <small>By <%= feedback.user.first_name %> <%= feedback.user.last_name %></small>
         </div>
         <% end %>
-      <p class="right">See all feedback</p>
+      <p class="right">See all feedbacks</p>
     <% end %>
   </div>
 </div>

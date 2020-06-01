@@ -46,6 +46,18 @@
   text-align: start;
 }
 
+.poll-results {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-rows: auto;
+  grid-gap: 1rem;
+  padding: 0 1rem;
+}
+
+.popular_content {
+  width: 200px;
+}
+
 @media (max-width: 1024px) {
   /* For a screen < 720px, this CSS will be read */
   .summary-cards {
