@@ -1,31 +1,31 @@
 <div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-mobile-comment" role="tabpanel" aria-labelledby="pills-mobile-comment-tab">
+  <div class="tab-pane fade <%= 'show active' if @tab == "comment" %> " id="pills-mobile-comment" role="tabpanel" aria-labelledby="pills-mobile-comment-tab">
     <div class="center">
       <%= render 'messages/index', event: event %>
     </div>
   </div>
-  <div class="tab-pane fade" id="pills-mobile-question" role="tabpanel" aria-labelledby="pills-mobile-question-tab">
+  <div class="tab-pane fade <%= 'show active' if @tab == "question" %>" id="pills-mobile-question" role="tabpanel" aria-labelledby="pills-mobile-question-tab">
     <%= render 'questions/index', event: event %>
   </div>
-  <div class="tab-pane fade" id="pills-mobile-poll" role="tabpanel" aria-labelledby="pills-mobile-poll-tab">
+  <div class="tab-pane fade <%= 'show active' if @tab == "poll" %>" id="pills-mobile-poll" role="tabpanel" aria-labelledby="pills-mobile-poll-tab">
     <%= render 'polls/index', event: event %>
     <%= link_to "Go to the last poll", "#{params[:id]}/polls/#{Poll.last.id}"%>
   </div>
-  <div class="tab-pane fade" id="pills-mobile-feedback" role="tabpanel" aria-labelledby="pills-mobile-feedback-tab">
+  <div class="tab-pane fade <%= 'show active' if @tab == "feedback" %>" id="pills-mobile-feedback" role="tabpanel" aria-labelledby="pills-mobile-feedback-tab">
     <p>FEEDBACK</p>
   </div>
 </div>
 <ul class="nav nav-pills mt-3 justify-content-center" id="pills-tab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="pills-mobile-comment-tab" data-toggle="pill" href="#pills-mobile-comment" role="tab" aria-controls="pills-mobile-comment" aria-selected="true">Comment</a>
+    <a class="nav-link <%= 'active' if @tab == "comment" %>" id="pills-mobile-comment-tab" data-toggle="pill" href="#pills-mobile-comment" role="tab" aria-controls="pills-mobile-comment" aria-selected="true">Comment</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-mobile-question-tab" data-toggle="pill" href="#pills-mobile-question" role="tab" aria-controls="pills-mobile-question" aria-selected="false">Question</a>
+    <a class="nav-link <%= 'active' if @tab == "question" %>" id="pills-mobile-question-tab" data-toggle="pill" href="#pills-mobile-question" role="tab" aria-controls="pills-mobile-question" aria-selected="false">Question</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-mobile-poll-tab" data-toggle="pill" href="#pills-mobile-poll" role="tab" aria-controls="pills-mobile-poll" aria-selected="false">Poll</a>
+    <a class="nav-link <%= 'active' if @tab == "poll" %>" id="pills-mobile-poll-tab" data-toggle="pill" href="#pills-mobile-poll" role="tab" aria-controls="pills-mobile-poll" aria-selected="false">Poll</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-mobile-feedback-tab" data-toggle="pill" href="#pills-mobile-feedback" role="tab" aria-controls="pills-mobile-feedback" aria-selected="false">Feedback</a>
+    <a class="nav-link <%= 'active' if @tab == "feedback" %>" id="pills-mobile-feedback-tab" data-toggle="pill" href="#pills-mobile-feedback" role="tab" aria-controls="pills-mobile-feedback" aria-selected="false">Feedback</a>
   </li>
 </ul>
