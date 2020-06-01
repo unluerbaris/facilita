@@ -7,7 +7,7 @@
   </div>
   <%= simple_form_for([event, Message.new], remote: true) do |f| %>
     <div class="input-field">
-      <%= f.input :content %>
+      <%= f.input :content , label: "Share your thoughts" %>
     </div>
     <div class="center">
       <%= f.submit 'comment', class: "btn-input" %>
