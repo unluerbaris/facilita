@@ -9,7 +9,13 @@
       <h5><%= question.user.first_name %> <%= question.user.last_name %></h5>
       <p><%= question.content %></p>
 
-      <%= link_to ('<i class="fas fa-thumbs-up graycolor" id="thumbsup"></i>').html_safe, like_event_question_path(@event, question), method: :put  %>
+      <%= link_to like_event_question_path(@event, question), method: :put do  %>
+        <% if current_user.voted_for? question %>
+          <i class="fas fa-thumbs-up bluecolor"></i>
+        <% else %>
+          <i class="fas fa-thumbs-up graycolor"></i>
+        <% end %>
+      <% end %>
       <%= question.get_likes.size %>
     </div>
   </div>

@@ -8,7 +8,13 @@
     <div class="flex-grow-1">
       <h5><%= message.user.first_name %> <%= message.user.last_name %></h5>
       <p><%= message.content %></p>
-      <%= link_to ('<i class="fas fa-thumbs-up graycolor"></i>').html_safe, like_event_message_path(@event, message), method: :put  %>
+      <%= link_to like_event_message_path(@event, message), method: :put do  %>
+        <% if current_user.voted_for? message %>
+          <i class="fas fa-thumbs-up bluecolor"></i>
+        <% else %>
+          <i class="fas fa-thumbs-up graycolor"></i>
+        <% end %>
+      <% end %>
       <%= message.get_likes.size %>
     </div>
   </div>

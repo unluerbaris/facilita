@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
         @event,
         question: render_to_string(partial: "questions/question", locals: { question: @question })
       )
-      redirect_to event_path(@event, anchor: "question-#{@question.id}")
+      redirect_to event_path(@event, anchor: "question-#{@question.id}", tab: "question")
     else
       render 'events/show'
     end
