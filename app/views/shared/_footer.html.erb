@@ -10,7 +10,7 @@
   <div class="tab-pane fade <%= 'show active' if @tab == "poll" %>" id="pills-mobile-poll" role="tabpanel" aria-labelledby="pills-mobile-poll-tab">
     <%= render 'polls/index', event: event %>
     <div class="center m-5">
-      <%= link_to "Go to the last poll", "#{params[:id]}/polls/#{Poll.last.id}", class: "btn btn-secondary"%>
+      <%#= link_to "Go to the last poll", "#{params[:id]}/polls/#{Poll.last.id}", class: "btn btn-secondary"%>
     </div>
   </div>
   <div class="tab-pane fade <%= 'show active' if @tab == "feedback" %>" id="pills-mobile-feedback" role="tabpanel" aria-labelledby="pills-mobile-feedback-tab">

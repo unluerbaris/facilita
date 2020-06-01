@@ -1,14 +1,57 @@
 <div class="container user-page-container">
   <div class="side-bar">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
-      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Your events</a>
-      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Events attended</a>
+      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Your events</a>
+      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Events attended</a>
+      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Profile</a>
     </div>
   </div>
   <div class="user-content">
     <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+        <h2 class="text-red text-space-around">
+          <%= @user.first_name %> <%= @user.last_name %>'s events
+        </h2>
+        <% photos = ["fun.svg", "festival.svg", "conference.svg", "map.svg", "party.svg", "community.svg", "chat.svg"] %>
+        <% @events.each do |event| %>
+          <div class="user-events">
+            <% if event.photo.attached? %>
+              <%= cl_image_tag event.photo.key %>
+            <% else %>
+              <%= image_tag photos.sample %>
+            <% end %>
+            <div class="event-text">
+              <h4><%= event.title %></h4>
+              <p class="event-time"><%= event.start_time.strftime("%B %d, %Y")%> <%= event.start_time.strftime("%I:%M%p")%><%= event.end_time.strftime(" - %I:%M%p")%></p>
+            </div>
+            <%= link_to "", event_path(event), class: "event-link" %>
+            <% if event.user == current_user %>
+              <small><%= link_to "Check summary", event_summary_path(event), class: "btn btn-danger summary" %></small>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+        <h2 class="text-red text-space-around">
+          <%= @user.first_name %> <%= @user.last_name %>'s attended events
+        </h2>
+        <% photos = ["fun.svg", "festival.svg", "conference.svg", "map.svg", "party.svg", "community.svg", "chat.svg"] %>
+        <% @user.attended_events.each do |event| %>
+          <div class="user-events">
+            <% if event.photo.attached? %>
+              <%= cl_image_tag event.photo.key %>
+            <% else %>
+              <%= image_tag photos.sample %>
+            <% end %>
+            <div class="event-text">
+              <h4><%= event.title %></h4>
+              <p class="event-time"><%= event.start_time.strftime("%B %d, %Y")%> <%= event.start_time.strftime("%I:%M%p")%><%= event.end_time.strftime(" - %I:%M%p")%></p>
+            </div>
+            <%= link_to "", event_path(event), class: "event-link" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
         <% if @user.photo.attached? %>
           <%= cl_image_tag @user.photo.key, class: "avatar-large user-profile-avatar" %>
         <% else %>
@@ -34,54 +77,9 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-        <h2 class="text-red text-space-around">
-          <%= @user.first_name %> <%= @user.last_name %>'s events
-        </h2>
-        <% photos = ["fun.svg", "festival.svg", "conference.svg", "map.svg", "party.svg", "community.svg", "chat.svg"] %>
-        <% @events.each do |event| %>
-          <div class="user-events">
-            <% if event.photo.attached? %>
-              <%= cl_image_tag event.photo.key %>
-            <% else %>
-              <%= image_tag photos.sample %>
-            <% end %>
-            <div class="event-text">
-              <h4><%= event.title %></h4>
-              <p class="event-time"><%= event.start_time.strftime("%B %d, %Y")%> <%= event.start_time.strftime("%I:%M%p")%><%= event.end_time.strftime(" - %I:%M%p")%></p>
-            </div>
-            <%= link_to "", event_path(event), class: "event-link" %>
-            <% if event.user == current_user %>
-              <small><%= link_to "Check summary", event_summary_path(event), class: "btn btn-danger summary" %></small>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-        <h2 class="text-red text-space-around">
-          <%= @user.first_name %> <%= @user.last_name %>'s attended events
-        </h2>
-        <% photos = ["fun.svg", "festival.svg", "conference.svg", "map.svg", "party.svg", "community.svg", "chat.svg"] %>
-        <% @user.attended_events.each do |event| %>
-          <div class="user-events">
-            <% if event.photo.attached? %>
-              <%= cl_image_tag event.photo.key %>
-            <% else %>
-              <%= image_tag photos.sample %>
-            <% end %>
-            <div class="event-text">
-              <h4><%= event.title %></h4>
-              <p class="event-time"><%= event.start_time.strftime("%B %d, %Y")%> <%= event.start_time.strftime("%I:%M%p")%><%= event.end_time.strftime(" - %I:%M%p")%></p>
-            </div>
-            <%= link_to "", event_path(event), class: "event-link" %>
-          </div>
-        <% end %>
-      </div>
     </div>
   </div>
 </div>
-
-
 
 
 
