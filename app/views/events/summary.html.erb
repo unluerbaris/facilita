@@ -39,33 +39,30 @@
   </div>
   <div class="card-box-wide">
     <h4 class="center">Poll results</h4>
-    <div class="poll-result">
-      <p>poll 1</p>
-    </div>
-    <div class="poll-result">
-      <p>poll 2</p>
-    </div>
-    <div class="poll-result">
-      <p>poll 3</p>
-    </div>
-    <div class="poll-result">
-      <p>poll 4</p>
-    </div>
-    <p class="right">See all results</p>
+    <% unless @event.polls == nil || @event.polls.empty? %>
+      <% @event.polls.each do |poll|  %>
+        <div class="poll-result">
+          <p><%= poll.title %></p>
+          <%= bar_chart poll.choices.group(:answer).count %>
+        </div>
+      <% end %>
+      <p class="right">See all results</p>
+    <% else %>
+      <h5>No Polls for this event</h5>
+    <% end %>
   </div>
   <div class="card-box">
     <h4 class="center">Feedback</h4>
-    <div class="feedback">
-      <p>feedback 1</p>
-    </div>
-    <div class="feedback">
-      <p>feedback 2</p>
-    </div>
-    <div class="feedback">
-      <p>feedback 3</p>
-    </div>
-    <p>Event rating</p>
-    <p class="right">See all feedback</p>
+    <% unless @event.feedbacks == nil || @event.feedbacks.empty? %>
+      <%= bar_chart @event.feedbacks.group(:rating).count, width: "240px", height: "200px", colors: ['#800000'] %>
+        <p class="text-red m-3">Feedbacks from your audience</p>
+        <% @event.feedbacks.each do |feedback| %>
+        <div class="feedback">
+          <p><%= feedback.comment %></p>
+        </div>
+        <% end %>
+      <p class="right">See all feedback</p>
+    <% end %>
   </div>
 </div>
 
@@ -92,8 +89,8 @@
       <% end %>
   </div>
   <div class="card-box">
-     <h4 class="center">Audience age</h4>
-     <%= bar_chart @event.users.group("FLOOR(age / 10) * 10").count, width: "240px", height: "240px", colors: ['#800000']%>
+    <h4 class="center">Audience age</h4>
+    <%= bar_chart @event.users.group("FLOOR(age / 10) * 10").count, width: "240px", height: "240px", colors: ['#800000']%>
   </div>
   <div class="card-box">
     <h4 class="center">Gender breakdown</h4>
