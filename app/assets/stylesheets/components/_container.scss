@@ -3,6 +3,24 @@
   margin: 24px auto;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.poll-container {
+  width: 700px;
+  clear: both;
+  h1 {
+  text-align: center;
+  margin: 24px auto;
+  }
+}
+
+.poll-container input {
+  width: 100%;
+  clear: both;
+}
+
 .center {
   margin: 0 auto;
   text-align: center;

@@ -1,0 +1,7 @@
+<p class="text-red m-3">Feedback from your audience</p>
+  <% @event.feedbacks.each do |feedback| %>
+    <div class="feedback d-flex justify-content-between">
+      <p><em><%= feedback.comment %></em></p>
+      <small>By <%= feedback.user.first_name %> <%= feedback.user.last_name %></small>
+    </div>
+  <% end %>

@@ -1,21 +1,51 @@
+<div class="container poll-container center">
+  <h1>Polls</h1>
 <% if current_user == @event.user %>
   <div class="container content-container">
     <%= simple_form_for([@event, @new_poll]) do |f| %>
       <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
-      <%= f.input :title, placeholder: "Poll Title" %>
+      <%= f.input :title, label: "Poll Title" %>
       <%= f.simple_fields_for :choices do |choice_form| %>
-        <%= choice_form.input :answer %>
+        <%= choice_form.input :answer, label: "Option 1" %>
       <% end %>
       <%= f.simple_fields_for :choices do |choice_form| %>
-        <%= choice_form.input :answer %>
+        <%= choice_form.input :answer, label: "Option 2" %>
       <% end %>
       <%= f.simple_fields_for :choices do |choice_form| %>
-        <%= choice_form.input :answer %>
+        <%= choice_form.input :answer, label: "Option 3" %>
       <% end %>
       <%= f.simple_fields_for :choices do |choice_form| %>
-        <%= choice_form.input :answer %>
+        <%= choice_form.input :answer, label: "Option 4" %>
       <% end %>
-      <%= f.submit class: "btn btn-primary" %>
+      <%= f.submit class: "btn-input" %>
     <% end %>
   </div>
+</div>
+<% end %>
+
+<!-- <div class="center">
+    <% #@event.polls.each do |poll| %>
+      <h1><%#= poll.title %></h1>
+      <%# poll.choices.each do |choice| %>
+        <h3><%#= choice.answer %></h3>
+      <%# end %>
+    <%# end %>
+  </div> -->
+
+<% unless @event.polls.empty? %>
+  <div class="center m-5">
+    <%= link_to "Go to the last poll", "#{params[:id]}/polls/#{Poll.last.id}", class: "btn btn-secondary"%>
+  </div>
+<% end %>
+
+<h3 class="center m-3">Poll results</h3>
+<% unless @event.polls == nil || @event.polls.empty? %>
+  <% @event.polls.each do |poll|  %>
+    <h4 class="center m-2"><%= poll.title %></h4>
+    <div class="d-flex justify-content-center mb-5">
+      <%= bar_chart poll.responses.group("choices.answer").count, dataset: {barThickness: 30}, width: "600px", height: "300px", colors: ['#800000'] %>
+    </div>
+  <% end %>
+<% else %>
+  <h5 class="center">No Polls for this event</h5>
 <% end %>

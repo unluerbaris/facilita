@@ -1,5 +1,10 @@
 class FeedbacksController < ApplicationController
-  before_action :set_event, only: [:create, :new]
+  before_action :set_event, only: [:create, :new, :index]
+
+  def index
+    @feedbacks = policy_scope(@event.feedbacks.all)
+    authorize @feedbacks
+  end
 
   def new
     @feedback = Feedback.new
@@ -11,11 +16,17 @@ class FeedbacksController < ApplicationController
     authorize @feedback
     @feedback.user = current_user
 
-    if @feedback.save
-      redirect_to event_path(@event)
+    if current_user == @event.user
+      flash[:alert] = "You can't send feedback to your own event!"
+    elsif !@event.feedbacks.find_by_user_id(current_user).nil?
+      flash[:alert] = "Can't post multiple feedbacks to an event!!!"
     else
-      render :new
-      flash[:alert] = "Something went wrong."
+      if @feedback.save
+        redirect_to event_path(@event)
+      else
+        render :new
+        flash[:alert] = "Something went wrong."
+      end
     end
   end
 

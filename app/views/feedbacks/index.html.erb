@@ -1,0 +1,18 @@
+<div class="container content-container">
+  <h1>Feedback from your audience</h1>
+
+        <% @event.feedbacks.each do |feedback| %>
+        <div class="card content-card">
+        <div class="feedback-card d-flex justify-content-between">
+          <p><em><%= feedback.comment %></em></p>
+          By <%= feedback.user.first_name %> <%= feedback.user.last_name %>
+        </div>
+        <div class="event-rating">
+          Event rating:  <%= feedback.rating %>
+        </div>
+      </div>
+        <% end %>
+        <%= link_to "Back to summary", event_summary_path(@event), class: "feedback-button btn btn-new mt-4" %>
+      </div>
+
+
