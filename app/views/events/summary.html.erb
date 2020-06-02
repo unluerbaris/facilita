@@ -25,54 +25,47 @@
 <div class="summary-cards-first">
   <div class="card-box">
     <h4>Popular comments</h4>
-      <p><% popular_messages = @messages.order(cached_votes_total: :desc).first(2) %></p>
-      <% popular_messages.each do |message|%>
-        <div class="d-flex justify-content-around align-items-center">
-          <% if message.user.photo.attached? %>
-            <%= image_tag message.user.photo.key, class: "avatar" %>
-          <% else %>
-            <%= image_tag "avatar.svg", class: "avatar" %>
-          <% end %>
-          <div class="left popular_content">
-            <p><small><%= message.user.first_name %> <%= message.user.last_name %></small></p>
-            <p><small><em><%= message.content %></em></small></p>
-          </div>
-          <small><%= message.get_likes.count %> Likes</small>
+      <div class="d-flex justify-content-around align-items-center">
+        <% top_message = @event.messages.order(cached_votes_total: :desc).first %>
+        <% if top_message.user.photo.attached? %>
+          <%= image_tag top_message.user.photo.key, class: "avatar" %>
+        <% else %>
+          <%= image_tag "avatar.svg", class: "avatar" %>
+        <% end %>
+        <div class="left popular_content">
+          <p><small><em><%= top_message.content %></em></small></p>
+          <p class="right"><small>By <%= top_message.user.first_name %> <%= top_message.user.last_name %></small></p>
         </div>
-      <% end %>
-    <p class="right">See all messages</p>
+        <small><%= top_message.get_likes.count %> Likes</small>
+      </div>
+    <p class="right">See all comments</p>
     <h4>Popular Questions</h4>
-      <p><% popular_questions = @questions.order(cached_votes_total: :desc).first(2) %></p>
-      <% popular_questions.each do |question|%>
-        <div class="d-flex justify-content-around align-items-center">
-          <% if question.user.photo.attached? %>
-            <%= image_tag question.user.photo.key, class: "avatar" %>
-          <% else %>
-            <%= image_tag "avatar.svg", class: "avatar" %>
-          <% end %>
-          <div class="left popular_content">
-            <p><small><%= question.user.first_name %> <%= question.user.last_name %></small></p>
-            <p><small><em><%= question.content %></em></small></p>
-          </div>
-          <small><%= question.get_likes.count %> Likes</small>
+      <% top_question = @event.questions.order(cached_votes_total: :desc).first %>
+      <div class="d-flex justify-content-around align-items-center">
+        <% if top_question.user.photo.attached? %>
+          <%= image_tag top_question.user.photo.key, class: "avatar" %>
+        <% else %>
+          <%= image_tag "avatar.svg", class: "avatar" %>
+        <% end %>
+        <div class="left popular_content">
+          <p><small><em><%= top_question.content %></em></small></p>
+          <p class="right"><small>By <%= top_question.user.first_name %> <%= top_question.user.last_name %></small></p>
         </div>
-      <% end %>
+        <small><%= top_question.get_likes.count %> Likes</small>
+      </div>
     <p class="right">See all questions</p>
   </div>
   <div class="card-box-wide">
     <h4 class="center">Poll results</h4>
     <% unless @event.polls == nil || @event.polls.empty? %>
-      <% @event.polls.each do |poll|  %>
-        <div class="poll-results">
+      <div class="poll-results d-flex flex-wrap">
+        <% @event.polls.each_with_index do |poll, i|  %>
           <div>
-            <p><%= poll.title %></p>
-            <% poll.choices.each do |choice| %>
-              <%= choice.answer %>
-              <%= choice.responses.count %>
-            <% end %>
+            <p class="text-space-around"><%= i + 1 %>. <%= poll.title %></p>
+            <%= bar_chart poll.responses.group("choices.answer").count, dataset: {barThickness: 20}, width: "300px", height: "140px", colors: ['#800000'] %>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     <% else %>
       <h5>No Polls for this event</h5>
     <% end %>
@@ -80,14 +73,23 @@
   <div class="card-box">
     <h4 class="center">Feedback</h4>
     <% unless @event.feedbacks == nil || @event.feedbacks.empty? %>
-        <% rate = @event.feedbacks.average(:rating) %>
-        <p class="text-space-around"><%= '⭐️' * rate%></p>
-        <div class="d-flex justify-content-around">
+        <% rate = @event.feedbacks.average(:rating).round(1) %>
+        <% if (rate * 2).round.odd? %>
+          <% ((rate * 2).round / 2).times do %>
+            <i class="fas fa-star fa-2x" id="star"></i>
+          <% end %>
+          <i class="fas fa-star-half fa-2x" id="star"></i>
+        <% else %>
+          <% ((rate * 2).round / 2).times do %>
+            <i class="fas fa-star fa-2x" id="star"></i>
+          <% end %>
+        <% end %>
+        <div class="d-flex align-items-end justify-content-around m-3">
           <p>Average rating</p>
-          <%= rate %>
+          <p><%= rate %></p>
         </div>
         <p class="text-red m-3">Feedbacks from your audience</p>
-        <% @event.feedbacks.each do |feedback| %>
+        <% @event.feedbacks.sample(5).each do |feedback| %>
         <div class="feedback d-flex justify-content-between">
           <p><em><%= feedback.comment %></em></p>
           <small>By <%= feedback.user.first_name %> <%= feedback.user.last_name %></small>
@@ -122,7 +124,7 @@
   </div>
   <div class="card-box">
     <h4 class="center">Audience age</h4>
-    <%= bar_chart @event.users.group("FLOOR(age / 10) * 10").count, width: "240px", height: "240px", colors: ['#800000']%>
+    <%= bar_chart @event.users.group("FLOOR(age / 10) * 10").count, dataset: {barThickness: 30}, width: "240px", height: "240px", colors: ['#800000']%>
   </div>
   <div class="card-box">
     <h4 class="center">Gender breakdown</h4>
