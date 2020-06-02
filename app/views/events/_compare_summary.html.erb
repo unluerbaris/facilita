@@ -44,14 +44,16 @@
             <% rates << event.feedbacks.average(:rating).round(1) %>
           <% end %>
         <% end %>
-        <% if ((rates.sum / rates.size)* 2).round.odd? %>
-          <% (((rates.sum / rates.size) * 2).round / 2).times do %>
-            <i class="fas fa-star fa-2x" id="star"></i>
-          <% end %>
-          <i class="fas fa-star-half fa-2x" id="star"></i>
-        <% else %>
-          <% (((rates.sum / rates.size) * 2).round / 2).times do %>
-            <i class="fas fa-star fa-2x" id="star"></i>
+        <% if rates.any? %>
+          <% if ((rates.sum / rates.size)* 2).round.odd? %>
+            <% (((rates.sum / rates.size) * 2).round / 2).times do %>
+              <i class="fas fa-star fa-2x" id="star"></i>
+            <% end %>
+            <i class="fas fa-star-half fa-2x" id="star"></i>
+          <% else %>
+            <% (((rates.sum / rates.size) * 2).round / 2).times do %>
+              <i class="fas fa-star fa-2x" id="star"></i>
+            <% end %>
           <% end %>
         <% end %>
         <div class="d-flex align-items-end justify-content-around m-3">
