@@ -40,7 +40,7 @@
           <small><%= message.get_likes.count %> Likes</small>
         </div>
       <% end %>
-    <p class="right">See all messages</p>
+    <!--<p class="right">See all messages</p> -->
     <h4>Popular Questions</h4>
       <p><% popular_questions = @questions.order(cached_votes_total: :desc).first(2) %></p>
       <% popular_questions.each do |question|%>
@@ -57,7 +57,7 @@
           <small><%= question.get_likes.count %> Likes</small>
         </div>
       <% end %>
-    <p class="right">See all questions</p>
+    <!-- <p class="right">See all questions</p> -->
   </div>
   <div class="card-box-wide">
     <h4 class="center">Poll results</h4>
