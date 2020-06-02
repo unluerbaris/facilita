@@ -1,7 +1,6 @@
 <div class="container poll-container center">
   <h1>Polls</h1>
 <% if current_user == @event.user %>
-  <div class="container content-container">
     <%= simple_form_for([@event, @new_poll]) do |f| %>
       <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
       <%= f.input :title, label: "Poll Title" %>
@@ -19,9 +18,9 @@
       <% end %>
       <%= f.submit class: "btn btn-outline-danger" %>
     <% end %>
-  </div>
-</div>
 <% end %>
+
+</div>
 
 <!-- <div class="center">
     <% #@event.polls.each do |poll| %>
