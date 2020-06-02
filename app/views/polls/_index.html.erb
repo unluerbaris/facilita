@@ -43,7 +43,7 @@
   <% @event.polls.each do |poll|  %>
     <h4 class="center m-2"><%= poll.title %></h4>
     <div class="d-flex justify-content-center mb-5">
-      <%= bar_chart poll.responses.group("choices.answer").count, dataset: {barThickness: 30}, width: "600px", height: "480px", colors: ['#800000'] %>
+      <%= bar_chart poll.responses.group("choices.answer").count, dataset: {barThickness: 30}, width: "600px", height: "300px", colors: ['#800000'] %>
     </div>
   <% end %>
 <% else %>
