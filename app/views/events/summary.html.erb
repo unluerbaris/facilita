@@ -28,7 +28,7 @@
       <div class="d-flex justify-content-around align-items-center">
         <% top_message = @event.messages.order(cached_votes_total: :desc).first %>
         <% if top_message.user.photo.attached? %>
-          <%= image_tag top_message.user.photo.key, class: "avatar" %>
+          <%= cl_image_tag top_message.user.photo.key, class: "avatar" %>
         <% else %>
           <%= image_tag "avatar.svg", class: "avatar" %>
         <% end %>
@@ -43,7 +43,7 @@
       <% top_question = @event.questions.order(cached_votes_total: :desc).first %>
       <div class="d-flex justify-content-around align-items-center">
         <% if top_question.user.photo.attached? %>
-          <%= image_tag top_question.user.photo.key, class: "avatar" %>
+          <%= cl_image_tag top_question.user.photo.key, class: "avatar" %>
         <% else %>
           <%= image_tag "avatar.svg", class: "avatar" %>
         <% end %>
