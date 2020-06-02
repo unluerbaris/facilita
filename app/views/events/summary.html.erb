@@ -21,7 +21,7 @@
       <p>pieces of feedback received!</p>
     </div>
   </div>
-<h3 class="text-red text-space-around">Facilitation details</h3>
+<h3 class="text-red text-space-around">Event details</h3>
 <div class="summary-cards-first">
   <div class="card-box">
     <h4>Popular comments</h4>
@@ -86,14 +86,13 @@
           <p>Average rating</p>
           <%= rate %>
         </div>
-        <p class="text-red m-3">Feedbacks from your audience</p>
         <% @event.feedbacks.each do |feedback| %>
         <div class="feedback d-flex justify-content-between">
           <p><em><%= feedback.comment %></em></p>
           <small>By <%= feedback.user.first_name %> <%= feedback.user.last_name %></small>
         </div>
         <% end %>
-      <p class="right">See all feedbacks</p>
+      <p class="right"><%= link_to "See all feedback", event_feedbacks_path, class: "btn btn-new"%></p>
     <% end %>
   </div>
 </div>
