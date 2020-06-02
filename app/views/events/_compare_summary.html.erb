@@ -22,7 +22,7 @@
         <div>
           <p>Average age of your audience</p>
           <% if audiences.joins(:user).pluck(:age) && audiences.joins(:user).pluck(:age).any? %>
-            <p><small><em><%= audiences.joins(:user).pluck(:age).sum / audiences.joins(:user).pluck(:age).size %></em></small></p>
+            <p><small><em><%= audiences.joins(:user).where.not("users.age is null").pluck(:age).sum / audiences.joins(:user).where.not("users.age is null").pluck(:age).size %></em></small></p>
             <p>Most popular occupation</p>
             <% array = audiences.joins(:user).group(:occupation).count.sort_by{ |o, num| num }.reverse.first  %>
             <p><small><em><%= array[0] %>&nbsp;&nbsp;&nbsp;&nbsp;<%= array[1] %> people</em></small></p>
