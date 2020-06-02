@@ -82,6 +82,14 @@
   }
 }
 
+.card-box-wide.card-box-poll {
+  width: 50%;
+  padding-top: 4px;
+  &:hover {
+    box-shadow: none;
+  }
+}
+
 .text-box-small {
   list-style-type: none;
   line-height: 3;
