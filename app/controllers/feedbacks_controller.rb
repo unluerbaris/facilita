@@ -11,11 +11,17 @@ class FeedbacksController < ApplicationController
     authorize @feedback
     @feedback.user = current_user
 
-    if @feedback.save
-      redirect_to event_path(@event)
+    if current_user == @event.user
+      flash[:alert] = "You can't send feedback to your own event!"
+    elsif !@event.feedbacks.find_by_user_id(current_user).nil?
+      flash[:alert] = "Can't post multiple feedbacks to an event!!!"
     else
-      render :new
-      flash[:alert] = "Something went wrong."
+      if @feedback.save
+        redirect_to event_path(@event)
+      else
+        render :new
+        flash[:alert] = "Something went wrong."
+      end
     end
   end
 
