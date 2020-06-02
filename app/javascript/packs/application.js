@@ -38,4 +38,13 @@ document.addEventListener('turbolinks:load', () => {
                              minDate: "today",
                              time_24hr: true });
 
+  const gray = document.querySelectorAll(".graycolor");
+  gray.forEach( e => {
+  e.addEventListener("click", (event) => {
+  event.currentTarget.classList.add("greencolor");
+  }
+
+    )
 });
+});
+
