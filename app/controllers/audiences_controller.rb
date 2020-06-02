@@ -19,7 +19,6 @@ class AudiencesController < ApplicationController
       if @audience.save
         redirect_to event_path(@event)
       else
-        flash[:alert] = "Could not join the event"
         render 'pages/home'
       end
     else
