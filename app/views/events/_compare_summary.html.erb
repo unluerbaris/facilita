@@ -64,7 +64,7 @@
         </div>
         <p class="text-red m-3">Feedbacks from your audience</p>
         <div class="total">
-          <% user_events.sample(2).each do |event| %>
+          <% user_events.last(2).each do |event| %>
             <% unless event.feedbacks.nil? || event.feedbacks.empty? %>
               <% event.feedbacks.sample(2).each do |feedback| %>
                 <div class="feedback d-flex justify-content-between m-3">
