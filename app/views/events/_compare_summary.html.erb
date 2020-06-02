@@ -58,7 +58,9 @@
         <% end %>
         <div class="d-flex align-items-end justify-content-around m-3">
           <p>Average rating</p>
-          <p><%= (rates.sum / rates.size).round(1) %></p>
+          <% if rates.any? %>
+            <p><%= (rates.sum / rates.size).round(1) %></p>
+          <% end %>
         </div>
         <p class="text-red m-3">Feedbacks from your audience</p>
         <div class="total">
