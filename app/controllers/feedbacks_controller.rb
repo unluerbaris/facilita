@@ -1,5 +1,10 @@
 class FeedbacksController < ApplicationController
-  before_action :set_event, only: [:create, :new]
+  before_action :set_event, only: [:create, :new, :index]
+
+  def index
+    @feedbacks = policy_scope(@event.feedbacks.all)
+    authorize @feedbacks
+  end
 
   def new
     @feedback = Feedback.new
