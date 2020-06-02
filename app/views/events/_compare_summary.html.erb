@@ -21,7 +21,7 @@
       <div class="total d-flex justify-content-around align-items-center">
         <div>
           <p>Average age of your audience</p>
-          <% unless audiences.joins(:user).pluck(:age).nil? || audiences.joins(:user).pluck(:age).reject{ |age| age.nil? }.empty? %>
+          <% if audiences.joins(:user).pluck(:age) && audiences.joins(:user).pluck(:age).any? %>
             <p><small><em><%= audiences.joins(:user).pluck(:age).sum / audiences.joins(:user).pluck(:age).size %></em></small></p>
             <p>Most popular occupation</p>
             <% array = audiences.joins(:user).group(:occupation).count.sort_by{ |o, num| num }.reverse.first  %>
