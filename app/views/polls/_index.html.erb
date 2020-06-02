@@ -22,3 +22,30 @@
   </div>
 </div>
 <% end %>
+
+<!-- <div class="center">
+    <% #@event.polls.each do |poll| %>
+      <h1><%#= poll.title %></h1>
+      <%# poll.choices.each do |choice| %>
+        <h3><%#= choice.answer %></h3>
+      <%# end %>
+    <%# end %>
+  </div> -->
+
+<% unless @event.polls.empty? %>
+  <div class="center m-5">
+    <%= link_to "Go to the last poll", "#{params[:id]}/polls/#{Poll.last.id}", class: "btn btn-secondary"%>
+  </div>
+<% end %>
+
+<h3 class="center m-3">Poll results</h3>
+<% unless @event.polls == nil || @event.polls.empty? %>
+  <% @event.polls.each do |poll|  %>
+    <h4 class="center m-2"><%= poll.title %></h4>
+    <div class="d-flex justify-content-center mb-5">
+      <%= bar_chart poll.responses.group("choices.answer").count, dataset: {barThickness: 30}, width: "600px", height: "480px", colors: ['#800000'] %>
+    </div>
+  <% end %>
+<% else %>
+  <h5>No Polls for this event</h5>
+<% end %>
