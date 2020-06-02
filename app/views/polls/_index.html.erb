@@ -34,7 +34,7 @@
 
 <% unless @event.polls.empty? %>
   <div class="center m-5">
-    <%= link_to "Go to the last poll", "#{params[:id]}/polls/#{Poll.last.id}", class: "btn btn-secondary"%>
+    <%= link_to "Go to the last poll", "#{params[:id]}/polls/#{@event.polls.last.id}", class: "btn btn-secondary"%>
   </div>
 <% end %>
 
