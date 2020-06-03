@@ -1,5 +1,5 @@
 <div class="container content-container">
-  <h1>Questions</h1>
+  <h1>Q&A</h1>
   <div class="question-scroll" id="questions">
     <% event.questions.order(cached_votes_score: :desc).each do |question| %>
       <%= render "questions/question", event: event, question: question %>
@@ -10,7 +10,7 @@
       <%= f.input :content, label: "Ask a question"%>
     </div>
     <div class="center">
-      <%= f.submit 'ask', class: 'btn btn-outline-danger' %>
+      <%= f.submit 'send', class: 'btn btn-outline-danger' %>
     </div>
   <% end %>
 </div>
