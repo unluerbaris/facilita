@@ -2,6 +2,7 @@
   justify-content: space-between;
   background: white;
   box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
+  width: 100vw;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -32,4 +33,12 @@
 .btn-flat:hover {
   background: $red;
   color: white;
+}
+
+@media (max-width: 540px) {
+  .navbar-lewagon {
+    width: 100%;
+    position: fixed;
+    z-index: 9999999;
+  }
 }

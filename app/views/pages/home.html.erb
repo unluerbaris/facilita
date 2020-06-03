@@ -1,19 +1,19 @@
 <%= image_tag "top-banner.png", class: "banner-background" %>
 <div class="top-banner">
-  <div>
+  <div class="title">
     <h1>Engage your audience and enhance communication</h1>
-    <button class="btn btn-inline btn-danger btn-join"><p>Join Event</p></button>
-  </div>
-  <div class="top-banner-content">
-    <h2>Enter the event code</h2>
-    <div class="form-small">
+    <button class="btn btn-inline btn-danger btn-join"><h6>Join Event</h6></button>
+    <div class="login none">
+      <h2>Enter the event code</h2>
       <%= simple_form_for(@audience) do |f| %>
-        <div class="d-flex">
+        <div class="form-small">
           <%= text_field_tag :event_token, params[:event_token], placeholder: '#', class: 'form-control' %>
           <%= f.submit 'JOIN', class: "btn btn-danger" %>
         </div>
       <% end %>
     </div>
+  </div>
+  <div class="top-banner-content">
     <div class="introduction">
       <h2>FaciLita helps event hosts</h2>
         <i class="far fa-comments fa-2x">

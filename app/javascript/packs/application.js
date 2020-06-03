@@ -39,12 +39,17 @@ document.addEventListener('turbolinks:load', () => {
                              time_24hr: true });
 
   const gray = document.querySelectorAll(".graycolor");
-  gray.forEach( e => {
-  e.addEventListener("click", (event) => {
-  event.currentTarget.classList.add("greencolor");
-  }
+    gray.forEach( e => {
+    e.addEventListener("click", (event) => {
+    event.currentTarget.classList.add("greencolor");
+  })
+  });
 
-    )
-});
+  const btn = document.querySelector('.btn-join');
+  const login = document.querySelector('.login');
+  btn.addEventListener('click', (event) => {
+    const display = x => login.classList.remove('none');
+  setTimeout(display, 500)
+  });
 });
 
