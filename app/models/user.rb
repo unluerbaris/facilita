@@ -16,9 +16,11 @@ class User < ApplicationRecord
   acts_as_voter
 
   def set_age
-    now = Time.now.utc.to_date
-    new_age = now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
-    self.age = new_age
+    if birthday
+      now = Time.now.utc.to_date
+      new_age = now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
+      self.age = new_age
+    end
   end
 
 end

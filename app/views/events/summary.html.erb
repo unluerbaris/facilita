@@ -1,4 +1,4 @@
-<h2 class="text-red text-space-around"><%= @event.title %> Overview</h2>
+<h2><%= link_to @event.title, event_path(@event), class: "text-red text-space-around" %>Overview</h2>
   <div id="summary-bar">
     <div class="card-square">
       <h2><%= @event.audiences.count %></h2>

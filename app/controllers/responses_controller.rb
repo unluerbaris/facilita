@@ -3,7 +3,7 @@ class ResponsesController < ApplicationController
   def create
     # @choices = Choice.where
     @response = Response.new(response_params)
-    @response.user = current_user
+    @response.user = current_or_guest_user
     authorize @response
     if @response.save
       redirect_to event_path(@response.choice.poll.event)
