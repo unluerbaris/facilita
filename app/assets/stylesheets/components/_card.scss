@@ -1,3 +1,14 @@
+.content {
+  background-color: white;
+  box-shadow: 0px 0px 4px rgba(0,0,0,0.4);
+  border-radius: 30px;
+  padding: 4px 20px;
+}
+
+.user {
+  width: 160px;
+}
+
 .card {
   box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
   border: none;
@@ -15,12 +26,21 @@
 }
 
 .content-card {
-  margin: 16px auto;
-  padding: 24px;
-  width: 70%;
+  display: flex;
+  align-items: center;
+  margin: 20px;
   img {
-    margin: 20px;
+    display: block;
+    margin: 0 auto;
   }
+}
+
+.content-card p {
+  margin: 0 20px;
+}
+
+.content-card.content-organizer {
+  justify-content: flex-end;
 }
 
 .audience-card {
