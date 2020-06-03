@@ -13,6 +13,7 @@ const initEventCable = () => {
         console.log(data); // called when data is broadcast in the cable
         if (data.message) {
           messagesContainer.insertAdjacentHTML('beforeend', data.message);
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
         if (data.question) {
           questionsContainer.insertAdjacentHTML('beforeend', data.question);

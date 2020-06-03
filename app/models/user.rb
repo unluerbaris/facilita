@@ -5,19 +5,20 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # has_many :notifications, foreign_key: :recipient_id
-  has_many :responses
-  has_many :audiences
-  has_many :messages
-  has_many :questions
+  has_many :responses, dependent: :destroy
+  has_many :audiences, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :questions, dependent: :destroy
   has_many :attended_events, through: :audiences, source: :event
-  has_many :events
+  has_many :events, dependent: :destroy
   has_one_attached :photo
-
+  before_create :set_age
   acts_as_voter
 
-def age
-  now = Time.now.utc.to_date
-  now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
-end
+  def set_age
+    now = Time.now.utc.to_date
+    new_age = now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
+    self.age = new_age
+  end
 
 end
