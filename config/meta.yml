@@ -1,0 +1,5 @@
+meta_product_name: "FaciLita"
+meta_title: "FaciLita | Manage Events and Learn About Your Audience"
+meta_description: "Manage events and gather data about your audience with FaciLita"
+meta_image: "sociallogo.png" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
