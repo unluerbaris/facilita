@@ -8,7 +8,6 @@ class MessagesController < ApplicationController
     @message.event = @event
     @message.user = current_or_guest_user
     if @message.save
-      Notification.create(recipient: @event.user, actor: current_user, action: "sent", notifiable: @message)
       EventChannel.broadcast_to(
         @event,
         message: render_to_string(partial: "messages/message", locals: { message: @message })

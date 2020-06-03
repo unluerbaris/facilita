@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
     @question.event = @event
     @question.user = current_or_guest_user
     if @question.save
-      Notification.create(recipient: @event.user, actor: current_user, action: "asked", notifiable: @question)
+      # Notification.create(recipient: @event.user, actor: current_user, action: "asked", notifiable: @question)
       EventChannel.broadcast_to(
         @event,
         question: render_to_string(partial: "questions/question", locals: { question: @question })
