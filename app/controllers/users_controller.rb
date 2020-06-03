@@ -13,8 +13,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     authorise @user
-    @user.age = Date.today.year - user.birthday.year
-    @user.age -= 1 if Date.today < user.birthday + user.age.years
     @user.update
     if @user.save
       redirect_to user_path(current_user)
