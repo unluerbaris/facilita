@@ -119,6 +119,7 @@
   .footer {
     flex-direction: column;
   }
+
   .tab-content {
    width: 680px;
    margin: 0 auto;
@@ -135,9 +136,23 @@
 
 @media (max-width: 540px) {
   /* For a screen < 540px, this CSS will be read */
+  .banner-white {
+    padding-top: 90px;
+    width: 100%;
+    h1 {
+      font-size: 30px;
+    }
+    h2 {
+      font-size: 24px;
+    }
+  }
+
   .tab-content {
-    width: 500px;
+    width: 100%;
     margin: 0 auto;
+    h1 {
+      font-size: 32px;
+    }
   }
   .event-info {
     display: inline;
@@ -145,6 +160,18 @@
 
   #title-code {
     display: inline;
+  }
+
+  .content-card {
+    width: 95%;
+    padding: 10px;
+    h5 {
+      font-size: 15px;
+    }
+    p {
+      text-align: left;
+      font-size: 12px;
+    }
   }
 }
 

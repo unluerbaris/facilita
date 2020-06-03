@@ -2,9 +2,9 @@
 
   <div class="d-flex justify-content-between align-items-center">
     <% if question.user.photo.attached? %>
-    <%= cl_image_tag question.user.photo.key, class: "avatar"  %>
+      <%= cl_image_tag question.user.photo.key, class: "avatar"  %>
     <% else %>
-    <%= image_tag "avatar.svg", class: "avatar" %>
+      <%= image_tag "avatar.svg", class: "avatar" %>
     <% end %>
     <div class="flex-grow-1 center">
       <div class="d-flex justify-content-around align-items-center">
@@ -22,22 +22,15 @@
           <% end %>
           <% end %>
           <%= question.get_likes.size %>
+          <% if question.event.user == current_user %>
           <div class="checkedoff">
             <i class="fas fa-check graycolor"></i>
           </div>
+          <% end %>
         </div>
       </div>
       <p><%= question.content %></p>
     </div>
-    <% if @event.user == current_user  %>
-
   </div>
-
-
-  <% end %>
-
-
-
-
 </div>
 
