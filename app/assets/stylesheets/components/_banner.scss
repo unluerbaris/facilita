@@ -21,12 +21,12 @@
 .top-banner {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   position: absolute;
   height: 90vh;
   width: 100%;
   flex-grow: 1;
-  padding: 80px;
+  padding: 160px;
   h1 {
     font-size: 52px;
     color: white;

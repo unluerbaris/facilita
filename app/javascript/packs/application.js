@@ -48,6 +48,14 @@ document.addEventListener('turbolinks:load', () => {
   })
   });
 
+  const btn = document.querySelector(".btn-create");
+  const form = document.querySelector(".form");
+  if (btn) {
+    btn.addEventListener('click', (event) => {
+      form.classList.toggle('none');
+    });
+  }
+
 });
 
 

@@ -1,37 +1,39 @@
-<div class="container poll-container center">
-  <h1>Polls</h1>
 <% if current_user == @event.user %>
-    <%= simple_form_for([@event, @new_poll]) do |f| %>
-      <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
-      <%= f.input :title, label: "Poll Title" %>
-      <%= f.simple_fields_for :choices do |choice_form| %>
-        <%= choice_form.input :answer, label: "Option 1" %>
-      <% end %>
-      <%= f.simple_fields_for :choices do |choice_form| %>
-        <%= choice_form.input :answer, label: "Option 2" %>
-      <% end %>
-      <%= f.simple_fields_for :choices do |choice_form| %>
-        <%= choice_form.input :answer, label: "Option 3" %>
-      <% end %>
-      <%= f.simple_fields_for :choices do |choice_form| %>
-        <%= choice_form.input :answer, label: "Option 4" %>
-      <% end %>
-      <%= f.submit class: "btn btn-outline-danger" %>
-    <% end %>
+  <h1 class="center text-space-around">Polls</h1>
+  <button class="btn btn-outline-secondary btn-create">+</button>
+  <div class="form none">
+    <div class="container center form-container">
+        <%= simple_form_for([@event, @new_poll]) do |f| %>
+          <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
+          <%= f.input :title, label: "Poll Title" %>
+          <%= f.simple_fields_for :choices do |choice_form| %>
+            <%= choice_form.input :answer, label: "Option 1" %>
+          <% end %>
+          <%= f.simple_fields_for :choices do |choice_form| %>
+            <%= choice_form.input :answer, label: "Option 2" %>
+          <% end %>
+          <%= f.simple_fields_for :choices do |choice_form| %>
+            <%= choice_form.input :answer, label: "Option 3" %>
+          <% end %>
+          <%= f.simple_fields_for :choices do |choice_form| %>
+            <%= choice_form.input :answer, label: "Option 4" %>
+          <% end %>
+          <%= f.submit class: "btn btn-outline-danger" %>
+        <% end %>
+    </div>
+  </div>
 <% end %>
-
-</div>
 
 <!-- LATEST POLL -->
 
 <% if @event.polls.any? %>
-  <h2 class="center m-3"><%= @event.polls.last.title %></h2>
-  <div class="center m-3">
+  <h3 class="center text-space-around"><%= @event.polls.last.title %></h3>
+  <div class="container poll-container center">
     <% @event.polls.last.choices.each do |choice| %>
       <%= simple_form_for Response.new, remote: true do |f| %>
         <%= f.input :choice_id, as: :hidden, input_html: { value: choice.id } %>
         <div>
-          <%= f.submit "#{choice.answer}", class: "btn btn-secondary btn-lg poll-button" %>
+          <%= f.submit "#{choice.answer}", class: "btn btn-outline-danger poll-button" %>
         </div>
       <% end %>
     <% end %>
@@ -42,7 +44,7 @@
 
 <% if !@event.polls.empty? && @event.polls.count > 1 %>
     <div class="center m-5">
-      <%= link_to "See previous polls", "#{params[:id]}/polls", class: "btn btn-danger"%>
+      <%= link_to "Answer previous polls", "#{params[:id]}/polls", class: "btn btn-danger"%>
     </div>
 <% end %>
 

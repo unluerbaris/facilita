@@ -85,7 +85,7 @@
         <p>Number of comments</p>
         <%= line_chart questions.group(:event_id).count, width: "300px", height: "200px", colors: ['#800000'] %>
         <div class="total text-box-small flexed-contents-center">
-          <% events = questions.group(:event_id).count.sort_by{ |id, num| num }.reverse %>
+          <% events = questions.group(:event_id).count.sort_by{ |id, num| num }.reverse.first(5) %>
           <% events.each do |event| %>
             <div class="d-flex justify-content-between align-items-center">
               <li><%= Event.find(event[0]).title %></li>
@@ -98,7 +98,7 @@
         <p>Number of questions</p>
         <%= line_chart messages.group(:event_id).count, width: "300px", height: "200px", colors: ['#800000'] %>
         <div class="total text-box-small flexed-contents-center">
-          <% events = messages.group(:event_id).count.sort_by{ |id, num| num }.reverse %>
+          <% events = messages.group(:event_id).count.sort_by{ |id, num| num }.reverse.first(5) %>
           <% events.each do |event| %>
             <div class="d-flex justify-content-between align-items-center">
               <li><%= Event.find(event[0]).title %></li>
@@ -116,7 +116,7 @@
         <div class="m-3 d-flex justify-content-around align-items-center">
           <p><%= top_message.event.title %></p>
           <div class="left popular_content">
-            <p><small><em><%= top_message.content %></em></small></p>
+            <p><small><em><%= top_message.content[0..50] %>...</em></small></p>
             <p class="right"><small>By <%= top_message.user.first_name %> <%= top_message.user.last_name %></small></p>
           </div>
           <small><%= top_message.get_likes.count %> Likes</small>
@@ -128,7 +128,7 @@
       <div class="m-3 d-flex justify-content-around align-items-center">
         <p><%= top_question.event.title %></p>
         <div class="left popular_content">
-          <p class="flex-grow-1"><small><em><%= top_question.content %></em></small></p>
+          <p class="flex-grow-1"><small><em><%= top_question.content[0..50] %>...</em></small></p>
           <p class="right"><small>By <%= top_question.user.first_name %> <%= top_question.user.last_name %></small></p>
         </div>
         <small><%= top_question.get_likes.count %> Likes</small>

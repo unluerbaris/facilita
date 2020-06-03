@@ -26,25 +26,31 @@
     width: 100%;
   }
 
-  .top-banner {
-  margin: 140px 40px;
-  }
-
  .top-banner-content {
+  margin-left: 80px;
   width: 100%;
  }
 }
 
 @media (max-width: 1024px) {
   /* For a screen < 960px, this CSS will be read */
+  .banner-background {
+    height: 140%;
+  }
+
   .top-banner {
-    display: inline;
+    display: contents;
     margin: 0;
     h1 {
       margin: 40px;
       font-size: 48px;
       margin-top: 100px;
     }
+  }
+
+  #new_audience {
+    width: 80%;
+    margin-left: 40px;
   }
 
   .top-banner-content {
@@ -78,6 +84,10 @@
   h2 {
     font-size: 28px;
   }
+ }
+
+.top-banner-content {
+ width: 140%;
  }
 
  .btn-join {
