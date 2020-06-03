@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     authorize @question
     @question.event = @event
-    @question.user = current_user
+    @question.user = current_or_guest_user
     if @question.save
       Notification.create(recipient: @event.user, actor: current_user, action: "asked", notifiable: @question)
       EventChannel.broadcast_to(

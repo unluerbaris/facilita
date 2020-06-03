@@ -14,7 +14,7 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(feedback_params)
     authorize @feedback
-    @feedback.user = current_user
+    @feedback.user = current_or_guest_user
 
     if current_user == @event.user
       flash[:alert] = "You can't send feedback to your own event!"
