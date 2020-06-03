@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
 
   def upvote
     authorize @question
-    @question.liked_by current_user
+    @question.liked_by current_or_guest_user
     @question.save
     redirect_to event_path(@event, anchor: "question-#{@question.id}", tab: "question"), notice: "You liked this!"
   end

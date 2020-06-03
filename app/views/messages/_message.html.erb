@@ -13,7 +13,7 @@
 
         <div>
           <%= link_to like_event_message_path(@event, message), method: :put do  %>
-            <% if current_user.voted_for? message %>
+            <% if current_or_guest_user.voted_for? message %>
               <i class="fas fa-heart bluecolor"></i>
             <% else %>
               <i class="fas fa-heart graycolor"></i>
