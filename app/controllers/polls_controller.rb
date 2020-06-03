@@ -1,5 +1,10 @@
 class PollsController < ApplicationController
-  before_action :set_event, only: [:show, :create, :new]
+  before_action :set_event, only: [:index, :show, :create, :new]
+
+  def index
+    @polls = policy_scope(Poll.all)
+    authorize Poll
+  end
 
   def show
     @poll = Poll.find(params[:id])
