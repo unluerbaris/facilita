@@ -111,6 +111,18 @@
   .even-name-data {
     width: 100%;
   }
+
+  .content-card {
+    margin: 10px;
+    width: 90%;
+    h5 {
+      font-size: 15px;
+    }
+    p {
+      text-align: left;
+      font-size: 12px;
+    }
+  }
 }
 
 
@@ -154,6 +166,7 @@
       font-size: 32px;
     }
   }
+
   .event-info {
     display: inline;
   }
@@ -162,16 +175,8 @@
     display: inline;
   }
 
-  .content-card {
-    width: 95%;
-    padding: 10px;
-    h5 {
-      font-size: 15px;
-    }
-    p {
-      text-align: left;
-      font-size: 12px;
-    }
+  .content-container {
+    width: 100%;
   }
 }
 
@@ -180,6 +185,12 @@
   .tab-content {
     width: 340px;
     margin: 0 auto;
+  }
+
+  .content {
+    font-size: 11px;
+    border-radius: 20px;
+    box-shadow: none;
   }
 
 }
