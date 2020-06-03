@@ -153,8 +153,8 @@ ActiveRecord::Schema.define(version: 2020_06_03_090932) do
     t.string "gender"
     t.string "occupation"
     t.date "birthday"
-    t.boolean "guest", default: false
     t.integer "age"
+    t.boolean "guest", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

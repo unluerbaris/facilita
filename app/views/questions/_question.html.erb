@@ -1,36 +1,36 @@
-<div class="card content-card" id="question-<%= question.id %>">
-
-  <div class="d-flex justify-content-between align-items-center">
-    <% if question.user.photo.attached? %>
-      <%= cl_image_tag question.user.photo.key, class: "avatar"  %>
-    <% else %>
-      <%= image_tag "avatar.svg", class: "avatar" %>
-    <% end %>
-    <div class="flex-grow-1 center">
-      <div class="d-flex justify-content-around align-items-center">
-
-        <div class="flex-grow-1">
-          <h5><%= question.user.first_name %> <%= question.user.last_name %></h5>
-        </div>
-
-        <div>
-          <%= link_to like_event_question_path(@event, question), method: :put do  %>
-          <% if current_or_guest_user.voted_for? question %>
-          <i class="fas fa-thumbs-up bluecolor"></i>
-          <% else %>
-          <i class="fas fa-thumbs-up graycolor"></i>
-          <% end %>
-          <% end %>
-          <%= question.get_likes.size %>
-          <% if question.event.user == current_user %>
-          <div class="checkedoff">
-            <i class="fas fa-check graycolor"></i>
-          </div>
-          <% end %>
-        </div>
+<div class="content-card" id="question-<%= question.id %>">
+  <div class="d-flex align-items-center">
+    <div class="user">
+      <% if question.user.photo.attached? %>
+        <%= cl_image_tag question.user.photo.key, class: "avatar"  %>
+      <% else %>
+         <%= image_tag "avatar.svg", class: "avatar" %>
+      <% end %>
+    </div>
+    <div>
+      <div class="ml-3 d-flex align-items-center">
+        <p class="mr-3"><small><%= question.user.first_name %> <%= question.user.last_name %></small></p>
+        <p><small><%= question.created_at.in_time_zone("Asia/Tokyo").strftime('%H:%M') %></small></p>
       </div>
-      <p><%= question.content %></p>
+      <p class="content"><%= question.content %></p>
     </div>
   </div>
+  <div class="icon">
+    <%= link_to like_event_question_path(@event, question), method: :put do  %>
+      <% if current_or_guest_user.voted_for? question %>
+        <i class="fas fa-heart bluecolor"></i>
+      <% else %>
+        <i class="fas fa-heart graycolor"></i>
+      <% end %>
+    <% end %>
+    <p><small><%= question.get_likes.size %></small></p>
+    <% if question.event.user == current_user %>
+      <div class="checkedoff">
+        <i class="fas fa-check graycolor"></i>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+
 

@@ -1,3 +1,26 @@
+.content {
+  background-color: white;
+  box-shadow: 0px 0px 4px rgba(0,0,0,0.4);
+  border-radius: 30px;
+  padding: 10px 20px;
+}
+
+.icon {
+    width: 40px;
+    display: flex;
+    margin: 8px;
+    align-items: center;
+ p {
+    text-align: center;
+    margin: 0 8px;
+    padding-bottom: 5px;
+ }
+}
+
+.user {
+  width: 50px;
+}
+
 .card {
   box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
   border: none;
@@ -15,12 +38,14 @@
 }
 
 .content-card {
-  margin: 16px auto;
-  padding: 24px;
-  width: 70%;
-  img {
-    margin: 20px;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 120px;
+}
+
+.content-card.content-organizer {
+  justify-content: flex-end;
 }
 
 .audience-card {

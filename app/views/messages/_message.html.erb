@@ -1,29 +1,62 @@
-<div class="content-card" id="message-<%= message.id %>">
 
-  <div class="d-flex justify-content-between align-items-center">
-    <% if message.user.photo.attached? %>
-      <%= cl_image_tag message.user.photo.key, class: "avatar"  %>
-    <% else %>
-       <%= image_tag "avatar.svg", class: "avatar" %>
-    <% end %>
-    <small><%= message.user.first_name %> <%= message.user.last_name %></small>
-    <div class="flex-grow-1 center">
-      <div class="d-flex justify-content-around align-items-center">
-
-
-        <div>
-          <%= link_to like_event_message_path(@event, message), method: :put do  %>
-            <% if current_or_guest_user.voted_for? message %>
-              <i class="fas fa-heart bluecolor"></i>
-            <% else %>
-              <i class="fas fa-heart graycolor"></i>
-            <% end %>
-          <% end %>
-          <%= message.get_likes.size %>
+<% if message.event.user == message.user %>
+  <div class="content-card content-organizer" id="message-<%= message.id %>">
+    <div class="icon">
+      <%= link_to like_event_message_path(@event, message), method: :put do  %>
+        <% if current_or_guest_user.voted_for? message %>
+          <i class="fas fa-heart bluecolor"></i>
+        <% else %>
+          <i class="fas fa-heart graycolor"></i>
+        <% end %>
+      <% end %>
+      <p><small><%= message.get_likes.size %></small></p>
+    </div>
+    <div class="d-flex align-items-center">
+      <div>
+        <div class="mr-3 d-flex align-items-center">
+          <p class="mr-3"><small><%= message.user.first_name %> <%= message.user.last_name %></small></p>
+          <p><small><%= message.created_at.strftime('%H:%M') %></small></p>
         </div>
+        <p class="content"><%= message.content %></p>
       </div>
-      <p><%= message.content %></p>
+      <div class="user">
+        <% if message.user.photo.attached? %>
+          <%= cl_image_tag message.user.photo.key, class: "avatar"  %>
+        <% else %>
+           <%= image_tag "avatar.svg", class: "avatar" %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% else %>
+  <div class="content-card" id="message-<%= message.id %>">
+    <div class="d-flex align-items-center">
+      <div class="user">
+        <% if message.user.photo.attached? %>
+          <%= cl_image_tag message.user.photo.key, class: "avatar"  %>
+        <% else %>
+           <%= image_tag "avatar.svg", class: "avatar" %>
+        <% end %>
+      </div>
+      <div>
+        <div class="ml-3 d-flex align-items-center">
+          <p class="mr-3"><small><%= message.user.first_name %> <%= message.user.last_name %></small></p>
+          <p><small><%= message.created_at.in_time_zone("Asia/Tokyo").strftime('%H:%M') %></small></p>
+        </div>
+        <p class="content"><%= message.content %></p>
+      </div>
+    </div>
+    <div class="icon">
+      <%= link_to like_event_message_path(@event, message), method: :put do  %>
+        <% if current_or_guest_user.voted_for? message %>
+          <i class="fas fa-heart bluecolor"></i>
+        <% else %>
+          <i class="fas fa-heart graycolor"></i>
+        <% end %>
+      <% end %>
+      <p><small><%= message.get_likes.size %></small></p>
+    </div>
+  </div>
+<% end %>
+
 
