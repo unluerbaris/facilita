@@ -48,12 +48,6 @@ document.addEventListener('turbolinks:load', () => {
   })
   });
 
-  const btn = document.querySelector('.btn-join');
-  const login = document.querySelector('.login');
-  btn.addEventListener('click', (event) => {
-    const display = x => login.classList.remove('none');
-  setTimeout(display, 500)
-  });
 });
 
 

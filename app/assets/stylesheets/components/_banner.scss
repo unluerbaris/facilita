@@ -9,35 +9,47 @@
   z-index: -1;
   position: fixed;
   top: 0;
-  width: 80vw;
+  width: 82vw;
   height: 100vh;
+  -o-object-fit: cover;
   object-fit: cover;
-  object-position: center;
+  -o-object-position: center;
+  object-position: 50% 50%;
+  filter: brightness(0.8);
 }
 
 .top-banner {
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: center;
   position: absolute;
-  height: 60vh;
-  margin: 160px 120px;
+  height: 90vh;
+  width: 100%;
+  flex-grow: 1;
+  padding: 80px;
   h1 {
     font-size: 52px;
     color: white;
     font-weight: bold;
-    text-shadow: 0px 0px 16px rgba(0,0,0,0.8);
+    text-shadow: 0px 0px 8px rgba(0,0,0,0.8);
   }
 }
 
 .top-banner-content {
-  box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
   background-color: white;
   opacity: 0.9;
   text-align: center;
-  width: 80%;
+  width: 540px;
   padding: 40px;
+  p {
+    margin: 0;
+    margin-left: 24px;
+    font-size: 18px;
+    line-height: 3;
+  }
 }
+
 
 
 
