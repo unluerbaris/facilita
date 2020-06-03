@@ -39,6 +39,7 @@ gem 'turbolinks_render'
 gem "chartkick"
 gem 'faker'
 gem 'acts_as_votable'
+gem 'devise-guests'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
