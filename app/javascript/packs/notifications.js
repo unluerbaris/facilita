@@ -15,4 +15,4 @@ fetch("/notifications.json")
   });
 }
 
-export { sendNotifications };
+// export { sendNotifications };
