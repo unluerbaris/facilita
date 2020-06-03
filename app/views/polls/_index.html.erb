@@ -22,6 +22,21 @@
 
 </div>
 
+<!-- LATEST POLL -->
+<h1 class="center"><%= @event.polls.last.title %></h1>
+<div class="center">
+  <% @event.polls.last.choices.each do |choice| %>
+    <%= simple_form_for Response.new, remote: true do |f| %>
+      <%= f.input :choice_id, as: :hidden, input_html: { value: choice.id } %>
+      <div>
+        <%= f.submit "#{choice.answer}", class: "btn btn-secondary btn-lg poll-button" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<!-- LATEST POLL -->
+
 <% unless @event.polls.empty? %>
   <div class="center m-5">
     <%= link_to "Go to the last poll", "#{params[:id]}/polls/#{@event.polls.last.id}", class: "btn btn-danger"%>
