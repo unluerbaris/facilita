@@ -5,7 +5,6 @@ class Event < ApplicationRecord
   has_many :polls
   has_many :feedbacks
   has_many :users, through: :audiences
-  # has_many :users, through: :messages
   has_one_attached :photo
   belongs_to :user
   validates :title, presence: true

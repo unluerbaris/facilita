@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :notifications, foreign_key: :recipient_id
+  # has_many :notifications, foreign_key: :recipient_id
   has_many :responses
   has_many :audiences
   has_many :messages
