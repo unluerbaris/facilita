@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     authorize @message
     @message.event = @event
-    @message.user = current_user
+    @message.user = current_or_guest_user
     if @message.save
       EventChannel.broadcast_to(
         @event,
@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
 
   def upvote
     authorize @message
-    @message.liked_by current_user
+    @message.liked_by current_or_guest_user
     @message.save
     redirect_to event_path(@event, anchor: "message-#{@message.id}", tab: "comment"), notice: "You liked this!"
   end

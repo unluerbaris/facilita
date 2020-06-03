@@ -6,7 +6,7 @@ class AudiencesController < ApplicationController
       @audience = Audience.new
       authorize @audience
       @audience.event = @event
-      @audience.user = current_user
+      @audience.user = current_or_guest_user
       if @audience.save
         redirect_to event_path(@event)
       else
@@ -23,7 +23,7 @@ class AudiencesController < ApplicationController
     # If our token is valid, check if user and event are in same audience model
     @event = Event.find_by(token: params[:event_token])
     if !@event.nil?
-      if @event.users.include? current_user
+      if @event.users.include? current_or_guest_user
         @audience = Audience.find_by(event_id: @event.id)
         authorize @audience
       end
