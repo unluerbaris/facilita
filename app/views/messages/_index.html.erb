@@ -1,5 +1,5 @@
 <div class="container content-container">
-  <h1>Comments</h1>
+  <h1>Chat</h1>
   <div class="question-scroll" id="messages" data-event-id="<%= event.id %>">
     <% event.messages.order(cached_votes_score: :desc).each do |message| %>
       <%= render "messages/message", event: event, message: message  %>
@@ -10,7 +10,7 @@
       <%= f.input :content , label: "Share your thoughts" %>
     </div>
     <div class="center">
-      <%= f.submit 'comment', class: "btn btn-outline-danger" %>
+      <%= f.submit 'send', class: "btn btn-outline-danger" %>
     </div>
   <% end %>
 </div>
