@@ -1,16 +1,7 @@
 class AudiencesController < ApplicationController
 
   def create
-    @event = Event.find_by(token: params[:event_token])
-
-    # If our token is valid, check if user and event are in same audience model
-    if !@event.nil?
-      if @event.users.include? current_user
-        @audience = Audience.find_by(event_id: @event.id)
-        authorize @audience
-      end
-    end
-
+    check_audience_in_event
     if @audience.nil?
       @audience = Audience.new
       authorize @audience
@@ -22,8 +13,20 @@ class AudiencesController < ApplicationController
         render 'pages/home'
       end
     else
-      # If audience is not nil go to the event page
       redirect_to event_path(@event)
+    end
+  end
+
+  private
+
+  def check_audience_in_event
+    # If our token is valid, check if user and event are in same audience model
+    @event = Event.find_by(token: params[:event_token])
+    if !@event.nil?
+      if @event.users.include? current_user
+        @audience = Audience.find_by(event_id: @event.id)
+        authorize @audience
+      end
     end
   end
 end
