@@ -1,5 +1,7 @@
 <div class="container poll-container center">
 <h1 class="center m-5">Feedback</h1>
+<p>Thank you for your participaton!</p>
+<p>I appreciate if you can kindly share your feedback with us.</p>
 <%= simple_form_for([event, Feedback.new], remote: true) do |f| %>
   <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
   <div class="input-field">
