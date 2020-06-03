@@ -18,6 +18,11 @@ Rails.application.routes.draw do
     resources :feedbacks, only: [:new, :create, :index]
     get 'summary', to: 'events#summary'
   end
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
   resources :audiences, only: [:create]
   resources :choices, only: [:create, :new]
   resources :responses, only: [:create]

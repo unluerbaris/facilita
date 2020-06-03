@@ -28,10 +28,13 @@ import flatpickr from "flatpickr";
 
 // Internal imports, e.g:
 import { initEventCable } from '../channels/event_channel';
+import { sendNotifications } from './notifications';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+
+  sendNotifications();
   initEventCable();
   flatpickr(".datepicker", { enableTime: true,
                              defaultDate: new Date(),
@@ -53,3 +56,5 @@ document.addEventListener('turbolinks:load', () => {
   });
 });
 
+
+import "controllers"
