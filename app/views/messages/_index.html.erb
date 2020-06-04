@@ -1,9 +1,11 @@
 <div class="container content-container">
   <h1>Chat</h1>
-  <div class="question-scroll" id="messages" data-event-id="<%= event.id %>">
-    <% event.messages.order(created_at: :asc).each do |message| %>
-      <%= render "messages/message", event: event, message: message  %>
-    <% end %>
+  <div class="background-container">
+    <div class="question-scroll" id="messages" data-event-id="<%= event.id %>">
+      <% event.messages.order(created_at: :asc).each do |message| %>
+        <%= render "messages/message", event: event, message: message  %>
+      <% end %>
+    </div>
   </div>
   <%= simple_form_for([event, Message.new], remote: true) do |f| %>
     <div class="input-field">
