@@ -28,6 +28,9 @@
         <small><%= link_to "Check summary", event_summary_path(@event), class: "btn btn-outline-danger" %></small>
       <% end %>
     </div>
+            <% if @event.user == current_user %>
+      <small><%= link_to "Edit event", edit_event_path, class: "text-red" %></small>
+      <% end %>
   </div>
 </div>
 
@@ -46,9 +49,7 @@
 <% end  %>
 
 <!-- Photo for later -->
-<%# if @event.user == current_user %>
-<%#= link_to "Edit event", edit_event_path %>
-<%# end %>
+
 
 <!-- RENDER THIS DURING THE EVENT -->
 <!-- NOTE: FlatPicker only picks time in UTC +0000. Thats why the local time has been offsetted to UTC +0000 -->
