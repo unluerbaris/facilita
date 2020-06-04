@@ -29,7 +29,7 @@ class EventsController < ApplicationController
   def summary
     @event = Event.find(params[:event_id])
     authorize @event
-    @audiences = Audience.where(event: current_user.events)
+    @audiences = Audience.where(event: current_user.events).joins(:user).where.not(users: {first_name: "guest", gender: nil, occupation: nil})
     @messages = Message.where(event: current_user.events)
     @questions = Question.where(event: current_user.events)
   end

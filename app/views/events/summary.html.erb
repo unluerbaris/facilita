@@ -70,7 +70,7 @@
         <% @event.polls.first(2).each_with_index do |poll, i|  %>
           <div>
             <p class="text-space-around"><%= i + 1 %>. <%= poll.title %></p>
-            <%= bar_chart poll.responses.group("choices.answer").count, dataset: {barThickness: 20}, width: "300px", height: "140px", colors: ['#800000'] %>
+            <%= bar_chart poll.responses.group("choices.answer").count, dataset: {barThickness: 20}, width: "200px", height: "140px", colors: ['#800000'] %>
           </div>
         <% end %>
       </div>
@@ -133,11 +133,13 @@
   </div>
   <div class="card-box">
     <h4 class="center">Audience age</h4>
-    <%= bar_chart @event.users.group("FLOOR(age / 10) * 10").count, dataset: {barThickness: 30}, width: "240px", height: "240px", colors: ['#800000']%>
+    <% users = Audience.where(event: @event).joins(:user).where.not(users: {first_name: "guest"}) %>
+    <%= bar_chart users.group("FLOOR(age / 10) * 10").count, dataset: {barThickness: 30}, width: "240px", height: "240px", colors: ['#800000']%>
   </div>
   <div class="card-box">
     <h4 class="center">Gender breakdown</h4>
-    <%= pie_chart @event.users.group(:gender).count, width: "240px", height: "240px", colors: ['#800000', '#001980'] %>
+    <% users = Audience.where(event: @event).joins(:user).where.not(users: {first_name: "guest", gender: nil}) %>
+    <%= pie_chart users.group(:gender).count, width: "240px", height: "240px", colors: ['#800000', '#001980'] %>
     <div class="d-flex justify-content-around m-3">
       <% females = @event.users.select do |user| %>
         <% user.gender == "Female"  %>
@@ -156,7 +158,8 @@
   <div class="card-box">
     <h5 class="center">Audience occupation breakdown</h5>
     <div class="d-flex justify-content-around">
-      <%= pie_chart @event.users.group(:occupation).count, donut: true, id: "users-chart", height: "300px", width: "320px", colors: ['#001980', '#800000', '#D78C00', '#357544', '#75355D', '#FF8C9E'] %>
+      <% users = Audience.where(event: @event).joins(:user).where.not(users: {first_name: "guest", gender: nil, occupation: nil}) %>
+      <%= pie_chart users.group(:occupation).count, donut: true, id: "users-chart", height: "300px", width: "320px", colors: ['#001980', '#800000', '#D78C00', '#357544', '#75355D', '#FF8C9E'] %>
     </div>
   </div>
 </div>
