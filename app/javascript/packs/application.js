@@ -56,6 +56,14 @@ document.addEventListener('turbolinks:load', () => {
     });
   }
 
+  const button = document.querySelector(".event-details");
+  const details = document.querySelector(".event-content-details");
+  if (button) {
+    button.addEventListener('click', (event) => {
+      details.classList.toggle('none');
+    });
+  }
+
 });
 
 

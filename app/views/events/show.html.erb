@@ -33,20 +33,19 @@
       <% end %>
   </div>
 </div>
+<div class="container">
+  <h4 class="text-red link event-details">Check event details</h4>
+</div>
 
-<% unless @event.user == current_user %>
+<div class="event-content-details none">
   <%= render 'event_content', event: @event %>
-<% end %>
+</div>
 
   <%# if DateTime.now.change(:offset => "+0000") >= @event.start_time && DateTime.now.change(:offset => "+0000") <= @event.end_time %>
 <div class="footer">
   <%= render 'shared/footer', event: @event, message: @new_message, question: @new_question  %>
 </div>
   <%# end %>
-
-<% if @event.user == current_user %>
-  <%= render 'event_content', event: @event %>
-<% end  %>
 
 <!-- Photo for later -->
 
