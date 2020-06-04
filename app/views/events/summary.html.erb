@@ -102,7 +102,7 @@
           <p>Average rating</p>
           <p><%= rate %></p>
         </div>
-        <p class="text-red m-3">Feedbacks from your audience</p>
+        <p class="text-red m-3">Feedback from your audience</p>
         <% @event.feedbacks.sample(3).each do |feedback| %>
         <div class="feedback d-flex justify-content-between">
           <p><em><%= feedback.comment[0...50] %></em>...</p>
@@ -146,17 +146,17 @@
     <% users = Audience.where(event: @event).joins(:user).where.not(users: {first_name: "guest", gender: nil}) %>
     <%= pie_chart users.group(:gender).count, width: "240px", height: "240px", colors: ['#800000', '#001980'] %>
     <div class="d-flex justify-content-around m-3">
-      <% females = @event.users.select do |user| %>
-        <% user.gender == "Female"  %>
+      <% females = users.select do |audience| %>
+        <% audience.user.gender == "Female"  %>
       <% end %>
       <% unless females == nil || females.empty? %>
-        <p>Female <%= ((females.count.to_f / @event.users.count) * 100).round %>%</p>
-        <% males = @event.users.select do |user| %>
-          <% user.gender == "Male"  %>
+        <p>Female <%= ((females.count.to_f / users.count) * 100).round %>%</p>
+        <% males = users.select do |audience| %>
+          <% audience.user.gender == "Male"  %>
         <% end %>
       <% end %>
       <% unless  males == nil || males.empty? %>
-        <p>Male <%= ((males.count.to_f / @event.users.count) * 100).round %>%</p>
+        <p>Male <%= ((males.count.to_f / users.count) * 100).round %>%</p>
       <% end %>
     </div>
   </div>
