@@ -1,3 +1,7 @@
+require 'json'
+require 'open-uri'
+require 'nokogiri'
+
 class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
@@ -45,6 +49,35 @@ class EventsController < ApplicationController
     authorize @event
     @event.save
     redirect_to @event
+  end
+
+  def meetup
+    @event = Event.new
+    url = 'https://api.meetup.com/Le-Wagon-Tokyo-Coding-Station/events?&sign=true&photo-host=public&page=20'
+    events_serialized = open(url).read
+    @events = JSON.parse(events_serialized)
+    authorize Event
+  end
+
+  def create_meetup
+    @event = Event.new(event_params)
+    authorize @event
+    url = 'https://api.meetup.com/Le-Wagon-Tokyo-Coding-Station/events?&sign=true&photo-host=public&page=20'
+    events_serialized = open(url).read
+    @events = JSON.parse(events_serialized)
+    @events.each do |event|
+      @event.user = current_or_guest_user
+      @event.title = event["name"]
+      @event.description =  Nokogiri::HTML(event["description"]).text.strip
+      @event.start_time = DateTime.parse(event["local_date"] + " " + event["local_time"]).change(:offset => "+0900")
+      @event.end_time = DateTime.parse(event["local_date"] + " " + event["local_time"]).change(:offset => "+0900")
+      @event.location = event["venue"]["name"]
+    end
+    if @event.save
+      redirect_to event_path(@event)
+    else
+      render :new
+    end
   end
 
   private
