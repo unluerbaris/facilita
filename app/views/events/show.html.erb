@@ -29,7 +29,7 @@
       <% end %>
     </div>
             <% if @event.user == current_user %>
-      <small><%= link_to "Edit event", edit_event_path(@event), class: "text-red" %></small>
+      <small><%= link_to "Edit event", edit_event_path(@event), class: "text-red link" %></small>
       <% end %>
   </div>
 </div>

@@ -1,27 +1,32 @@
-<h2 class="text-space-top"><%= link_to @event.title, event_path(@event), class: "text-red text-space-around" %>Overview</h2>
+<h2 class="text-space-top"><%= link_to @event.title, event_path(@event), class: "text-red link text-space-around" %>Overview</h2>
   <div id="summary-bar">
     <div class="card-square">
-      <h2><%= @event.audiences.count %></h2>
+      <h2 class="text-red"><%= @event.audiences.count %></h2>
       <p>people attended!</p>
+      <i class="fas fa-user-friends fa-lg"></i>
     </div>
     <div class="card-square">
-      <h2><%= @event.messages.count %></h2>
+      <h2 class="text-red"><%= @event.messages.count %></h2>
       <p>comments received!</p>
+      <i class="fas fa-comments fa-lg"></i>
     </div>
     <div class="card-square">
-      <h2><%= @event.questions.count %></h2>
+      <h2 class="text-red"><%= @event.questions.count %></h2>
       <p>questions received!</p>
+      <i class="fas fa-question-circle fa-lg"></i>
     </div>
     <div class="card-square">
-      <h2><%= @event.polls.count %></h2>
+      <h2 class="text-red"><%= @event.polls.count %></h2>
       <p>polls created!</p>
+      <i class="fas fa-poll fa-lg"></i>
     </div>
     <div class="card-square">
-      <h2><%= @event.feedbacks.count %></h2>
-      <p>pieces of feedback received!</p>
+      <h2 class="text-red"><%= @event.feedbacks.count %></h2>
+      <p>feedback received!</p>
+      <i class="fas fa-envelope-open-text fa-lg"></i>
     </div>
   </div>
-<h3 class="text-red text-space-around">Event details</h3>
+<h3 class="text-red text-space-around space-top">Event details</h3>
 <div class="summary-cards-first">
   <div class="card-box">
     <h4>Popular comments</h4>
@@ -109,7 +114,7 @@
   </div>
 </div>
 
-<h3 class="text-red text-space-around">Audience details</h3>
+<h3 class="text-red text-space-around space-top">Audience details</h3>
 <div class="summary-cards">
   <div class="card-box">
     <div id="audience-list">
