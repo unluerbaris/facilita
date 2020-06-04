@@ -54,7 +54,7 @@
     <div class="card-box-wide card-box-poll">
       <h4><%= poll.title %></h4>
       <div class="d-flex justify-content-center mb-5">
-        <%= bar_chart poll.responses.group("choices.answer").count, dataset: {barThickness: 20}, width: "80%", height: "300px", colors: ['#800000'] %>
+        <%= bar_chart poll.responses.group("choices.answer").count, messages: {empty: "Waiting for votes..."},dataset: {barThickness: 20}, width: "80%", height: "300px", colors: ['#800000'] %>
       </div>
     </div>
   <% end %>
