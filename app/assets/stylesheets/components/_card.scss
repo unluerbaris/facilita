@@ -68,7 +68,7 @@
   height: 200px;
   margin: 40px auto;
   text-align: center;
-  line-height: 3;
+  line-height: 1.5;
   h2 {
     font-weight: bold;
   }
@@ -97,6 +97,7 @@
   border-radius: 4px;
   width: 100%;
   text-align: center;
+  padding-top: 10px;
   h4 {
     margin: 40px auto;
   }
@@ -109,8 +110,9 @@
 
 .text-box-small {
   list-style-type: none;
-  line-height: 3;
-  width: 200px;
+  line-height: 2.5;
+  width: 340px;
+  padding: 40px;
 }
 
 .card-box-no-color {

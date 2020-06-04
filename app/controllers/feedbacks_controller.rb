@@ -17,14 +17,17 @@ class FeedbacksController < ApplicationController
     @feedback.user = current_or_guest_user
 
     if current_user == @event.user
-      flash[:alert] = "You can't send feedback to your own event!"
+      redirect_to event_path(@event)
+      flash[:alert] = "You can't send feedback to your own event."
     elsif !@event.feedbacks.find_by_user_id(current_user).nil?
-      flash[:alert] = "Can't post multiple feedbacks to an event!!!"
+      redirect_to event_path(@event)
+      flash[:alert] = "Can't post multiple feedbacks to the same event."
     else
       if @feedback.save
-        redirect_to event_path(@event)
+        redirect_to root_path
+        flash[:notice] = "Thank you for your feedback!"
       else
-        render :new
+        redirect_to event_path(@event)
         flash[:alert] = "Something went wrong."
       end
     end
