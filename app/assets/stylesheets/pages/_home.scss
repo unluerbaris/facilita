@@ -56,10 +56,6 @@
   .top-banner-content {
     width: 100%;
     margin: 40px auto;
-    .introduction {
-      width: 500px;
-      margin: 0 auto;
-    }
   }
 
   .login {
@@ -75,6 +71,14 @@
 
 .introduction {
   width: 100%;
+  padding: 0;
+  h2 {
+    font-size: 26px;
+  }
+ }
+
+ .top-banner-content p {
+  font-size: 11px;
  }
 
  .login {
@@ -86,9 +90,9 @@
   }
  }
 
-.top-banner-content {
- width: 168%;
- }
+.top-banner h1 {
+  font-size: 21px;
+}
 
  .btn-join {
   width: 40%;
