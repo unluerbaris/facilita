@@ -5,7 +5,8 @@
     <div class="flexed-contents">
         <div class="flexed-contents-center">
           <p class="center">Number of attendees</p>
-          <%= line_chart audiences.group(:event_id).count, width: "300px", height: "200px", colors: ['#800000'] %>
+          <% data = audiences.group(:event_id).count %>
+          <%= line_chart data, library: { scales: { xAxes: [{ display: false }] } }, width: "300px", height: "200px", colors: ['#800000'] %>
           <% events = audiences.group(:event_id).count.sort_by{ |id, num| num }.reverse.first(3) %>
         </div>
         <div class="text-box-small flexed-contents-center">
