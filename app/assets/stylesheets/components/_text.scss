@@ -1,11 +1,10 @@
 .text-red {
   color: $red;
   text-decoration: none !important;
-  transition: 0.3s;
 }
 
 .text-space-around {
-  margin: 40px;
+  margin: 40px 60px;
 }
 
 .right {
@@ -18,4 +17,13 @@
 
 .text-space-top {
   margin: 40px 0px;
+}
+
+.text-red.link {
+  color: $red;
+  text-decoration: none !important;
+  transition: 0.3s;
+  &:hover {
+    color: $gray;
+  }
 }

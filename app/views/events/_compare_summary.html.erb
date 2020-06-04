@@ -5,8 +5,7 @@
     <div class="flexed-contents">
         <div class="flexed-contents-center">
           <p class="center">Number of attendees</p>
-          <% data = audiences.group(:event_id).count %>
-          <%= line_chart data, library: { scales: { xAxes: [{ display: false }] } }, width: "300px", height: "200px", colors: ['#800000'] %>
+          <%= line_chart audiences.group(:event_id).count, library: { scales: { xAxes: [{ display: false }] } }, width: "300px", height: "200px", colors: ['#800000'] %>
           <% events = audiences.group(:event_id).count.sort_by{ |id, num| num }.reverse.first(3) %>
         </div>
         <div class="text-box-small flexed-contents-center">
@@ -14,7 +13,7 @@
           <% events.each do |event| %>
             <div class="d-flex justify-content-between align-items-center">
               <li><%= Event.find(event[0]).title %></li>
-              <small><%= event[1] %></small>
+              <small><%= event[1] %> <i class="fas fa-user-friends fa-xs"></i></small>
             </div>
           <% end %>
         </div>
@@ -23,15 +22,15 @@
         <div>
           <p>Average age of your audience</p>
           <% if audiences.joins(:user).pluck(:age) && audiences.joins(:user).pluck(:age).any? %>
-            <p><small><em><%= audiences.joins(:user).where.not("users.age is null").pluck(:age).sum / audiences.joins(:user).where.not("users.age is null").pluck(:age).size %></em></small></p>
+            <p><em><%= audiences.joins(:user).where.not("users.age is null").pluck(:age).sum / audiences.joins(:user).where.not("users.age is null").pluck(:age).size %></em>&nbsp;&nbsp;years old</p>
             <p>Most popular occupation</p>
             <% array = audiences.joins(:user).group(:occupation).count.sort_by{ |o, num| num }.reverse.first  %>
-            <p><small><em><%= array[0] %>&nbsp;&nbsp;&nbsp;&nbsp;<%= array[1] %> people</em></small></p>
+            <p><em><%= array[0] %>&nbsp;&nbsp;&nbsp;&nbsp;<%= array[1] %></em> <i class="fas fa-user-friends"></i></p>
           <% end %>
         </div>
         <div>
           <p>Gender ratio</p>
-          <%= pie_chart audiences.joins(:user).group(:gender).count, width: "150px", height: "150px", colors: ['#800000', '#001980'] %>
+          <%= pie_chart audiences.joins(:user).group(:gender).count, library: { scales: { xAxes: [{ display: false }] } }, width: "240px", height: "240px", colors: ['#800000', '#001980'] %>
         </div>
       </div>
   </div>
@@ -63,20 +62,19 @@
             <p><%= (rates.sum / rates.size).round(1) %></p>
           <% end %>
         </div>
-        <p class="text-red m-3">Feedbacks from your audience</p>
+        <p class="m-3">Feedbacks from your audience</p>
         <div class="total">
           <% user_events.last(2).each do |event| %>
             <% unless event.feedbacks.nil? || event.feedbacks.empty? %>
               <% event.feedbacks.sample(2).each do |feedback| %>
+                <p class="ml-3 left"><%= link_to feedback.event.title, event_path(feedback.event), class: "text-red link" %></p>
                 <div class="feedback d-flex justify-content-between m-3">
-                  <p><%= feedback.event.title %></p>
-                  <p><em><%= feedback.comment %></em></p>
+                  <p class="center"><em><%= feedback.comment[0...50] %>...</em></p>
                   <p><small>By <%= feedback.user.first_name %> <%= feedback.user.last_name %></small></p>
                 </div>
               <% end %>
             <% end %>
           <% end %>
-          <p class="right">See all feedbacks</p>
         </div>
   </div>
   <div class="card-box-wide">
@@ -84,26 +82,26 @@
     <div class="flexed-contents">
       <div class="flexed-contents-center">
         <p>Number of comments</p>
-        <%= line_chart questions.group(:event_id).count, width: "300px", height: "200px", colors: ['#800000'] %>
+        <%= line_chart messages.group(:event_id).count, library: { scales: { xAxes: [{ display: false }] } }, width: "300px", height: "200px", colors: ['#800000'] %>
         <div class="total text-box-small flexed-contents-center">
-          <% events = questions.group(:event_id).count.sort_by{ |id, num| num }.reverse.first(5) %>
+          <% events = messages.group(:event_id).count.sort_by{ |id, num| num }.reverse.first(5) %>
           <% events.each do |event| %>
             <div class="d-flex justify-content-between align-items-center">
               <li><%= Event.find(event[0]).title %></li>
-              <small><%= event[1] %></small>
+              <small><%= event[1] %> <i class="fas fa-comments fa-xs"></i></small>
             </div>
           <% end %>
         </div>
       </div>
       <div class="flexed-contents-center">
         <p>Number of questions</p>
-        <%= line_chart messages.group(:event_id).count, width: "300px", height: "200px", colors: ['#800000'] %>
+        <%= line_chart questions.group(:event_id).count, library: { scales: { xAxes: [{ display: false }] } }, width: "300px", height: "200px", colors: ['#800000'] %>
         <div class="total text-box-small flexed-contents-center">
-          <% events = messages.group(:event_id).count.sort_by{ |id, num| num }.reverse.first(5) %>
+          <% events = questions.group(:event_id).count.sort_by{ |id, num| num }.reverse.first(5) %>
           <% events.each do |event| %>
             <div class="d-flex justify-content-between align-items-center">
               <li><%= Event.find(event[0]).title %></li>
-              <small><%= event[1] %></small>
+              <small><%= event[1] %> <i class="fas fa-question-circle fa-xs"></i></small>
             </div>
           <% end %>
         </div>
@@ -114,27 +112,27 @@
     <h4>Popular comments</h4>
       <% messages = messages.order(cached_votes_total: :desc).first(2) %>
       <% messages.each do |top_message| %>
-        <div class="m-3 d-flex justify-content-around align-items-center">
-          <p><%= top_message.event.title %></p>
-          <div class="left popular_content">
-            <p><small><em><%= top_message.content[0..50] %>...</em></small></p>
-            <p class="right"><small>By <%= top_message.user.first_name %> <%= top_message.user.last_name %></small></p>
-          </div>
-          <small><%= top_message.get_likes.count %> Likes</small>
+        <div class="feedback d-flex justify-content-around m-3">
+          <p><%= link_to top_message.event.title, event_path(top_message.event), class: "text-red link" %></p>
+          <small><%= top_message.get_likes.count %> Likes <i class="fas fa-heart fa-xs bluecolor"></i></small>
+        </div>
+        <div class="feedback d-flex justify-content-around m-3">
+          <p><small><em><%= top_message.content[0..50] %>...</em></small></p>
+          <p><small>By <%= top_message.user.first_name %> <%= top_message.user.last_name %></small></p>
         </div>
       <% end %>
-    <p class="total right">See all comments</p>
     <h4>Popular Questions</h4>
-      <% top_question = questions.order(cached_votes_total: :desc).first %>
-      <div class="m-3 d-flex justify-content-around align-items-center">
-        <p><%= top_question.event.title %></p>
-        <div class="left popular_content">
-          <p class="flex-grow-1"><small><em><%= top_question.content[0..50] %>...</em></small></p>
-          <p class="right"><small>By <%= top_question.user.first_name %> <%= top_question.user.last_name %></small></p>
+      <% questions = questions.order(cached_votes_total: :desc).first(2) %>
+      <% questions.each do |top_question| %>
+        <div class="feedback d-flex justify-content-around m-3">
+          <p><%= link_to top_question.event.title, event_path(top_question.event), class: "text-red link" %></p>
+          <small><%= top_question.get_likes.count %> Likes <i class="fas fa-thumbs-up fa-xs bluecolor"></i></small>
         </div>
-        <small><%= top_question.get_likes.count %> Likes</small>
-      </div>
-    <p class="total right">See all questions</p>
+        <div class="feedback d-flex justify-content-around m-3">
+          <p><small><em><%= top_question.content[0..50] %>...</em></small></p>
+          <p><small>By <%= top_question.user.first_name %> <%= top_question.user.last_name %></small></p>
+        </div>
+      <% end %>
   </div>
 </div>
 

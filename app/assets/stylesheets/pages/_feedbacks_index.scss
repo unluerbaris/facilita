@@ -1,16 +1,7 @@
-.event-rating {
-  font-weight: bold;
-  font-size: 20px;
-  color: $red;
-}
-
 .feedback-card {
-  font-size: 20px;
+  width: 300px;
 }
 
-.feedback-button {
-    margin: 0 auto;
-    display: block;
-    width: 20%;
-
+#rating {
+  color: $yellow;
 }
