@@ -10,9 +10,14 @@
   width: 100%;
 }
 
-.btn-create {
-  width: 60px;
-  font-size: 24px;
-  margin-left: 66%;
-  margin-bottom: 20px;
+.poll-title-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.event-details {
+  margin: 32px 0;
+  width: 240px;
 }
