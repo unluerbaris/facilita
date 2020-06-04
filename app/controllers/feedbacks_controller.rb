@@ -24,7 +24,7 @@ class FeedbacksController < ApplicationController
       flash[:alert] = "Can't post multiple feedbacks to the same event."
     else
       if @feedback.save
-        redirect_to root_path
+        redirect_to event_path(@event)
         flash[:notice] = "Thank you for your feedback!"
       else
         redirect_to event_path(@event)
