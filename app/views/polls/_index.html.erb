@@ -29,7 +29,8 @@
 <% if @event.polls.any? %>
   <h3 class="center text-space-around"><%= @event.polls.last.title %></h3>
   <div class="container poll-container center">
-    <% @event.polls.last.choices.each do |choice| %>
+    <% choices = Choice.where(poll: @event.polls.last).where.not(answer: "") %>
+    <% choices.each do |choice| %>
       <%= simple_form_for Response.new, remote: true do |f| %>
         <%= f.input :choice_id, as: :hidden, input_html: { value: choice.id } %>
         <div>

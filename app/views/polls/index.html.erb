@@ -3,14 +3,19 @@
     <% unless poll == @event.polls.last %>
       <h2 class="center m-3"><%= poll.title %></h2>
       <div class="center">
-        <% poll.choices.each do |choice| %>
-          <%= simple_form_for Response.new, remote: true do |f| %>
-            <%= f.input :choice_id, as: :hidden, input_html: { value: choice.id } %>
-            <div>
-              <%= f.submit "#{choice.answer}", class: "btn btn-secondary btn-lg poll-button" %>
-            </div>
+        <div class="container poll-container center">
+          <% choices = Choice.where(poll: poll).where.not(answer: "") %>
+          <% choices.each do |choice| %>
+            <%= simple_form_for Response.new, remote: true do |f| %>
+              <%= f.input :choice_id, as: :hidden, input_html: { value: choice.id } %>
+
+                <div>
+                  <%= f.submit "#{choice.answer}", class: "btn btn-outline-danger poll-button" %>
+                </div>
+
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
     <% end %>
   <% end %>
