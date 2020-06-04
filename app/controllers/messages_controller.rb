@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
     authorize @message
     @message.liked_by current_or_guest_user
     @message.save
-    redirect_to event_path(@event, anchor: "message-#{@message.id}", tab: "comment"), notice: "You liked this!"
+    redirect_to event_path(@event, anchor: "message-#{@message.id}", tab: "comment")
   end
 
   private
