@@ -7,6 +7,7 @@ class ResponsesController < ApplicationController
     authorize @response
     if @response.save
       redirect_to event_path(@response.choice.poll.event)
+      flash[:notice] = "Thanks for voting!"
     else
       render "events/show"
     end
