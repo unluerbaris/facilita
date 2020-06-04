@@ -1,64 +1,69 @@
-<% if current_user == @event.user %>
-  <h1 class="center text-space-around">Polls</h1>
-  <button class="btn btn-outline-secondary btn-create">+</button>
-  <div class="form none">
-    <div class="container center form-container">
-        <%= simple_form_for([@event, @new_poll]) do |f| %>
-          <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
-          <%= f.input :title, label: "Poll Title" %>
-          <%= f.simple_fields_for :choices do |choice_form| %>
-            <%= choice_form.input :answer, label: "Option 1" %>
+<h1 class="center text-space-around">Polls</h1>
+<div class="container content-container">
+
+  <div class="background-container">
+    <% if current_user == @event.user %>
+      <button class="btn btn-outline-secondary btn-create">+</button>
+      <div class="form none">
+        <div class="container center form-container">
+            <%= simple_form_for([@event, @new_poll]) do |f| %>
+              <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
+              <%= f.input :title, label: "Poll Title" %>
+              <%= f.simple_fields_for :choices do |choice_form| %>
+                <%= choice_form.input :answer, label: "Option 1" %>
+              <% end %>
+              <%= f.simple_fields_for :choices do |choice_form| %>
+                <%= choice_form.input :answer, label: "Option 2" %>
+              <% end %>
+              <%= f.simple_fields_for :choices do |choice_form| %>
+                <%= choice_form.input :answer, label: "Option 3" %>
+              <% end %>
+              <%= f.simple_fields_for :choices do |choice_form| %>
+                <%= choice_form.input :answer, label: "Option 4" %>
+              <% end %>
+              <%= f.submit class: "btn btn-outline-danger" %>
+            <% end %>
+        </div>
+      </div>
+    <% end %>
+    <!-- LATEST POLL -->
+
+    <% if @event.polls.any? %>
+      <h3 class="center text-space-top"><%= @event.polls.last.title %></h3>
+      <div class="container poll-container center">
+        <% choices = Choice.where(poll: @event.polls.last).where.not(answer: "") %>
+        <% choices.each do |choice| %>
+          <%= simple_form_for Response.new, remote: true do |f| %>
+            <%= f.input :choice_id, as: :hidden, input_html: { value: choice.id } %>
+            <div>
+              <%= f.submit "#{choice.answer}", class: "btn btn-outline-danger poll-button" %>
+            </div>
           <% end %>
-          <%= f.simple_fields_for :choices do |choice_form| %>
-            <%= choice_form.input :answer, label: "Option 2" %>
-          <% end %>
-          <%= f.simple_fields_for :choices do |choice_form| %>
-            <%= choice_form.input :answer, label: "Option 3" %>
-          <% end %>
-          <%= f.simple_fields_for :choices do |choice_form| %>
-            <%= choice_form.input :answer, label: "Option 4" %>
-          <% end %>
-          <%= f.submit class: "btn btn-outline-danger" %>
         <% end %>
-    </div>
-  </div>
-<% end %>
+      </div>
+    <% end %>
 
-<!-- LATEST POLL -->
+    <!-- LATEST POLL -->
 
-<% if @event.polls.any? %>
-  <h3 class="center text-space-around"><%= @event.polls.last.title %></h3>
-  <div class="container poll-container center">
-    <% choices = Choice.where(poll: @event.polls.last).where.not(answer: "") %>
-    <% choices.each do |choice| %>
-      <%= simple_form_for Response.new, remote: true do |f| %>
-        <%= f.input :choice_id, as: :hidden, input_html: { value: choice.id } %>
-        <div>
-          <%= f.submit "#{choice.answer}", class: "btn btn-outline-danger poll-button" %>
+    <% if !@event.polls.empty? && @event.polls.count > 1 %>
+        <div class="center m-5">
+          <%= link_to "Answer previous polls", "#{params[:id]}/polls", class: "btn btn-danger"%>
+        </div>
+    <% end %>
+
+    <h3 class="center m-3">Poll results</h3>
+    <% unless @event.polls == nil || @event.polls.empty? %>
+      <% @event.polls.each do |poll|  %>
+        <div class="card-box-wide card-box-poll">
+          <h4><%= poll.title %></h4>
+          <div class="d-flex justify-content-center mb-5">
+            <%= bar_chart poll.responses.group("choices.answer").count, messages: {empty: "Waiting for votes..."},dataset: {barThickness: 20}, width: "80%", height: "300px", colors: ['#800000'] %>
+          </div>
         </div>
       <% end %>
+    <% else %>
+      <h5 class="center">No Polls for this event</h5>
     <% end %>
   </div>
-<% end %>
+</div>
 
-<!-- LATEST POLL -->
-
-<% if !@event.polls.empty? && @event.polls.count > 1 %>
-    <div class="center m-5">
-      <%= link_to "Answer previous polls", "#{params[:id]}/polls", class: "btn btn-danger"%>
-    </div>
-<% end %>
-
-<h3 class="center m-3">Poll results</h3>
-<% unless @event.polls == nil || @event.polls.empty? %>
-  <% @event.polls.each do |poll|  %>
-    <div class="card-box-wide card-box-poll">
-      <h4><%= poll.title %></h4>
-      <div class="d-flex justify-content-center mb-5">
-        <%= bar_chart poll.responses.group("choices.answer").count, messages: {empty: "Waiting for votes..."},dataset: {barThickness: 20}, width: "80%", height: "300px", colors: ['#800000'] %>
-      </div>
-    </div>
-  <% end %>
-<% else %>
-  <h5 class="center">No Polls for this event</h5>
-<% end %>

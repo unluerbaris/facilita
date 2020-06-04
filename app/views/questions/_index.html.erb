@@ -1,9 +1,11 @@
 <div class="container content-container">
   <h1>Q&A</h1>
-  <div class="question-scroll" id="questions">
-    <% event.questions.order(cached_votes_score: :desc).each do |question| %>
-      <%= render "questions/question", event: event, question: question %>
-    <% end %>
+  <div class="background-container">
+    <div class="question-scroll" id="questions">
+      <% event.questions.order(cached_votes_score: :desc).each do |question| %>
+        <%= render "questions/question", event: event, question: question %>
+      <% end %>
+    </div>
   </div>
   <%= simple_form_for([event, Question.new], remote: true) do |f| %>
     <div class="input-field">
