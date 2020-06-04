@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
     authorize @question
     @question.liked_by current_or_guest_user
     @question.save
-    redirect_to event_path(@event, anchor: "question-#{@question.id}", tab: "question"), notice: "You liked this!"
+    redirect_to event_path(@event, anchor: "question-#{@question.id}", tab: "question")
   end
 
   private
