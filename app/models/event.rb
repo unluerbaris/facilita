@@ -5,6 +5,8 @@ class Event < ApplicationRecord
   has_many :polls, dependent: :destroy
   has_many :feedbacks, dependent: :destroy
   has_many :users, through: :audiences
+  has_many :choices, through: :polls
+  has_many :responses, through: :choices
   has_one_attached :photo
   belongs_to :user
   validates :title, presence: true
