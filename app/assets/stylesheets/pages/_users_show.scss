@@ -90,11 +90,8 @@
   position: absolute;
   width: 72px;
   font-size: 12px;
-  top: -18px;
-  right: -30px;
-  &:hover {
-    text-decoration: none;
-  }
+  top: 30px;
+  right: 40px;
 }
 
 .event-card {
@@ -110,5 +107,12 @@
 
   .user-content {
     margin: 0;
+  }
+}
+
+@media (max-width: 540px) {
+  .summary {
+    top: -24px;
+    right: 0px;
   }
 }

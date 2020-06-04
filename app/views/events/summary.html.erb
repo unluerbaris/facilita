@@ -1,4 +1,4 @@
-<h2><%= link_to @event.title, event_path(@event), class: "text-red text-space-around" %>Overview</h2>
+<h2 class="text-space-top"><%= link_to @event.title, event_path(@event), class: "text-red text-space-around" %>Overview</h2>
   <div id="summary-bar">
     <div class="card-square">
       <h2><%= @event.audiences.count %></h2>
@@ -25,34 +25,38 @@
 <div class="summary-cards-first">
   <div class="card-box">
     <h4>Popular comments</h4>
-      <div class="d-flex justify-content-around align-items-center">
-        <% top_message = @event.messages.order(cached_votes_total: :desc).first %>
-        <% if top_message.user.photo.attached? %>
-          <%= cl_image_tag top_message.user.photo.key, class: "avatar" %>
-        <% else %>
-          <%= image_tag "avatar.svg", class: "avatar" %>
-        <% end %>
+      <% unless @event.messages.nil? || @event.messages.empty? %>
+        <div class="d-flex justify-content-around align-items-center">
+          <% top_message = @event.messages.order(cached_votes_total: :desc).first %>
+          <% if top_message.user.photo.attached? %>
+            <%= cl_image_tag top_message.user.photo.key, class: "avatar" %>
+          <% else %>
+            <%= image_tag "avatar.svg", class: "avatar" %>
+          <% end %>
         <div class="left popular_content">
-          <p><small><em><%= top_message.content %></em></small></p>
+          <p><small><em><%= top_message.content[0..100] %>...</em></small></p>
           <p class="right"><small>By <%= top_message.user.first_name %> <%= top_message.user.last_name %></small></p>
         </div>
         <small><%= top_message.get_likes.count %> Likes</small>
-      </div>
+        </div>
+      <% end %>
     <p class="right">See all comments</p>
     <h4>Popular Questions</h4>
-      <% top_question = @event.questions.order(cached_votes_total: :desc).first %>
-      <div class="d-flex justify-content-around align-items-center">
-        <% if top_question.user.photo.attached? %>
-          <%= cl_image_tag top_question.user.photo.key, class: "avatar" %>
-        <% else %>
-          <%= image_tag "avatar.svg", class: "avatar" %>
-        <% end %>
-        <div class="left popular_content">
-          <p><small><em><%= top_question.content %></em></small></p>
-          <p class="right"><small>By <%= top_question.user.first_name %> <%= top_question.user.last_name %></small></p>
+      <% unless  @event.questions.nil? || @event.questions.empty? %>
+        <div class="d-flex justify-content-around align-items-center">
+          <% top_question = @event.questions.order(cached_votes_total: :desc).first %>
+            <% if top_question.user.photo.attached? %>
+              <%= cl_image_tag top_question.user.photo.key, class: "avatar" %>
+            <% else %>
+              <%= image_tag "avatar.svg", class: "avatar" %>
+            <% end %>
+            <div class="left popular_content">
+              <p><small><em><%= top_question.content[0..100] %>...</em></small></p>
+              <p class="right"><small>By <%= top_question.user.first_name %> <%= top_question.user.last_name %></small></p>
+            </div>
+            <small><%= top_question.get_likes.count %> Likes</small>
         </div>
-        <small><%= top_question.get_likes.count %> Likes</small>
-      </div>
+      <% end %>
     <p class="right">See all questions</p>
   </div>
   <div class="card-box-wide">
