@@ -8,7 +8,7 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find(params[:id])
-    @choices = @poll.choices
+    @choices = Choice.where(poll: @poll).where.not(answer: "")
     @response = Response.new
     authorize @poll
   end
