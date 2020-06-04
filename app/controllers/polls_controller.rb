@@ -17,8 +17,13 @@ class PollsController < ApplicationController
     @poll = Poll.new(polls_params)
     authorize @poll
     @poll.event = @event
+    @new_poll = Poll.new
     if @poll.save
-      redirect_to event_poll_path(@event, @poll)
+      EventChannel.broadcast_to(
+      @event,
+      polls: render_to_string(partial: "polls/index", locals: { poll: @poll })
+      )
+      redirect_to event_poll_path(@event, @poll, anchor: "poll-#{@poll.id}", tab: "polls" )
     else
       render "events/show"
     end

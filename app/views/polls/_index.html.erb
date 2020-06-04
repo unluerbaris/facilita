@@ -1,12 +1,11 @@
-<h1 class="center text-space-around">Polls</h1>
+<h1 class="center text-space-around" id="polls">Polls</h1>
+<button class="btn btn-outline-secondary btn-create">+</button>
 <div class="container content-container">
-
   <div class="background-container">
     <% if current_user == @event.user %>
-      <button class="btn btn-outline-secondary btn-create">+</button>
       <div class="form none">
         <div class="container center form-container">
-            <%= simple_form_for([@event, @new_poll]) do |f| %>
+            <%= simple_form_for([@event, @new_poll], remote: true) do |f| %>
               <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
               <%= f.input :title, label: "Poll Title" %>
               <%= f.simple_fields_for :choices do |choice_form| %>
@@ -29,18 +28,21 @@
     <!-- LATEST POLL -->
 
     <% if @event.polls.any? %>
-      <h3 class="center text-space-top"><%= @event.polls.last.title %></h3>
-      <div class="container poll-container center">
-        <% choices = Choice.where(poll: @event.polls.last).where.not(answer: "") %>
-        <% choices.each do |choice| %>
-          <%= simple_form_for Response.new, remote: true do |f| %>
-            <%= f.input :choice_id, as: :hidden, input_html: { value: choice.id } %>
-            <div>
-              <%= f.submit "#{choice.answer}", class: "btn btn-outline-danger poll-button" %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
+      <% poll = @event.polls.last %>
+      <% unless current_or_guest_user.responses.where(choice: poll.choices).any? %>
+        <h3 class="center text-space-top"><%= poll.title %></h3>
+        <div class="container poll-container center">
+          <% choices = Choice.where(poll: poll).where.not(answer: "") %>
+            <% choices.each do |choice| %>
+              <%= simple_form_for Response.new, remote: true do |f| %>
+                <%= f.input :choice_id, as: :hidden, input_html: { value: choice.id } %>
+                <div>
+                  <%= f.submit "#{choice.answer}", class: "btn btn-outline-danger poll-button" %>
+                </div>
+              <% end %>
+            <% end %>
+        </div>
+      <% end %>
     <% end %>
 
     <!-- LATEST POLL -->
@@ -53,7 +55,7 @@
 
     <h3 class="center m-3">Poll results</h3>
     <% unless @event.polls == nil || @event.polls.empty? %>
-      <% @event.polls.each do |poll|  %>
+      <% @event.polls.reverse.each do |poll|  %>
         <div class="card-box-wide card-box-poll">
           <h4><%= poll.title %></h4>
           <div class="d-flex justify-content-center mb-5">
