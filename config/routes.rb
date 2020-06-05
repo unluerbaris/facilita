@@ -26,4 +26,6 @@ Rails.application.routes.draw do
   resources :audiences, only: [:create]
   resources :choices, only: [:create, :new]
   resources :responses, only: [:create]
+  get 'meetup', to: 'events#meetup', as: 'meetup'
+  post 'meetup', to: 'events#create_meetup', as: 'meetup_event'
 end

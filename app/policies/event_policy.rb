@@ -27,4 +27,12 @@ class EventPolicy < ApplicationPolicy
   def update?
     true
   end
+
+  def meetup?
+    true
+  end
+
+  def create_meetup?
+    true
+  end
 end

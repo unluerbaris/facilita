@@ -1,3 +1,12 @@
+<div class="container">
+  <h1>Your events on MeetUp.com</h1>
+
+  <% @events.each_with_index do |event, index| %>
+    <p><%= index + 1 %>. <%=  event["name"] %></p>
+    <% event["description"] = Nokogiri::HTML(event["description"]).text.strip %>
+    <%= link_to "Create the event", meetup_event_path(event: event), method: :post %>
+  <% end %>
+</div>
 
 <div class="container d-flex justify-content-around">
   <div class="new-project-card p-3 mb-4 mt-4">
@@ -21,3 +30,7 @@
   <% end %>
 </div>
 </div>
+
+
+<%#= link_to "See your events on MeetUp", meetup_path, class: "btn btn-new"  %>
+
