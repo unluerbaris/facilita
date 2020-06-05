@@ -58,11 +58,6 @@
   bottom: 0;
 }
 
-.event-time {
-  font-size: 14px;
-  font-weight: lighter;
-}
-
 .event-text {
   text-align: left;
   padding: 30px;
@@ -117,5 +112,12 @@
   .summary {
     top: -24px;
     right: 0px;
+  }
+
+  .event-text h4 {
+    font-size: 12px;
+  }
+  .event-text p {
+    font-size: 9px;
   }
 }
