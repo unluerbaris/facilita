@@ -15,7 +15,10 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    authorize @event
+    url = 'https://api.meetup.com/Le-Wagon-Tokyo-Coding-Station/events?&sign=true&photo-host=public&page=20'
+    events_serialized = open(url).read
+    @events = JSON.parse(events_serialized)
+    authorize Event
   end
 
   def create
@@ -70,7 +73,7 @@ class EventsController < ApplicationController
     @event.title = @events[1]["name"]
     @event.description =  Nokogiri::HTML(@events[1]["description"]).text.strip
     @event.start_time = DateTime.parse(@events[1]["local_date"] + " " + @events[1]["local_time"]).change(:offset => "+0900")
-    @event.end_time = DateTime.parse(@events[1]["local_date"] + " " + @events[1]["local_time"]).change(:offset => "+0900")
+    @event.end_time = DateTime.parse(@events[1]["local_date"] + " " + @events[1]["local_time"]).change(:offset => "+0700")
     @event.location = @events[1]["venue"]["name"]
 
     if @event.save
