@@ -5,11 +5,11 @@
       <div class="feedback-card">
         <p><em><%= feedback.comment %></em></p>
       </div>
-      <div>
+      <div class="feedback-name">
         <% feedback.rating.times do %>
           <i class="fas fa-star fa-xs" id="rating"></i>
         <% end %>
-        <p>By <%= feedback.user.first_name %> <%= feedback.user.last_name %></p>
+        <p><small><%= feedback.user.first_name %> <%= feedback.user.last_name %></small></p>
       </div>
     </div>
   <% end %>
