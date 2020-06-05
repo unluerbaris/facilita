@@ -29,8 +29,9 @@
                 required: false,
                 input_html: { autocomplete: "birthday" } %>
 <%= f.input :gender,
-                hint: "Gender",
-                required: false,
+                as: :select,
+                collection: ['Male', 'Female'],
+                required: true,
                 input_html: { autocomplete: "gender" } %>
 <%= f.input :occupation,
                 hint: "Occupation",
