@@ -65,14 +65,14 @@ class EventsController < ApplicationController
     url = 'https://api.meetup.com/Le-Wagon-Tokyo-Coding-Station/events?&sign=true&photo-host=public&page=20'
     events_serialized = open(url).read
     @events = JSON.parse(events_serialized)
-    @events.each do |event|
-      @event.user = current_or_guest_user
-      @event.title = event["name"]
-      @event.description =  Nokogiri::HTML(event["description"]).text.strip
-      @event.start_time = DateTime.parse(event["local_date"] + " " + event["local_time"]).change(:offset => "+0900")
-      @event.end_time = DateTime.parse(event["local_date"] + " " + event["local_time"]).change(:offset => "+0900")
-      @event.location = event["venue"]["name"]
-    end
+
+    @event.user = current_or_guest_user
+    @event.title = @events[1]["name"]
+    @event.description =  Nokogiri::HTML(@events[1]["description"]).text.strip
+    @event.start_time = DateTime.parse(@events[1]["local_date"] + " " + @events[1]["local_time"]).change(:offset => "+0900")
+    @event.end_time = DateTime.parse(@events[1]["local_date"] + " " + @events[1]["local_time"]).change(:offset => "+0900")
+    @event.location = @events[1]["venue"]["name"]
+
     if @event.save
       redirect_to event_path(@event)
     else
