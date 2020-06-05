@@ -1,14 +1,17 @@
 <div class="new-event">
-  <div class="new-project-card-meetup">
-    <h2>Your events on MeetUp.com</h2>
-    <% @events.each_with_index do |event, index| %>
-      <div class="user-events-meetup">
-        <h5><%= index + 1 %>. <%=  event["name"] %></h5>
-        <% event["description"] = Nokogiri::HTML(event["description"]).text.strip %>
-        <%= link_to "Import this event", meetup_event_path(event: event), method: :post, class: "btn btn-outline-danger btn-meetup" %>
-      </div>
-    <% end %>
-  </div>
+  <% user = User.find_by)(email: 'grant@grant.com') %>
+  <% if user = current_or_guest_user %>
+    <div class="new-project-card-meetup">
+      <h2>Your events on MeetUp.com</h2>
+      <% @events.each_with_index do |event, index| %>
+        <div class="user-events-meetup">
+          <h5><%= index + 1 %>. <%=  event["name"] %></h5>
+          <% event["description"] = Nokogiri::HTML(event["description"]).text.strip %>
+          <%= link_to "Import this event", meetup_event_path(event: event), method: :post, class: "btn btn-outline-danger btn-meetup" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
   <div class="container d-flex justify-content-around">
     <div class="new-project-card p-3 mb-4 mt-4">
