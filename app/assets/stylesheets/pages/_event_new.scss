@@ -1,3 +1,9 @@
+.new-event {
+ display: flex;
+ justify-content: space-center;
+ align-items: start;
+}
+
 .form-name {
   font-weight: bold;
   font-size: 18px;
@@ -15,13 +21,28 @@ white-space: pre-wrap;
 }
 
 .new-project-card {
-  width: 70%;
+  width: 80%;
   text-align: center;
   background-color: white;
   color: $red;
   box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
   border: none;
   line-height: 3;
+}
+
+.new-project-card-meetup {
+  width: 70%;
+  margin: 40px 40px;
+  text-align: left;
+  border: none;
+  line-height: 1.5;
+  h2 {
+    color: $red;
+  }
+}
+
+.new-project-card-meetup p {
+  margin-bottom: 0;
 }
 
 .btn-new {
@@ -36,4 +57,25 @@ white-space: pre-wrap;
   background: white;
   color: $red;
   border: 1px solid $red;
+}
+
+.user-events-meetup {
+  width: 100%;
+  background: white;
+  margin: 20px 0px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  padding: 30px;
+  &:hover {
+    box-shadow: none;
+  }
+}
+
+.user-events-meetup h5 {
+  font-size: 15px;
+}
+
+@media (max-width: 720px) {
+  .new-event {
+    display: inline;
+  }
 }
