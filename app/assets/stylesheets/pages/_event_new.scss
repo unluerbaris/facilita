@@ -1,7 +1,8 @@
 .new-event {
  display: flex;
- justify-content: space-center;
+ justify-content: space-between;
  align-items: start;
+ margin: 40px;
 }
 
 .form-name {
@@ -21,7 +22,7 @@ white-space: pre-wrap;
 }
 
 .new-project-card {
-  width: 80%;
+  width: 100%;
   text-align: center;
   background-color: white;
   color: $red;
@@ -31,8 +32,7 @@ white-space: pre-wrap;
 }
 
 .new-project-card-meetup {
-  width: 70%;
-  margin: 40px 40px;
+  width: 100%;
   text-align: left;
   border: none;
   line-height: 1.5;
@@ -60,7 +60,7 @@ white-space: pre-wrap;
 }
 
 .user-events-meetup {
-  width: 100%;
+  width: 80%;
   background: white;
   margin: 20px 0px;
   box-shadow: 0 0 8px rgba(0,0,0,0.2);
