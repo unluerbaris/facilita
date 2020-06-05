@@ -138,12 +138,12 @@
   </div>
   <div class="card-box">
     <h4 class="center">Audience age</h4>
-    <% users = Audience.where(event: @event).joins(:user).where.not(users: {first_name: "guest", age: nil}) %>
+    <% users = Audience.where(event: @event).joins(:user).where.not(users: {age: nil}) %>
     <%= bar_chart users.group("FLOOR(age / 10) * 10").count, dataset: {barThickness: 30}, width: "240px", height: "240px", colors: ['#800000']%>
   </div>
   <div class="card-box">
     <h4 class="center">Gender breakdown</h4>
-    <% users = Audience.where(event: @event).joins(:user).where.not(users: {first_name: "guest", gender: nil}) %>
+    <% users = Audience.where(event: @event).joins(:user).where.not(users: {gender: nil}) %>
     <%= pie_chart users.group(:gender).count, width: "240px", height: "240px", colors: ['#800000', '#001980'] %>
     <div class="d-flex justify-content-around m-3">
       <% females = users.select do |audience| %>
@@ -163,7 +163,7 @@
   <div class="card-box">
     <h5 class="center">Audience occupation breakdown</h5>
     <div class="d-flex justify-content-around">
-      <% users = Audience.where(event: @event).joins(:user).where.not(users: {first_name: "guest", gender: nil, occupation: nil}) %>
+      <% users = Audience.where(event: @event).joins(:user).where.not(users: {occupation: nil}) %>
       <%= pie_chart users.group(:occupation).count, donut: true, id: "users-chart", height: "300px", width: "320px", colors: ['#001980', '#800000', '#D78C00', '#357544', '#75355D', '#FF8C9E'] %>
     </div>
   </div>
