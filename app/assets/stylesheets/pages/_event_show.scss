@@ -140,6 +140,18 @@
   }
 
   #pills-tab-around {
+    background-color: $light-gray;
+  }
+
+  .footer-fixed {
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
+    width: 100%;
+  }
+
+  #pills-tab-around {
     width: 100%;
   }
 
@@ -193,6 +205,10 @@
   .content-container {
     width: 100%;
   }
+
+  .nav-item {
+    margin: 8px;
+  }
 }
 
 @media (max-width: 375px) {
@@ -202,5 +218,4 @@
     border-radius: 20px;
     box-shadow: none;
   }
-
 }

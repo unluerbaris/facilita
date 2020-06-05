@@ -2,7 +2,7 @@
   <h1>Q&A</h1>
   <div class="background-container">
     <% if event.questions.nil? || event.questions.empty? %>
-      <h5 class="center text-space-around">Waiting for your question.</h5>
+      <h5 class="center text-space-bottom">Waiting for your question.</h5>
     <% else %>
       <div class="question-scroll" id="questions">
         <% event.questions.order(cached_votes_score: :desc).each do |question| %>
