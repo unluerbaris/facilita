@@ -1,6 +1,8 @@
 <div class="poll-title-btn">
   <h1 class="center text-around" id="polls">Polls</h1>
-  <button class="btn btn-outline-secondary btn-create">+</button>
+  <% if current_user == @event.user %>
+    <button class="btn btn-outline-secondary btn-create">+</button>
+  <% end %>
 </div>
 <div class="container content-container">
   <div class="background-container text-space-bottom">
