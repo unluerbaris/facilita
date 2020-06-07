@@ -24,5 +24,15 @@ overflow: scroll;
  }
 
  .checkedoff {
-
+  margin-left: 10px;
  }
+
+.user-info-message {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    margin: 0 auto;
+  }
+}

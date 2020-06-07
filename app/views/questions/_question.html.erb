@@ -8,27 +8,27 @@
       <% end %>
     </div>
     <div>
-      <div class="ml-3 d-flex align-items-center">
-        <p class="mr-3"><small><%= question.user.first_name %> <%= question.user.last_name %></small></p>
+      <div class="user-info-message">
+        <p><small><%= question.user.first_name %> <%= question.user.last_name %></small></p>
         <p><small><%= question.created_at.in_time_zone("Asia/Tokyo").strftime('%H:%M') %></small></p>
+        <div class="icon">
+          <%= link_to like_event_question_path(@event, question), method: :put do  %>
+            <% if current_or_guest_user.voted_for? question %>
+              <i class="fas fa-thumbs-up bluecolor"></i>
+            <% else %>
+              <i class="fas fa-thumbs-up graycolor"></i>
+            <% end %>
+          <% end %>
+          <p class="ml-2"><small><%= question.get_likes.size %></small></p>
+          <% if question.event.user == current_user %>
+            <div class="checkedoff">
+              <i class="fas fa-check graycolor"></i>
+            </div>
+          <% end %>
+        </div>
       </div>
       <p class="content"><%= question.content %></p>
     </div>
-  </div>
-  <div class="icon">
-    <%= link_to like_event_question_path(@event, question), method: :put do  %>
-      <% if current_or_guest_user.voted_for? question %>
-        <i class="fas fa-thumbs-up bluecolor"></i>
-      <% else %>
-        <i class="fas fa-thumbs-up graycolor"></i>
-      <% end %>
-    <% end %>
-    <p><small><%= question.get_likes.size %></small></p>
-    <% if question.event.user == current_user %>
-      <div class="checkedoff">
-        <i class="fas fa-check graycolor"></i>
-      </div>
-    <% end %>
   </div>
 </div>
 
