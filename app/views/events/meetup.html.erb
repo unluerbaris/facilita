@@ -1,7 +1,0 @@
-<h1>Your events on MeetUp.com</h1>
-
-<% @events.each do |event| %>
-  <p><%= event["name"] %></p>
-  <% event["description"] = Nokogiri::HTML(event["description"]).text.strip %>
-  <%= link_to "Create the event", meetup_event_path(event: event), method: :post %>
-<% end %>

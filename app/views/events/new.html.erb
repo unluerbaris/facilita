@@ -8,7 +8,16 @@
             <div class="user-events-meetup">
               <h5><%= index + 1 %>. <%=  event["name"] %></h5>
               <% event["description"] = Nokogiri::HTML(event["description"]).text.strip %>
-              <%= link_to "Import this event", meetup_event_path(event: event), method: :post, class: "btn btn-outline-danger btn-meetup" %>
+              <% start_time = DateTime.parse(event["local_date"] + " " + event["local_time"]).change(:offset => "+0900") %>
+              <% end_time = DateTime.parse(event["local_date"] + " " + event["local_time"]).change(:offset => "+0700") %>
+              <%= simple_form_for(@event) do |f| %>
+                <%= f.input :title, as: :hidden, input_html: { value: event["name"] } %>
+                <%= f.input :description, as: :hidden, input_html: { value: event["description"] } %>
+                <%= f.input :location, as: :hidden, input_html: { value: event["venue"]["name"] } %>
+                <%= f.input :start_time, as: :hidden, input_html: { value: start_time } %>
+                <%= f.input :end_time, as: :hidden, input_html: { value: end_time } %>
+                <%= f.submit "import this event", class: "btn btn-outline-danger btn-meetup" %>
+              <% end %>
             </div>
           <% end %>
         <% else %>
@@ -38,7 +47,4 @@
     </div>
   </div>
 </div>
-
-
-<%#= link_to "See your events on MeetUp", meetup_path, class: "btn btn-new"  %>
 
