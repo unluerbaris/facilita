@@ -15,17 +15,17 @@
     <% end %>
 
 <%= f.input :first_name,
-                hint: "First name",
+                placeholder: "First name",
                 required: false,
                 input_html: { autocomplete: "first-name" } %>
 <%= f.input :last_name,
-                hint: "Last name",
+                placeholder: "Last name",
                 required: false,
                 input_html: { autocomplete: "last-name" } %>
 <%= f.input :birthday,
                 start_year: Date.today.year - 100,
                 end_year: Date.today.year,
-                hint: "Birthday",
+                placeholder: "Birthday",
                 required: false,
                 input_html: { autocomplete: "birthday" } %>
 <%= f.input :gender,
@@ -34,25 +34,30 @@
                 required: true,
                 input_html: { autocomplete: "gender" } %>
 <%= f.input :occupation,
-                hint: "Occupation",
+                placeholder: "Occupation",
                 required: false,
                 input_html: { autocomplete: "occupation" } %>
+<%= f.input :organization,
+                placeholder: "Your organization name on Meetup.com",
+                hint: "You can find your organization name on your organization page URL (https://www.meetup.com/<HERE>/)",
+                required: false,
+                input_html: { autocomplete: "organization" } %>
     <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
+                placeholder: "leave it blank if you don't want to change it",
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
+                placeholder: "we need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
     <%= f.input :photo, as: :file, required: false %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+    <%= f.button :submit, "Update", class: "btn btn-outline-danger mb-3" %>
   </div>
 <% end %>
 

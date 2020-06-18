@@ -15,10 +15,12 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    url = 'https://api.meetup.com/Le-Wagon-Tokyo-Coding-Station/events?&sign=true&photo-host=public&page=20'
-    events_serialized = open(url).read
-    @events = JSON.parse(events_serialized)
     authorize Event
+    unless current_or_guest_user.organization == nil
+      url = "https://api.meetup.com/#{current_or_guest_user.organization}/events?&sign=true&photo-host=public&page=20"
+      events_serialized = open(url).read
+      @events = JSON.parse(events_serialized)
+    end
   end
 
   def create

@@ -2,13 +2,17 @@
   <div class="new-event">
     <div class="event-create-form">
       <div class="new-project-card-meetup">
-        <h2 class="text-space-around">Your events on MeetUp.com</h2>
-        <% @events.each_with_index do |event, index| %>
-          <div class="user-events-meetup">
-            <h5><%= index + 1 %>. <%=  event["name"] %></h5>
-            <% event["description"] = Nokogiri::HTML(event["description"]).text.strip %>
-            <%= link_to "Import this event", meetup_event_path(event: event), method: :post, class: "btn btn-outline-danger btn-meetup" %>
-          </div>
+        <% unless  @events.nil? || @events.empty? %>
+          <h2 class="text-space-around">Your events on MeetUp.com</h2>
+          <% @events.each_with_index do |event, index| %>
+            <div class="user-events-meetup">
+              <h5><%= index + 1 %>. <%=  event["name"] %></h5>
+              <% event["description"] = Nokogiri::HTML(event["description"]).text.strip %>
+              <%= link_to "Import this event", meetup_event_path(event: event), method: :post, class: "btn btn-outline-danger btn-meetup" %>
+            </div>
+          <% end %>
+        <% else %>
+          <h2 class="text-space-around">No events from MeetUp.com</h2>
         <% end %>
       </div>
     </div>
